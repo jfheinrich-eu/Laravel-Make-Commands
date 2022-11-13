@@ -1,0 +1,32 @@
+stages:
+  - build
+  # pestphp
+  - pest
+  # PHPstan
+  - code-quality
+  # SAST scanner
+  - test
+  - convert
+  - release
+  - badges
+  - deploy
+
+cache:
+  key: build_cache
+  paths:
+    - vendor/
+    - composer.lock
+
+variables:
+  DOCKER_IMAGE: "registry.gitlab.com/jfheinrich-eu/docker/php-cli:8.1"
+  DOCKER_PY_IMAGE: "python:latest"
+  SAST_EXCLUDED_PATHS: "spec, test, tests, tmp, vendor, node_modules"
+
+include:
+  - template: Jobs/SAST.gitlab-ci.yml
+  - local: "gitlab-ci/build.yml"
+  - local: "gitlab-ci/tests.yml"
+  - local: "gitlab-ci/semver.yml"
+  - local: "gitlab-ci/sast-report.yml"
+  - local: "gitlab-ci/badges.yml"
+  - local: "gitlab-ci/deploy.yml"

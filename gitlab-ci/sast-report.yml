@@ -1,0 +1,24 @@
+phpcs-security-audit-sast:
+  stage: test
+  after_script:
+    - cp gl-sast-report.json gl-sast-phpcs-security-audit-report.json
+  artifacts:
+    paths:
+      - gl-sast-phpcs-security-audit-report.json
+    when: always
+
+phpcs-security-audit-sast-convert:
+  stage: convert
+  image: ${DOCKER_PY_IMAGE}
+  dependencies:
+    - phpcs-security-audit-sast
+  script:
+    - pip3 install SecScanner2JUnit
+    - |-
+      if [ -f gl-sast-phpcs-security-audit-report.json ]
+      then
+        ss2ju sast gl-sast-phpcs-security-audit-report.json gl-sast-phpcs-security-audit-report.xml
+      fi
+  artifacts:
+    reports:
+      junit: gl-sast-phpcs-security-audit-report.xml
