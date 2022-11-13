@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
+
+readonly class {{ class }} implements DtoContract
+{
+    public function __construct(
+        //
+    ) {}
+
+    public function toArray(): array
+    {
+        return get_object_vars($this);
+    }
+
+    public function JsonSerialize(): mixed
+    {
+       return $this->toArray();
+    }
+}

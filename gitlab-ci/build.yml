@@ -1,0 +1,12 @@
+build:
+  image: ${DOCKER_IMAGE}
+  stage: build
+  tags:
+    - build
+  script:
+    - composer install --ignore-platform-reqs --prefer-dist --no-progress --no-scripts > /dev/null
+  cache:
+    key: build_cache
+    paths:
+      - vendor/
+      - composer.lock
