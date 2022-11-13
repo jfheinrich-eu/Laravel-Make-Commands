@@ -1,0 +1,27 @@
+pest:
+  image: ${DOCKER_IMAGE}
+  stage: pest
+  tags:
+    - tests
+  script:
+    - composer test:coverage
+  coverage: /^\s*Cov:\s*\d+.\d+\%/
+  cache:
+    key: build_cache
+    paths:
+      - vendor/
+      - composer.lock
+
+code-quality:
+  image: ${DOCKER_IMAGE}
+  stage: code-quality
+  tags:
+    - tests
+  script:
+    - composer check
+    - composer static
+  cache:
+    key: build_cache
+    paths:
+      - vendor/
+      - composer.lock

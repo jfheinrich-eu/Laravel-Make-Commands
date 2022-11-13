@@ -1,0 +1,62 @@
+{
+  "name": "jfheinrich-eu/laravel-make-commands",
+  "description": "This package is aimed to be a suite of artisan commands and tools to help make the work easier.",
+  "type": "library",
+  "require": {
+    "juststeveking/laravel-data-object-tools": "1.0.1"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "JfheinrichEu\\LaravelMakeCommands\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JfheinrichEu\\LaravelMakeCommands\\Tests\\": "tests/"
+    }
+  },
+  "authors": [{
+    "name": "Joerg Heinrich",
+    "email": "contact@jfheinrich.eu"
+  }],
+  "minimum-stability": "dev",
+  "scripts": {
+    "test": "./vendor/bin/pest",
+    "test:coverage": "env XDEBUG_MODE=coverage ./vendor/bin/pest --coverage",
+    "fix": "./vendor/bin/pint",
+    "check": "./vendor/bin/pint --test -v",
+    "static": "./vendor/bin/phpstan analyse",
+    "all": [
+      "@test",
+      "@fix",
+      "@check",
+      "@static"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "JfheinrichEu\\LaravelMakeCommands\\Providers\\PackageServiceProvider"
+      ],
+      "aliases": [
+        "JfHeinrichEu\\LaravelMakeCommands\\Facades\\Hydrator"
+      ]
+    }
+  },
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true,
+    "preferred-install": "dist",
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "require-dev": {
+    "laravel/pint": "^1.1",
+    "orchestra/testbench": "^7.6",
+    "pestphp/pest": "^1.21",
+    "phpstan/phpstan": "^1.8"
+  }
+}
