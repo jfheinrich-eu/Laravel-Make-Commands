@@ -1,0 +1,25 @@
+release:
+  image: ${DOCKER_IMAGE}
+  stage: release
+  rules:
+    - if: $CI_PIPELINE_SOURCE != "schedule" && $CI_PIPELINE_SOURCE != "web" && ($CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "development")
+  tags:
+    - semver
+  before_script:
+    - which ssh-agent || ( apk --update add openssh-client ) && eval $(ssh-agent -s) && ssh-add ~/.ssh/id_ed25519
+    - ssh-keyscan  gitlab.com >> ~/.ssh/known_hosts
+    - apk add --update nodejs npm
+    - npm install --save-dev semantic-release
+    - npm install @semantic-release/release-notes-generator -D
+    - npm install @semantic-release/commit-analyzer -D
+    - npm install @semantic-release/gitlab -D
+    - npm install conventional-changelog-conventionalcommits
+  script:
+    - npx semantic-release
+  cache:
+    key: build_cache
+    paths:
+      - vendor/
+      - node_modules/
+      - composer.lock
+      - package-lock.json
