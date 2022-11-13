@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Jfheinrich\DataObjects\Contracts;
+namespace JfheinrichEu\LaravelMakeCommands\Contracts;
 
 interface HydratorContract
 {
     /**
-     * @param class-string<DataObjectContract> $class
+     * @param class-string<DtoContract> $class
      * @param array<string,mixed> $properties
-     * @return DataObjectContract
+     * @return DtoContract
      */
-    public function fill(string $class, array $properties): DataObjectContract;
+    public function fill(string $class, array $properties): DtoContract;
 }

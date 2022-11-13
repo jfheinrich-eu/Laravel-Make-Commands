@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-use Jfheinrich\DataObjects\Tests\PackageTestCase;
+use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 
 uses(PackageTestCase::class)->in(__DIR__);

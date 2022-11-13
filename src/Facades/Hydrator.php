@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Jfheinrich\DataObjects\Facades;
+namespace JfheinrichEu\LaravelMakeCommands\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Jfheinrich\DataObjects\Contracts\DataObjectContract;
-use Jfheinrich\DataObjects\Hydrator\Hydrate;
+use JfheinrichEu\LaravelMakeCommands\Hydrator\Hydrate;
+use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
 
 /**
- * @method static DataObjectContract fill(string $class, array $properties)
+ * @method static DtoContract fill(string $class, array $properties)
  *
- * @see \Jfheinrich\DataObjects\Hydrator\Hydrate;
+ * @see \JfheinrichEu\LaravelMakeCommands\Hydrator\Hydrate;
  */
 final class Hydrator extends Facade
 {

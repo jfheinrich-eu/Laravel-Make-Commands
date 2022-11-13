@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jfheinrich\DataObjects\Console\Commands;
+namespace JfheinrichEu\LaravelMakeCommands\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
 
-final class DataTransferObjectMakeCommand extends GeneratorCommand
+final class DtoMakeCommand extends GeneratorCommand
 {
     /**
      * @var string
@@ -45,6 +45,6 @@ final class DataTransferObjectMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return "{$rootNamespace}\\DataObjects";
+        return "{$rootNamespace}\\DTO";
     }
 }

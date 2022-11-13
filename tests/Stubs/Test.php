@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Jfheinrich\DataObjects\Tests\Stubs;
+namespace JfheinrichEu\LaravelMakeCommands\Tests\Stubs;
 
-use Jfheinrich\DataObjects\Contracts\DataObjectContract;
+use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
 
-final class Test implements DataObjectContract
+final class Test implements DtoContract
 {
     public function __construct(
         private readonly string $name,
@@ -20,9 +20,6 @@ final class Test implements DataObjectContract
 
     public function toArray(): array
     {
-        /*return [
-            'name' => $this->name,
-        ];*/
         return get_object_vars($this);
     }
 }

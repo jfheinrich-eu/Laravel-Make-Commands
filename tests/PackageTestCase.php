@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jfheinrich\DataObjects\Tests;
+namespace JfheinrichEu\LaravelMakeCommands\Tests;
 
-use Jfheinrich\DataObjects\Providers\PackageServiceProvider;
 use Orchestra\Testbench\TestCase;
+use JfheinrichEu\LaravelMakeCommands\Providers\PackageServiceProvider;
 
 class PackageTestCase extends TestCase
 {

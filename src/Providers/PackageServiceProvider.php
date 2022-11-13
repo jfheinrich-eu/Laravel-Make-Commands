@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jfheinrich\DataObjects\Providers;
+namespace JfheinrichEu\LaravelMakeCommands\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Jfheinrich\DataObjects\Console\Commands\DataTransferObjectMakeCommand;
-use Jfheinrich\DataObjects\Contracts\HydratorContract;
-use Jfheinrich\DataObjects\Hydrator\Hydrate;
+use JfheinrichEu\LaravelMakeCommands\Hydrator\Hydrate;
+use JfheinrichEu\LaravelMakeCommands\Contracts\HydratorContract;
+use JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand;
 
 final class PackageServiceProvider extends ServiceProvider
 {
@@ -26,7 +26,7 @@ final class PackageServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands(
                 commands: [
-                    DataTransferObjectMakeCommand::class,
+                    DtoMakeCommand::class,
                 ],
             );
         }

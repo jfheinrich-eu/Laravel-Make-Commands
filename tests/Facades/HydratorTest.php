@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Jfheinrich\DataObjects\Facades\Hydrator;
-use Jfheinrich\DataObjects\Tests\Stubs\Test;
+use JfheinrichEu\LaravelMakeCommands\Facades\Hydrator;
+use JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Test;
 
 it('can create a data transfer object', function (string $string) {
     expect(
