@@ -39,8 +39,8 @@ To generate a new DTO all you need to do is run the following artisan command:
 php artisan make:dto MyDto
 ```
 
-This will generate the following class: `app/DataObjects/MyDto.php`. By default this class
-will be a `final` class that implements a `DataObjectContract`, which extends `JsonSerializable`, which enforces two methods
+This will generate the following class: `app/DTO/MyDto.php`. By default this class
+will be a `final` class that implements a `DtoContract`, which extends `JsonSerializable`, which enforces two methods
 
 - `toArray` so that you can easily cast your DTOs to arrays
 - `JsonSerialize` so that you can easily serialize your DTOs
