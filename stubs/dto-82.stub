@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace {{ namespace }};
 
-use Jfheinrich\DataObjects\Support\BaseDataObject;
+use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
 
-readonly class {{ class }} extends BaseDataObject
+readonly class {{ class }} implements DtoContract
 {
     public function __construct(
         //
