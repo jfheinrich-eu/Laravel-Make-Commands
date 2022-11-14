@@ -3,7 +3,7 @@ badges:
   stage: badges
   variables:
     PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
-    PRIVATE_TOKEN: $CI_JOB_TOKEN
+    PRIVATE_TOKEN: $PRIVATE_ACCESS_TOKEN
   cache:
     key: badges
     paths:
