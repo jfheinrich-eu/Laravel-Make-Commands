@@ -20,7 +20,7 @@
   "minimum-stability": "dev",
   "scripts": {
     "test": "./vendor/bin/pest",
-    "test:coverage": "env XDEBUG_MODE=coverage ./vendor/bin/pest --coverage",
+    "test:coverage": "env XDEBUG_MODE=coverage ./vendor/bin/pest --coverage  --colors=never",
     "fix": "./vendor/bin/pint",
     "check": "./vendor/bin/pint --test -v",
     "static": "./vendor/bin/phpstan analyse",
