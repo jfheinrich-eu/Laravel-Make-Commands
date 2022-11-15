@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\File;
 use JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand;
 
 use function PHPUnit\Framework\assertTrue;
-use Mockery\MockInterface;
 
 it('can run the command successfully', function () {
     $this
@@ -28,7 +27,7 @@ it('create the data transfer object when called', function (string $class) {
     );
 })->with('classes');
 
-it('check getStub() method', function() {
+it('check getStub() method', function () {
     $test = new DtoMakeCommand(new Filesystem());
 
     $reflection = new ReflectionClass(
