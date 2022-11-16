@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Contracts;
 
 use JsonSerializable;
-use JustSteveKing\DataObjects\Contracts\DataObjectContract;
 
-interface DtoContract extends JsonSerializable, DataObjectContract
+interface DtoContract extends JsonSerializable
 {
+    /**
+     * @return array<string,mixed>
+     */
+    public function toArray(): array;
+
     /**
      * @return mixed
      */

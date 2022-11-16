@@ -25,6 +25,11 @@ final class DtoMakeCommand extends GeneratorCommand
     protected $type = 'Data Transfer Object';
 
     /**
+     * @var string
+     */
+    protected $dir = __DIR__;
+
+    /**
      * @return string
      */
     protected function getStub(): string
@@ -36,7 +41,7 @@ final class DtoMakeCommand extends GeneratorCommand
 
         $file = $readonly ? 'dto-82.stub' : 'dto.stub';
 
-        return __DIR__ . "/../../../stubs/{$file}";
+        return $this->dir . "/../../../stubs/{$file}";
     }
 
     /**

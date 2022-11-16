@@ -5,7 +5,7 @@ pest:
     - tests
   script:
     - composer test:coverage
-  coverage: /^\s*Cov:\s*\d+.\d+\%/
+  coverage: /^\s*Cov:\s*\d+\.\d+?%$/
   cache:
     key: build_cache
     paths:

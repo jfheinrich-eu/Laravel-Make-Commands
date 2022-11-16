@@ -2,9 +2,6 @@
   "name": "jfheinrich-eu/laravel-make-commands",
   "description": "This package is aimed to be a suite of artisan commands and tools to help make the work easier.",
   "type": "library",
-  "require": {
-    "juststeveking/laravel-data-object-tools": "1.0.1"
-  },
   "license": "MIT",
   "autoload": {
     "psr-4": {
@@ -23,7 +20,7 @@
   "minimum-stability": "dev",
   "scripts": {
     "test": "./vendor/bin/pest",
-    "test:coverage": "env XDEBUG_MODE=coverage ./vendor/bin/pest --coverage",
+    "test:coverage": "env XDEBUG_MODE=coverage ./vendor/bin/pest --coverage  --colors=never",
     "fix": "./vendor/bin/pint",
     "check": "./vendor/bin/pint --test -v",
     "static": "./vendor/bin/phpstan analyse",
@@ -57,6 +54,12 @@
     "laravel/pint": "^1.1",
     "orchestra/testbench": "^7.6",
     "pestphp/pest": "^1.21",
+    "pestphp/pest-plugin-mock": "^1.0",
     "phpstan/phpstan": "^1.8"
+  },
+  "require": {
+    "eventsauce/object-hydrator": "^1.0",
+    "illuminate/console": "^9.39",
+    "illuminate/support": "^9.39"
   }
 }
