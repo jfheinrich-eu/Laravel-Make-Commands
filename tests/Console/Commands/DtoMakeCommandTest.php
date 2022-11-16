@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand;
 
@@ -25,3 +26,22 @@ it('create the data transfer object when called', function (string $class) {
         ),
     );
 })->with('classes');
+
+it('check getStub() method', function () {
+    $test = new DtoMakeCommand(new Filesystem());
+
+    $reflection = new ReflectionClass(
+        objectOrClass: DtoMakeCommand::class,
+    );
+
+    $property = $reflection->getProperty('dir');
+    $dir = $property->getValue($test);
+
+    $method = $reflection->getMethod('getStub');
+    $method->setAccessible(true);
+
+    $expected = $dir . '/../../../stubs/dto.stub';
+    $stub = $method->invoke($test);
+
+    $this->assertEquals($expected, $stub);
+});
