@@ -21,13 +21,12 @@ variables:
   DOCKER_IMAGE: "registry.gitlab.com/jfheinrich-eu/docker/php-cli:8.1"
   DOCKER_PY_IMAGE: "python:latest"
   SAST_EXCLUDED_PATHS: "spec, test, tests, tmp, vendor, node_modules"
-  SECURE_LOG_LEVEL: "debug"
 
 include:
   - template: Jobs/SAST.gitlab-ci.yml
   - local: "gitlab-ci/build.yml"
   - local: "gitlab-ci/tests.yml"
   - local: "gitlab-ci/semver.yml"
-  #- local: "gitlab-ci/sast-report.yml"
+  - local: "gitlab-ci/sast-report.yml"
   - local: "gitlab-ci/badges.yml"
   - local: "gitlab-ci/deploy.yml"
