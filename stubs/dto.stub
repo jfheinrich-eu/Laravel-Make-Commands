@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
-use JfheinrichEu\LaravelMakeCommands\Traits\UseDTO;
+use JfheinrichEu\LaravelMakeCommands\Traits\UseDto;
 
 final class {{ class }} implements DtoContract
 {
-    use useDTO;
+    use UseDto;
 
     public function __construct(
         //
