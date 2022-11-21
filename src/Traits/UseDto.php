@@ -6,7 +6,7 @@ namespace JfheinrichEu\LaravelMakeCommands\Traits;
 
 use Illuminate\Support\Collection;
 
-trait useDTO
+trait UseDTO
 {
     /**
      * @inheritDoc

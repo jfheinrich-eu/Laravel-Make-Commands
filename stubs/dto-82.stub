@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
-use JfheinrichEu\LaravelMakeCommands\Traits\useDTO;
+use JfheinrichEu\LaravelMakeCommands\Traits\UseDTO;
 
 readonly class {{ class }} implements DtoContract
 {
