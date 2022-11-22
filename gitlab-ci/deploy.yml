@@ -11,8 +11,9 @@ publish:
     - code=$(echo "$response" | tail -n 1)
     - body=$(echo "$response" | head -n 1)
     # Output state information
-    - if [ $code -eq 201 ]; then
-      echo "Package created - Code $code - $body";
+    - |-
+      if [ $code -eq 201 ]; then
+      echo "Package created - Version: $version - Code $code - $body";
       else
       echo "Could not create package - Code $code - $body";
       exit 1;
