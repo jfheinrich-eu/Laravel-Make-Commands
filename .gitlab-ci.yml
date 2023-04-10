@@ -7,6 +7,8 @@ stages:
   # SAST scanner
   - test
   - convert
+  - release-fetch-version
+  - release-build
   - release
   - badges
   - deploy

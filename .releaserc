@@ -1,7 +1,6 @@
 {
     "branches": [
         "+([0-9])?(.{+([0-9]),x}).x",
-        "master",
         "main",
         "next",
         "next-major",
@@ -22,11 +21,34 @@
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
-        "@semantic-release/gitlab"
+    [
+        "@semantic-release/changelog",
+        {
+            "changelogFile": "./CHANGELOG.md"
+        }
+    ],
+    "semantic-release-license",
+    [
+        "@semantic-release/git",
+        {
+            "assets": [
+                "./CHANGELOG.md",
+                "LICENSE"
+            ]
+        }
+    ],
+    [
+        "@semantic-release/exec",
+        {
+            "verifyReleaseCmd": "echo -n ${nextRelease.version} > VERSION"
+        }
+    ],
+    "@semantic-release/gitlab"
     ],
     "analyzeCommits": {
         "path": "@semantic-release/commit-analyzer",
-        "releaseRules": [{
+        "releaseRules": [
+            {
                 "type": "hotfix",
                 "release": "patch"
             },
