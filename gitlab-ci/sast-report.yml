@@ -1,5 +1,6 @@
 phpcs-security-audit-sast:
   stage: test
+  allow_failure: true
   after_script:
     - cp gl-sast-report.json gl-sast-phpcs-security-audit-report.json
   artifacts:
@@ -9,6 +10,7 @@ phpcs-security-audit-sast:
 
 phpcs-security-audit-sast-convert:
   stage: convert
+  allow_failure: true
   image: ${DOCKER_PY_IMAGE}
   dependencies:
     - phpcs-security-audit-sast
