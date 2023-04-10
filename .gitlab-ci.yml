@@ -20,7 +20,7 @@ cache:
     - composer.lock
 
 variables:
-  DOCKER_IMAGE: "registry.gitlab.com/jfheinrich-eu/docker/php-cli:8.1"
+  DOCKER_IMAGE: "registry.gitlab.com/jfheinrich-eu/docker/nodejs:latest"
   DOCKER_PY_IMAGE: "python:latest"
   SAST_EXCLUDED_PATHS: "spec, test, tests, tmp, vendor, node_modules"
 
