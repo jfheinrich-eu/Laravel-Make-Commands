@@ -29,18 +29,19 @@
     ],
     "semantic-release-license",
     [
+        "@semantic-release/exec",
+        {
+            "verifyReleaseCmd": "echo -n ${nextRelease.version} > VERSION"
+        }
+    ],
+    [
         "@semantic-release/git",
         {
             "assets": [
                 "./CHANGELOG.md",
-                "LICENSE"
+                "LICENSE",
+                "VERSION"
             ]
-        }
-    ],
-    [
-        "@semantic-release/exec",
-        {
-            "verifyReleaseCmd": "echo -n ${nextRelease.version} > VERSION"
         }
     ],
     "@semantic-release/gitlab"
