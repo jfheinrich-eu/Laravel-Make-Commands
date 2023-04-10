@@ -4,9 +4,21 @@ build:
   tags:
     - build
   script:
+    - apk add --update nodejs npm
+    - npm install --save-dev semantic-release
+    - npm install @semantic-release/release-notes-generator -D
+    - npm install @semantic-release/commit-analyzer -D
+    - npm install @semantic-release/gitlab -D
+    - npm install @semantic-changelog -D
+    - npm install @semantic-release/git -D
+    - npm install @semantic-release/exec -D
+    - npm install conventional-changelog-conventionalcommits
     - composer install --ignore-platform-reqs --prefer-dist --no-progress --no-scripts > /dev/null
   cache:
     key: build_cache
     paths:
       - vendor/
+      - node_modules/
+      - package.json
+      - package-lock.json
       - composer.lock

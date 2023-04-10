@@ -3,8 +3,9 @@ cache:
   paths:
     - vendor/
     - node_modules/
-    - composer.lock
+    - package.json
     - package-lock.json
+    - composer.lock
 
 fetch-semantic-version:
   image: ${DOCKER_IMAGE}
@@ -22,6 +23,14 @@ fetch-semantic-version:
   artifacts:
     paths:
       - VERSION
+  cache:
+    key: build_cache
+    paths:
+      - vendor/
+      - node_modules/
+      - package.json
+      - package-lock.json
+      - composer.lock
 
 generate-non-semantic-version:
   stage: release-fetch-version
@@ -60,15 +69,6 @@ release:
   before_script:
     - which ssh-agent || ( apk --update add openssh-client ) && eval $(ssh-agent -s) && ssh-add ~/.ssh/id_ed25519
     - ssh-keyscan  gitlab.com >> ~/.ssh/known_hosts
-    - apk add --update nodejs npm
-    - npm install --save-dev semantic-release
-    - npm install @semantic-release/release-notes-generator -D
-    - npm install @semantic-release/commit-analyzer -D
-    - npm install @semantic-release/gitlab -D
-    - npm install @semantic-changelog -D
-    - npm install @semantic-release/git -D
-    - npm install @semantic-release/exec -D
-    - npm install conventional-changelog-conventionalcommits
   script:
     - touch CHANGELOG.md
     - touch VERSION
@@ -84,5 +84,6 @@ release:
     paths:
       - vendor/
       - node_modules/
-      - composer.lock
+      - package.json
       - package-lock.json
+      - composer.lock
