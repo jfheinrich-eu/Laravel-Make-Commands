@@ -9,7 +9,7 @@ build:
     - npm install @semantic-release/release-notes-generator -D
     - npm install @semantic-release/commit-analyzer -D
     - npm install @semantic-release/gitlab -D
-    - npm install @semantic-changelog -D
+    - npm install @semantic-release/changelog -D
     - npm install @semantic-release/git -D
     - npm install @semantic-release/exec -D
     - npm install conventional-changelog-conventionalcommits
