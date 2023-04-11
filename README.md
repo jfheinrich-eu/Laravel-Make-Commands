@@ -18,11 +18,7 @@ This package is aimed to be a suite of artisan commands and tools to help make t
 ## Installation
 
 ```bash
-composer config gitlab-token.gitlab.com <personal_access_token>
-
-composer config repositories.jfheinrich-eu composer https://gitlab.com/api/v4/group/jfheinrich-eu/-/packages/composer/
-
-composer require jfheinrich-eu/laravel-commands
+composer require jfheinrich-eu/laravel-make-commands
 ```
 
 ## Data transfer object (DTO) / make:dto
