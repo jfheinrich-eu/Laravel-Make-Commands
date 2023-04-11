@@ -1,3 +1,14 @@
+## [2.0.0-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/1.2.0...2.0.0-rc.1) (2023-04-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **LMC-1:** Package moved to packagist.org
+
+### Features
+
+* **LMC-1:** Package moved to packagist.org ([9cdd092](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/9cdd0921592c6b2dbe5635c67897030832389c8e))
+
 ## 1.0.0-rc.1 (2023-04-10)
 
 
