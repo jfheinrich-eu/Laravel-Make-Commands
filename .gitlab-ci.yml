@@ -6,23 +6,30 @@
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 stages:
-- build
-- pest
-- code-quality
-- test
-- convert
-- release
-- badges
-- deploy
+  - build
+  # pestphp
+  - pest
+  # PHPstan
+  - code-quality
+  # SAST scanner
+  - test
+  - convert
+  - release-fetch-version
+  - release-build
+  - release
+  - badges
+  - deploy
+
 cache:
   key: build_cache
   paths:
   - vendor/
   - composer.lock
 variables:
-  DOCKER_IMAGE: registry.gitlab.com/jfheinrich-eu/docker/php-cli:8.1
-  DOCKER_PY_IMAGE: python:latest
-  SAST_EXCLUDED_PATHS: spec, test, tests, tmp, vendor, node_modules
+  DOCKER_IMAGE: "registry.gitlab.com/jfheinrich-eu/docker/nodejs:latest"
+  DOCKER_PY_IMAGE: "python:latest"
+  SAST_EXCLUDED_PATHS: "spec, test, tests, tmp, vendor, node_modules"
+
 include:
 - template: Jobs/SAST.gitlab-ci.yml
 - local: gitlab-ci/build.yml

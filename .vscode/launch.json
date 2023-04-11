@@ -32,15 +32,22 @@
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
-            "port": 9003
-        },
-        {
-            "name": "(lando) Listen for Xdebug",
-            "type": "php",
-            "request": "launch",
             "port": 9003,
+            "log": true,
             "pathMappings": {
             "/app": "${workspaceFolder}"
         },
+        {
+            "name": "PhpUnit dummy",
+            "type": "php",
+            "request": "launch",
+            "port": 9001,
+        },
+    ],
+    "compounds": [
+        {
+            "name": "PhpUnit",
+            "configurations": ["Listen for XDebug", "PhpUnit dummy"]
+        }
     ]
 }

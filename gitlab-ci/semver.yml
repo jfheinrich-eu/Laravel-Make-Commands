@@ -1,25 +1,89 @@
-release:
+cache:
+  key: build_cache
+  paths:
+    - vendor/
+    - node_modules/
+    - package.json
+    - package-lock.json
+    - composer.lock
+
+fetch-semantic-version:
   image: ${DOCKER_IMAGE}
-  stage: release
-  rules:
-    - if: $CI_PIPELINE_SOURCE != "schedule" && $CI_PIPELINE_SOURCE != "web" && ($CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "development")
+  stage: release-fetch-version
   tags:
     - semver
-  before_script:
-    - which ssh-agent || ( apk --update add openssh-client ) && eval $(ssh-agent -s) && ssh-add ~/.ssh/id_ed25519
-    - ssh-keyscan  gitlab.com >> ~/.ssh/known_hosts
-    - apk add --update nodejs npm
-    - npm install --save-dev semantic-release
-    - npm install @semantic-release/release-notes-generator -D
-    - npm install @semantic-release/commit-analyzer -D
-    - npm install @semantic-release/gitlab -D
-    - npm install conventional-changelog-conventionalcommits
+  only:
+    refs:
+      - main
+      - develop
+      - /^(([0-9]+)\.)?([0-9]+)\.x/                                                                   # This matches maintenance branches
+      - /^([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/ # This matches pre-releases
   script:
-    - npx semantic-release
+    - npx semantic-release --generate-notes false --dry-run
+  artifacts:
+    paths:
+      - VERSION
   cache:
     key: build_cache
     paths:
       - vendor/
       - node_modules/
-      - composer.lock
+      - package.json
       - package-lock.json
+      - composer.lock
+
+generate-non-semantic-version:
+  stage: release-fetch-version
+  tags:
+    - semver
+  except:
+    refs:
+      - main
+      - develop
+      - /^(([0-9]+)\.)?([0-9]+)\.x/                                                                   # This matches maintenance branches
+      - /^([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/ # This matches pre-releases
+  script:
+    - echo build-$CI_PIPELINE_ID > VERSION
+  artifacts:
+    paths:
+      - VERSION
+
+release-build:
+  stage: release-build
+  tags:
+    - semver
+  script:
+    - echo "Version is $(cat VERSION)"
+
+release:
+  image: ${DOCKER_IMAGE}
+  stage: release
+  tags:
+    - semver
+  only:
+    refs:
+      - main
+      - develop
+      - /^(([0-9]+)\.)?([0-9]+)\.x/                                                                   # This matches maintenance branches
+      - /^([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/ # This matches pre-releases
+  before_script:
+    - which ssh-agent || ( apk --update add openssh-client ) && eval $(ssh-agent -s) && ssh-add ~/.ssh/id_ed25519
+    - ssh-keyscan  gitlab.com >> ~/.ssh/known_hosts
+  script:
+    - touch CHANGELOG.md
+    - touch VERSION
+    - touch LICENSE
+    - npx semantic-release
+  artifacts:
+    paths:
+    - CHANGELOG.md
+    - VERSION
+    - LICENSE
+  cache:
+    key: build_cache
+    paths:
+      - vendor/
+      - node_modules/
+      - package.json
+      - package-lock.json
+      - composer.lock

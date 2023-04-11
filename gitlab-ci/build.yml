@@ -9,4 +9,7 @@ build:
     key: build_cache
     paths:
       - vendor/
+      - node_modules/
+      - package.json
+      - package-lock.json
       - composer.lock
