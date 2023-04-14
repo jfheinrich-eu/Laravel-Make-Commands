@@ -7,8 +7,10 @@ namespace JfheinrichEu\LaravelMakeCommands\Contracts;
 interface HydratorContract
 {
     /**
-     * @param class-string<DtoContract> $class
-     * @param array<string,mixed> $properties
+     * fill
+     *
+     * @param  class-string<DtoContract> $class
+     * @param  array<string,mixed> $properties
      * @return DtoContract
      */
     public function fill(string $class, array $properties): DtoContract;
