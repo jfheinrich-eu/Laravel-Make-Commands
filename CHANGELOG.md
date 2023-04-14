@@ -1,13 +1,13 @@
-## [2.0.0-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/1.2.0...2.0.0-rc.1) (2023-04-11)
+## [2.0.0](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/1.2.0...2.0.0) (2023-04-12)
 
 
 ### ⚠ BREAKING CHANGES
 
-* **LMC-1:** Package moved to packagist.org
+* **deps:** Droped laravel/framework 9.x support. Now Support only for version ^10
 
-### Features
+### Miscellaneous Chores
 
-* **LMC-1:** Package moved to packagist.org ([9cdd092](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/9cdd0921592c6b2dbe5635c67897030832389c8e))
+* **deps:** Update dependency orchestra/testbench to v8 (main) ([68d4c3e](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/68d4c3ed5ba51ba6ff1643c1528d7d4aa83bb6dc))
 
 ## 1.0.0-rc.1 (2023-04-10)
 
