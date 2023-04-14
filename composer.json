@@ -65,7 +65,7 @@
   },
   "require": {
     "eventsauce/object-hydrator": "1.3.0",
-    "illuminate/console": "^9.39",
-    "illuminate/support": "^9.40"
+    "illuminate/console": "9.52.5",
+    "illuminate/support": "9.52.5"
   }
 }
