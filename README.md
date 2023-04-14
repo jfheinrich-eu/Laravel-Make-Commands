@@ -1,10 +1,10 @@
 # Laravel Generator Commands <!-- omit in toc -->
 
 <!-- BADGES_START -->
-![Owner](../-/jobs/artifacts/main/raw/public/badges/owner.svg?job=badges)
-![Package](../-/jobs/artifacts/main/raw/public/badges/name.svg?job=badges)
-![Release](../-/jobs/artifacts/main/raw/public/badges/release.svg?job=badges)
-![Last Activity](../-/jobs/artifacts/main/raw/public/badges/last_activity_at.svg?job=badges)
+![Owner](https://gitlab.com/jfheinrich-eu/laravel-make-commands/-/jobs/artifacts/main/raw/public/badges/owner.svg?job=badges)
+![Package](https://gitlab.com/jfheinrich-eu/laravel-make-commands/-/jobs/artifacts/main/raw/public/badges/name.svg?job=badges)
+![Release](https://gitlab.com/jfheinrich-eu/laravel-make-commands/-/jobs/artifacts/main/raw/public/badges/release.svg?job=badges)
+![Last Activity](https://gitlab.com/jfheinrich-eu/laravel-make-commands/-/jobs/artifacts/main/raw/public/badges/last_activity_at.svg?job=badges)
 <!-- BADGES_END -->
 
 This package is aimed to be a suite of artisan commands and tools to help make the work easier.
