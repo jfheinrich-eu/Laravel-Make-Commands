@@ -11,7 +11,6 @@ use JfheinrichEu\LaravelMakeCommands\Providers\LaravelMakeCommandsServiceProvide
 
 class LaravelMakeCommandsPackageProvider extends PackageServiceProvider
 {
-
     public function configurePackage(Package $package): void
     {
         $package->name('laravel-make-commands')
@@ -23,7 +22,7 @@ class LaravelMakeCommandsPackageProvider extends PackageServiceProvider
             });
     }
 
-    public function packageBooted()
+    public function packageBooted(): void
     {
         $commands = config('make-commands.commands', []);
         if ($commands !== []) {
