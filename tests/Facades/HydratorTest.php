@@ -25,6 +25,7 @@ test('Hydrate Test::class', function (string $name, string $studio) {
     expect($dto->studio)->toEqual($studio, 'Can\'t access property "studio"');
     $dto->studio = 'override';
     expect($dto->studio)->toEqual('override', 'Can\'t write property "studio"');
+    expect($dto->unknown)->toBeNull('Access to unknown property, don\'t return Null.');
 })->with('data');
 
 test('creates our data transfer object as we would expect', function (string $name, string $studio) {
