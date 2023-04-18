@@ -22,7 +22,7 @@ it('create the data transfer object when called', function (string $class) {
 
     assertTrue(
         File::exists(
-            path: app_path("DTO/$class.php"),
+            app_path("DTO/$class.php"),
         ),
     );
 })->with('classes');
