@@ -24,7 +24,7 @@ final class LaravelMakeCommandsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         /** @var string[] $commands */
-        $commands = Config::get('laravel-make-commands.commands', []);
+        $commands = Config::get('make-commands.commands', []);
 
         if ($commands !== []) {
             if ($this->app->runningInConsole()) {
