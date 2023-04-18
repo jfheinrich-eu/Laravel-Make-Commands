@@ -12,7 +12,7 @@ final class DtoMakeCommand extends GeneratorCommand
     /**
      * @var string
      */
-    protected $signature = "make:dto {name : The DTO Name}";
+    protected $signature = "make-commands:dto {name : The DTO Name}";
 
     /**
      * @var string
