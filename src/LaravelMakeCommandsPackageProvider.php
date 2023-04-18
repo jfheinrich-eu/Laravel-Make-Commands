@@ -13,7 +13,7 @@ class LaravelMakeCommandsPackageProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        $package->name('laravel-make-commands')
+        $package->name('make-commands')
             ->hasConfigFile()
             ->publishesServiceProvider(LaravelMakeCommandsServiceProvider::class)
             ->hasInstallCommand(function (InstallCommand $command) {
