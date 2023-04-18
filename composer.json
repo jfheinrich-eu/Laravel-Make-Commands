@@ -37,7 +37,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "JfheinrichEu\\LaravelMakeCommands\\Providers\\LaravelMakeCommandsServiceProvider"
+        "JfheinrichEu\\LaravelMakeCommands\\LaravelMakeCommandsPackageProvider"
       ],
       "aliases": [
         "JfHeinrichEu\\LaravelMakeCommands\\Facades\\Hydrator"
