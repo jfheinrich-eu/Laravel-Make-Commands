@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand;
 
 use function PHPUnit\Framework\assertTrue;
@@ -28,6 +29,11 @@ it('create the data transfer object when called', function (string $class) {
 })->with('classes');
 
 it('check getStub() method', function () {
+    $php82 = Str::contains(
+        haystack: PHP_VERSION,
+        needles: '8.2',
+    );
+
     $test = new DtoMakeCommand(new Filesystem());
 
     $reflection = new ReflectionClass(
@@ -41,6 +47,10 @@ it('check getStub() method', function () {
     $method->setAccessible(true);
 
     $expected = $dir . '/../../../stubs/dto.stub';
+    if($php82) {
+        $expected = $dir . '/../../../stubs/dto-82.stub';
+    }
+
     $stub = $method->invoke($test);
 
     $this->assertEquals($expected, $stub);
