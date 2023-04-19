@@ -62,7 +62,7 @@
     "orchestra/testbench-core": "8.5.0",
     "pestphp/pest": "2.5.2",
     "pestphp/pest-plugin-mock": "2.0.0",
-    "phpstan/phpstan": "1.10.13"
+    "phpstan/phpstan": "1.10.14"
   },
   "require": {
     "eventsauce/object-hydrator": "1.3.0",
