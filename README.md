@@ -1,4 +1,4 @@
-# Laravel Generator Commands <!-- omit in toc -->
+# Laravel Make Commands <!-- omit in toc -->
 
 <!-- BADGES_START -->
 ![Owner](https://gitlab.com/jfheinrich-eu/laravel-make-commands/-/jobs/artifacts/main/raw/public/badges/owner.svg?job=badges)
@@ -10,7 +10,9 @@
 This package is aimed to be a suite of artisan commands and tools to help make the work easier.
 
 - [Installation](#installation)
-- [Data transfer object (DTO) / make:dto](#data-transfer-object-dto--makedto)
+- [Make interface (make-commands:interface)](#make-interface-make-commandsinterface)
+  - [Example](#example)
+- [Data transfer object (DTO) (make-commands:dto)](#data-transfer-object-dto-make-commandsdto)
   - [Usage](#usage)
   - [Object Hydration](#object-hydration)
 - [Credits](#credits)
@@ -21,7 +23,36 @@ This package is aimed to be a suite of artisan commands and tools to help make t
 composer require jfheinrich-eu/laravel-make-commands
 ```
 
-## Data transfer object (DTO) / make:dto
+To publish the config file to app/config/make-commands.php, run following command:
+
+```bash
+php artisan make-commands:install
+```
+
+## Make interface (make-commands:interface)
+
+Creates a new interface in `app\Contracts`
+
+```bash
+php artisan make-commands:interface Interface
+```
+
+### Example
+
+```bash
+$ php artisan make-commands:interface TestInterface
+$ cat app/Contracts/TestInterface.php
+<?php declare(strict_types=1);
+
+namespace App\Contracts;
+
+interface TestInterface
+{
+
+}
+```
+
+## Data transfer object (DTO) (make-commands:dto)
 
 Based on the great work of [Steve McDougall](https://github.com/JustSteveKing) with his package [laraval-data-object-tools](https://github.com/JustSteveKing/laravel-data-object-tools).
 
@@ -32,7 +63,7 @@ I extend this package with implementation of „JsonSerializable“.
 To generate a new DTO all you need to do is run the following artisan command:
 
 ```bash
-php artisan make:dto MyDto
+php artisan make-commands:dto MyDto
 ```
 
 This will generate the following class: `app/DTO/MyDto.php`. By default this class
