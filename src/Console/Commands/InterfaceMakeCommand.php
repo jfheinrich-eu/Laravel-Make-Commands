@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Facades\File;
 
 final class InterfaceMakeCommand extends GeneratorCommand
 {
@@ -30,7 +31,11 @@ final class InterfaceMakeCommand extends GeneratorCommand
 
     protected function getStub(): string
     {
-        return $this->dir . '/../../../stubs/interface.stub';
+        if (File::exists(base_path('stubs/make-commands/interface.stubs'))) {
+            return base_path('stubs/make-commands/interface.stubs');
+        } else {
+            return $this->dir . '/../../../stubs/interface.stub';
+        }
     }
 
     /**

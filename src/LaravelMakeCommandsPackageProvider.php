@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands;
 
+use Illuminate\Foundation\Console\AboutCommand;
+use Illuminate\Support\Facades\File;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
@@ -16,9 +18,14 @@ class LaravelMakeCommandsPackageProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->publishesServiceProvider('LaravelMakeCommandsServiceProvider')
             ->hasInstallCommand(function (InstallCommand $command) {
-                $command
-                    ->publishConfigFile();
+                $command->publishConfigFile()
+                    ->publishAssets();
             });
+
+        $this->publishes([
+            $this->package->basePath('/../stubs') => base_path("stubs/{$this->package->shortName()}"),
+        ], "{$this->package->shortName()}-assets");
+
     }
 
     public function packageBooted(): void
@@ -30,6 +37,13 @@ class LaravelMakeCommandsPackageProvider extends PackageServiceProvider
                     commands: $commands,
                 );
             }
+        }
+
+        $versionFile = __DIR__ . '/../VERSION';
+        if (File::exists($versionFile) && File::isReadable($versionFile)) {
+            $version = File::get($versionFile);
+
+            AboutCommand::add('Laravel Make Commands', fn () => ['Version' => $version]);
         }
     }
 }

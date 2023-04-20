@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class {{ class }}
 {
-    public function __construct(protected {{ model }} $model*/) {}
+    public function __construct(protected {{ model }} $model) {}
 
     public function all(): Collection
     {
@@ -48,7 +48,8 @@ class {{ class }}
      */
     public function find(int $id): Model| {{ model }}
     {
-        if (null == $model = $this->model->find($id))
+        $model = $this->model->find($id)
+        if (null == $model)
         {
             throw new ModelNotFoundException("Resource not found");
         }
