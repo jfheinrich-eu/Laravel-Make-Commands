@@ -4,33 +4,34 @@ declare(strict_types=1);
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
-use JfheinrichEu\LaravelMakeCommands\Console\Commands\InterfaceMakeCommand;
+use JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand;
 
 use function PHPUnit\Framework\assertTrue;
 
 it('can run the command successfully', function () {
-    $this->artisan(InterfaceMakeCommand::class, ['name' => 'Test'])
+    $this->artisan(RepositoryMakeCommand::class, ['name' => 'Test'], ['model' => 'User'])
         ->assertSuccessful();
 });
 
-it('create the interface when called', function (string $class) {
+it('create the repository when called', function (string $class, string $model) {
     $this->artisan(
-        InterfaceMakeCommand::class,
+        RepositoryMakeCommand::class,
         ['name' => $class],
+        ['model' => $model],
     )->assertSuccessful();
 
     assertTrue(
         File::exists(
-            app_path("Contracts/{$class}.php"),
+            app_path("Repositories/{$class}.php"),
         ),
     );
-})->with('interfaces');
+})->with('repositories');
 
 it('check getStub() method', function () {
-    $test = new InterfaceMakeCommand(new Filesystem());
+    $test = new RepositoryMakeCommand(new Filesystem());
 
     $reflection = new ReflectionClass(
-        objectOrClass: InterfaceMakeCommand::class,
+        objectOrClass: RepositoryMakeCommand::class,
     );
 
     $property = $reflection->getProperty('dir');
@@ -39,7 +40,7 @@ it('check getStub() method', function () {
     $method = $reflection->getMethod('getStub');
     $method->setAccessible(true);
 
-    $expected = $dir . '/../../../stubs/interface.stub';
+    $expected = $dir . '/../../../stubs/repository.stub';
     $stub = $method->invoke($test);
 
     $this->assertEquals($expected, $stub);

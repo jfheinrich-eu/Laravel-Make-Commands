@@ -9,5 +9,6 @@ return [
     'commands' => [
         JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand::class,
         JfheinrichEu\LaravelMakeCommands\Console\Commands\InterfaceMakeCommand::class,
+        JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand::class,
     ],
 ];
