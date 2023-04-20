@@ -7,7 +7,6 @@ namespace JfheinrichEu\LaravelMakeCommands;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
-use JfheinrichEu\LaravelMakeCommands\Providers\LaravelMakeCommandsServiceProvider;
 
 class LaravelMakeCommandsPackageProvider extends PackageServiceProvider
 {
@@ -17,8 +16,8 @@ class LaravelMakeCommandsPackageProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->publishesServiceProvider('LaravelMakeCommandsServiceProvider')
             ->hasInstallCommand(function (InstallCommand $command) {
-            $command
-                ->publishConfigFile();
+                $command
+                    ->publishConfigFile();
             });
     }
 
