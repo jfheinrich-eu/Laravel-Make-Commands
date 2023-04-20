@@ -1,18 +1,23 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Dto;
 
-use Illuminate\Database\Eloquent\Collection;
-use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
+use Illuminate\Support\Collection;
 
 /**
  * @property int $id
- * @property Collection $attributes
+ * @property Collection<int,array<string,mixed>> $attributes
  */
 final class RepositoryDto extends DataTransferObject
 {
+    /**
+     * @param int $id
+     * @param Collection<int,array<string,mixed>> $attributes
+     */
     public function __construct(
-        protected ?string $id = null,
+        protected ?int $id = null,
         protected ?Collection $attributes = null
     ) {
     }
