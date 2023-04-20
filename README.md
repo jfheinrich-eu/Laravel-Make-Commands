@@ -20,14 +20,29 @@ This package is aimed to be a suite of artisan commands and tools to help make t
 ## Installation
 
 ```bash
-composer require jfheinrich-eu/laravel-make-commands
+$ composer require jfheinrich-eu/laravel-make-commands
 ```
 
-To publish the config file to app/config/make-commands.php, run following command:
+To publish the assets, run following command:
 
 ```bash
-php artisan make-commands:install
+$ php artisan make-commands:install
 ```
+
+This install the config file to [Project root]/app/config/make-commands.php and the stubs to [Project root]/stubs/make-commands.
+
+To install only the config file, use this command:
+
+```bash
+$ php artisan vendor:publish --tag make-commands-config
+```
+
+To install only the stubs, use this command:
+
+```bash
+$ php artisan vendor:publish --tag make-commands-assets
+```
+
 
 ## Make interface (make-commands:interface)
 
