@@ -4,26 +4,26 @@ namespace {{ namespace }}
 
 use Illuminate\Database\Eloquent\Collection;
 
-use {{ model_namespace }};
+use {{ namespacedModel }};
 use Illuminate\Database\Eloquent\Model;
 use JfheinrichEu\LaravelMakeCommands\Dto\RepositoryDto;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class {{ class }}
 {
-    public function __construct(protected {{ model }} $model) {}
+    public function __construct(protected {{ model }} ${{ modelVariable }}) {}
 
     public function all(): Collection
     {
-        return $this->model::all();
+        return $this->{{ modelVariable }}::all();
     }
 
     /**
      * @inheritdoc
      */
-    public function create(RepositoryDto $dto): Model|{{ model }}
+    public function create(RepositoryDto $dto): Model|{{ modelVariable }}
     {
-        return $this->model::create($dto->attributes->toArray());
+        return $this->{{ modelVariable }}::create($dto->attributes->toArray());
     }
 
     /**
@@ -31,7 +31,7 @@ class {{ class }}
      */
     public function update(RepositoryDto $dto): bool
     {
-        return $this->model->whereId($dto->id)
+        return $this->{{ modelVariable }}->whereId($dto->id)
             ->update($dto->attributes->toArray());
     }
 
@@ -40,15 +40,15 @@ class {{ class }}
      */
     public function delete(int $id): bool
     {
-        return $this->model->whereId($id)->delete($id);
+        return $this->{{ modelVariable }}->whereId($id)->delete($id);
     }
 
     /**
      * @inheritdoc
      */
-    public function find(int $id): Model| {{ model }}
+    public function find(int $id): Model| {{ modelVariable }}
     {
-        $model = $this->model->find($id)
+        $model = $this->{{ modelVariable }}->find($id)
         if (null == $model)
         {
             throw new ModelNotFoundException("Resource not found");
