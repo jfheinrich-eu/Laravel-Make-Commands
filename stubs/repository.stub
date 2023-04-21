@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace {{ namespace }}
+namespace {{ namespace }};
 
 use Illuminate\Database\Eloquent\Collection;
 
@@ -32,7 +32,7 @@ class {{ class }} implements RepositoryContract
      */
     public function update(RepositoryDto $dto): bool
     {
-        return $this->{{ modelVariable }}->whereId($dto->id)
+        return $this->{{ modelVariable }}->find($dto->id)
             ->update($dto->attributes->toArray());
     }
 
@@ -41,7 +41,7 @@ class {{ class }} implements RepositoryContract
      */
     public function delete(int $id): bool
     {
-        return $this->{{ modelVariable }}->whereId($id)->delete($id);
+        return $this->{{ modelVariable }}->find($id)->delete();
     }
 
     /**
@@ -49,7 +49,7 @@ class {{ class }} implements RepositoryContract
      */
     public function find(int $id): Model| {{ model }}
     {
-        $model = $this->{{ modelVariable }}->find($id)
+        $model = $this->{{ modelVariable }}->find($id);
         if (null == $model)
         {
             throw new ModelNotFoundException("Resource not found");
