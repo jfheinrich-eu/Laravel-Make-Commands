@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Collection;
 use {{ namespacedModel }};
 use Illuminate\Database\Eloquent\Model;
 use JfheinrichEu\LaravelMakeCommands\Dto\RepositoryDto;
+use JfheinrichEu\LaravelMakeCommands\Contracts\RepositoryContract;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class {{ class }}
+class {{ class }} implements RepositoryContract
 {
     public function __construct(protected {{ model }} ${{ modelVariable }}) {}
 
@@ -21,7 +22,7 @@ class {{ class }}
     /**
      * @inheritdoc
      */
-    public function create(RepositoryDto $dto): Model|{{ modelVariable }}
+    public function create(RepositoryDto $dto): Model|{{ model }}
     {
         return $this->{{ modelVariable }}::create($dto->attributes->toArray());
     }
@@ -46,7 +47,7 @@ class {{ class }}
     /**
      * @inheritdoc
      */
-    public function find(int $id): Model| {{ modelVariable }}
+    public function find(int $id): Model| {{ model }}
     {
         $model = $this->{{ modelVariable }}->find($id)
         if (null == $model)
