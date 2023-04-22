@@ -2,40 +2,36 @@
 
 declare(strict_types=1);
 
+use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 use JfheinrichEu\LaravelMakeCommands\Facades\Hydrator;
 use JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Test;
 
-it('can create a data transfer object and get array', function (string $string) {
-    expect(
-        Hydrator::fill(
-            class: Test::class,
-            properties: ['name' => $string],
-        ),
-    )->toBeInstanceOf(Test::class)->toArray()->toEqual(['name' => $string]);
-})->with('strings');
+test('Hydrate Test::class', function (string $name, string $studio) {
+    $dto = Hydrator::fill(
+        class: Test::class,
+        properties: ['name' => $name, 'studio' => $studio],
+    );
 
-it('can create a data transfer object and get collection', function (string $string) {
-    expect(
-        Hydrator::fill(
-            class: Test::class,
-            properties: ['name' => $string],
-        ),
-    )->toBeInstanceOf(Test::class)->toCollection()->toEqual(collect(['name' => $string]));
-})->with('strings');
+    $array = $dto->toArray();
+    $json = json_encode($dto);
+    $collection = $dto->toCollection();
 
-it('can create a data transfer object and get json', function (string $string) {
-    expect(
-        $json = json_encode(Hydrator::fill(
-            class: Test::class,
-            properties: ['name' => $string],
-        )),
-    )->toBeJson()->toEqual(json_encode(['name' => $string]));
-})->with('strings');
+    expect($dto)->toBeInstanceOf(Test::class, 'Not a instance of Test::class');
+    expect($dto)->toBeInstanceOf(DataTransferObject::class, 'Not a instance of DataTransferObject::class');
+    expect($array)->toEqual(['name' => $name, 'studio' => $studio], 'toArray() failed');
+    expect($json)->toEqual("{\"name\":\"$name\",\"studio\":\"$studio\"}", 'toJson failed');
+    expect($collection)->toEqual(collect(['name' => $name, 'studio' => $studio]), 'toCollection failed');
+    expect($dto->name)->toEqual($name, 'Can\'t access property "name"');
+    expect($dto->studio)->toEqual($studio, 'Can\'t access property "studio"');
+    $dto->studio = 'override';
+    expect($dto->studio)->toEqual('override', 'Can\'t write property "studio"');
+    expect($dto->unknown)->toBeNull('Access to unknown property, don\'t return Null.');
+})->with('data');
 
-it('creates our data transfer object as we would expect', function (string $string) {
+test('creates our data transfer object as we would expect', function (string $name, string $studio) {
     $test = Hydrator::fill(
         class: Test::class,
-        properties: ['name' => $string],
+        properties: ['name' => $name, 'studio' => $studio],
     );
 
     $reflection = new ReflectionClass(
@@ -49,7 +45,15 @@ it('creates our data transfer object as we would expect', function (string $stri
     )->toBeTrue()->and(
         $reflection->getProperty(
             name: 'name',
-        )->isPrivate(),
+        )->isProtected(),
+    )->toBeTrue()->and(
+        $reflection->getProperty(
+            name: 'studio',
+        )->isReadOnly(),
+    )->toBeFalse()->and(
+        $reflection->getProperty(
+            name: 'studio',
+        )->isProtected(),
     )->toBeTrue()->and(
         $reflection->getMethod(
             name: 'toArray',
@@ -63,4 +67,4 @@ it('creates our data transfer object as we would expect', function (string $stri
             name: 'toCollection',
         )->hasReturnType(),
     )->toBeTrue();
-})->with('strings');
+})->with('data');

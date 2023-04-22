@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Tests;
 
 use Orchestra\Testbench\TestCase;
-use JfheinrichEu\LaravelMakeCommands\Providers\PackageServiceProvider;
+use JfheinrichEu\LaravelMakeCommands\LaravelMakeCommandsPackageProvider;
 
 class PackageTestCase extends TestCase
 {
@@ -21,7 +21,7 @@ class PackageTestCase extends TestCase
     protected function getPackageProviders($app): array
     {
         return [
-            PackageServiceProvider::class,
+            LaravelMakeCommandsPackageProvider::class,
         ];
     }
 }

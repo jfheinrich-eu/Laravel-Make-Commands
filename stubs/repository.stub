@@ -1,0 +1,67 @@
+<?php declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Collection;
+
+use {{ namespacedModel }};
+use Illuminate\Database\Eloquent\Model;
+use JfheinrichEu\LaravelMakeCommands\Dto\RepositoryDto;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+class {{ class }}
+{
+    public function __construct(protected {{ model }} ${{ modelVariable }}) {}
+
+    /**
+     * @retur Collection<int, {{ model }}>
+     */
+    public function all(): Collection
+    {
+        return $this->{{ modelVariable }}::all();
+    }
+
+    /**
+     * @param RepositoryDto $dto
+     * @return {{ model }}
+     */
+    public function create(RepositoryDto $dto): {{ model }}
+    {
+        return $this->{{ modelVariable }}::create($dto->attributes->toArray());
+    }
+
+    /**
+     * @param RepositoryDto $dto
+     * @return bool
+     */
+    public function update(RepositoryDto $dto): bool
+    {
+        return $this->{{ modelVariable }}->find($dto->id)
+            ?->update($dto->attributes->toArray()) ?? false;
+    }
+
+    /**
+     * @param int $id
+     * @return bool
+     */
+    public function delete(int $id): bool
+    {
+        return $this->{{ modelVariable }}->find($id)?->delete() ?? false;
+    }
+
+    /**
+     * @param int $id
+     * @return {{ model }}
+     * @throws ModelNotFoundException
+     */
+    public function find(int $id): Model| {{ model }}
+    {
+        $model = $this->{{ modelVariable }}->find($id);
+        if (null == $model)
+        {
+            throw new ModelNotFoundException("Resource not found");
+        }
+
+        return $model;
+    }
+}

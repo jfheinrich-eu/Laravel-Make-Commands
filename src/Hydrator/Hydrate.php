@@ -19,9 +19,7 @@ class Hydrate implements HydratorContract
     }
 
     /**
-     * @param class-string<DtoContract> $class
-     * @param array<string,mixed> $properties
-     * @return DtoContract
+     * @inheritDoc
      */
     public function fill(string $class, array $properties): DtoContract
     {

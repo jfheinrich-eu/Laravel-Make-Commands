@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace {{ namespace }};
 
-use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
-use JfheinrichEu\LaravelMakeCommands\Traits\UseDto;
+use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 
-final class {{ class }} implements DtoContract
+final class {{ class }} extends DataTransferObject
 {
-    use UseDto;
-
     public function __construct(
         //
     ) {}

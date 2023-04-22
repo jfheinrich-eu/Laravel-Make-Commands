@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 final class DtoMakeCommand extends GeneratorCommand
@@ -12,7 +13,7 @@ final class DtoMakeCommand extends GeneratorCommand
     /**
      * @var string
      */
-    protected $signature = "make:dto {name : The DTO Name}";
+    protected $signature = "make-commands:dto {name : The DTO Name}";
 
     /**
      * @var string
@@ -41,7 +42,11 @@ final class DtoMakeCommand extends GeneratorCommand
 
         $file = $readonly ? 'dto-82.stub' : 'dto.stub';
 
-        return $this->dir . "/../../../stubs/{$file}";
+        if (File::exists(base_path("stubs/make-commands/{$file}"))) {
+            return base_path("stubs/make-commands/{$file}");
+        } else {
+            return $this->dir . "/../../../stubs/{$file}";
+        }
     }
 
     /**

@@ -4,40 +4,34 @@ declare(strict_types=1);
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
-use JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand;
+use JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand;
 
 use function PHPUnit\Framework\assertTrue;
 
 it('can run the command successfully', function () {
-    $this
-        ->artisan(DtoMakeCommand::class, ['name' => 'Test'])
+    $this->artisan(RepositoryMakeCommand::class, ['name' => 'Test'], ['model' => 'User'])
         ->assertSuccessful();
 });
 
-it('create the data transfer object when called', function (string $class) {
+it('create the repository when called', function (string $class, string $model) {
     $this->artisan(
-        DtoMakeCommand::class,
+        RepositoryMakeCommand::class,
         ['name' => $class],
+        ['model' => $model],
     )->assertSuccessful();
 
     assertTrue(
         File::exists(
-            app_path("DTO/$class.php"),
+            app_path("Repositories/{$class}.php"),
         ),
     );
-})->with('classes');
+})->with('repositories');
 
 it('check getStub() method', function () {
-    $php82 = Str::contains(
-        haystack: PHP_VERSION,
-        needles: '8.2',
-    );
-
-    $test = new DtoMakeCommand(new Filesystem());
+    $test = new RepositoryMakeCommand(new Filesystem());
 
     $reflection = new ReflectionClass(
-        objectOrClass: DtoMakeCommand::class,
+        objectOrClass: RepositoryMakeCommand::class,
     );
 
     $property = $reflection->getProperty('dir');
@@ -46,11 +40,7 @@ it('check getStub() method', function () {
     $method = $reflection->getMethod('getStub');
     $method->setAccessible(true);
 
-    $expected = $dir . '/../../../stubs/dto.stub';
-    if($php82) {
-        $expected = $dir . '/../../../stubs/dto-82.stub';
-    }
-
+    $expected = $dir . '/../../../stubs/repository.stub';
     $stub = $method->invoke($test);
 
     $this->assertEquals($expected, $stub);

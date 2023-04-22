@@ -4,7 +4,7 @@ build:
   tags:
     - build
   script:
-    - composer install --ignore-platform-reqs --prefer-dist --no-progress --no-scripts > /dev/null
+    - composer install --no-progress --no-scripts
   cache:
     key: build_cache
     paths:
