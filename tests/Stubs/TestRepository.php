@@ -2,36 +2,36 @@
 
 declare(strict_types=1);
 
-namespace {{ namespace }};
+namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
 
-use {{ namespacedModel }};
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use JfheinrichEu\LaravelMakeCommands\Dto\RepositoryDto;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class {{ class }}
+class TestRepository
 {
-    public function __construct(protected {{ model }} ${{ modelVariable }})
+    public function __construct(protected User $user)
     {
     }
 
     /**
-     * @return Collection<int, {{ model }}>
+     * @return Collection<int, User>
      */
     public function all(): Collection
     {
-        return $this->{{ modelVariable }}::all();
+        return $this->user::all();
     }
 
     /**
      * @param RepositoryDto $dto
-     * @return {{ model }}
+     * @return User
      */
-    public function create(RepositoryDto $dto): {{ model }}
+    public function create(RepositoryDto $dto): User
     {
-        return $this->{{ modelVariable }}::create($dto->attributes->toArray());
+        return $this->user::create($dto->attributes->toArray());
     }
 
     /**
@@ -40,7 +40,7 @@ class {{ class }}
      */
     public function update(RepositoryDto $dto): bool
     {
-        return $this->{{ modelVariable }}->find($dto->id)
+        return $this->user->find($dto->id)
             ?->update($dto->attributes->toArray()) ?? false;
     }
 
@@ -50,17 +50,17 @@ class {{ class }}
      */
     public function delete(int $id): bool
     {
-        return $this->{{ modelVariable }}->find($id)?->delete() ?? false;
+        return $this->user->find($id)?->delete() ?? false;
     }
 
     /**
      * @param int $id
-     * @return {{ model }}
+     * @return User
      * @throws ModelNotFoundException
      */
-    public function find(int $id): Model| {{ model }}
+    public function find(int $id): Model| User
     {
-        $model = $this->{{ modelVariable }}->find($id);
+        $model = $this->user->find($id);
         if (null == $model) {
             throw new ModelNotFoundException("Resource not found");
         }

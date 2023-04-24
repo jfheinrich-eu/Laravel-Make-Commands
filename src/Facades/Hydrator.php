@@ -6,10 +6,10 @@ namespace JfheinrichEu\LaravelMakeCommands\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use JfheinrichEu\LaravelMakeCommands\Hydrator\Hydrate;
-use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
+use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 
 /**
- * @method static DtoContract fill(string $class, array $properties)
+ * @method static DataTransferObject fill(string $class, array $properties)
  *
  * @see \JfheinrichEu\LaravelMakeCommands\Hydrator\Hydrate;
  */

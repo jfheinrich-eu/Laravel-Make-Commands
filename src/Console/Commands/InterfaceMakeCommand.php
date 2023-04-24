@@ -32,7 +32,9 @@ final class InterfaceMakeCommand extends GeneratorCommand
     protected function getStub(): string
     {
         if (File::exists(base_path('stubs/make-commands/interface.stubs'))) {
+            // @codeCoverageIgnoreStart
             return base_path('stubs/make-commands/interface.stubs');
+            // @codeCoverageIgnoreEnd
         } else {
             return $this->dir . '/../../../stubs/interface.stub';
         }

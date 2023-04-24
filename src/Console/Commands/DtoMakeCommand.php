@@ -43,7 +43,9 @@ final class DtoMakeCommand extends GeneratorCommand
         $file = $readonly ? 'dto-82.stub' : 'dto.stub';
 
         if (File::exists(base_path("stubs/make-commands/{$file}"))) {
+            // @codeCoverageIgnoreStart
             return base_path("stubs/make-commands/{$file}");
+            // @codeCoverageIgnoreEnd
         } else {
             return $this->dir . "/../../../stubs/{$file}";
         }
