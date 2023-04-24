@@ -72,7 +72,7 @@ final class DtoMakeCommandTest extends PackageTestCase
 
     // Provider
 
-    public function classes_provider(): array
+    static public function classes_provider(): array
     {
         return [
             ['Test'],
