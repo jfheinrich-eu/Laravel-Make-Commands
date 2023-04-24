@@ -1,4 +1,4 @@
-pest:
+testbench:
   image: ${DOCKER_IMAGE}
   stage: testbench
   tags:
