@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Dto;
 
 use Illuminate\Support\Collection;
-use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 
 /**
  * @property int $id

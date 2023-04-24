@@ -59,7 +59,7 @@ final class InterfaceMakeCommandTest extends PackageTestCase
 
     // Provider
 
-    static public function interface_provider(): array
+    public static function interface_provider(): array
     {
         return [
             ['TestInterface'],

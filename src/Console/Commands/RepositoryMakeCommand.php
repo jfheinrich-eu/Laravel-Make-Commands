@@ -37,7 +37,7 @@ class RepositoryMakeCommand extends GeneratorCommand
         if (File::exists(base_path('stubs/make-commands/repository.stubs'))) {
             // @codeCoverageIgnoreStart
             return base_path('stubs/make-commands/repository.stubs');
-            // @codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
         } else {
             return $this->dir . '/../../../stubs/repository.stub';
         }

@@ -50,11 +50,11 @@ final class HydratorTest extends PackageTestCase
      * @param string $studio
      * @return void
      */
-    public function  test_creates_our_data_transfer_object_as_we_would_expect(string $name, string $studio): void
+    public function test_creates_our_data_transfer_object_as_we_would_expect(string $name, string $studio): void
     {
         $test = Hydrator::fill(
             Test::class,
-             ['name' => $name, 'studio' => $studio],
+            ['name' => $name, 'studio' => $studio],
         );
 
         $reflection = new ReflectionClass(
@@ -94,7 +94,7 @@ final class HydratorTest extends PackageTestCase
 
     // Provider
 
-    static public function hydrator_provider(): array
+    public static function hydrator_provider(): array
     {
         return [
             ['Jimi Hendrix', 'Electric Lady Studios'],
@@ -105,7 +105,7 @@ final class HydratorTest extends PackageTestCase
         ];
     }
 
-    static public function data_provider(): array
+    public static function data_provider(): array
     {
         return [
             ['Jimi Hendrix', 'Electric Lady Studios'],
