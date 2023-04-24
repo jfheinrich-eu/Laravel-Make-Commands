@@ -1,6 +1,6 @@
 pest:
   image: ${DOCKER_IMAGE}
-  stage: pest
+  stage: testbench
   tags:
     - tests
   script:
