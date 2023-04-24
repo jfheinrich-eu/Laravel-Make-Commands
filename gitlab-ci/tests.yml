@@ -1,11 +1,11 @@
-pest:
+testbench:
   image: ${DOCKER_IMAGE}
-  stage: pest
+  stage: testbench
   tags:
     - tests
   script:
     - composer test:coverage
-  coverage: /^\s*Cov:\s*\d+\.\d+?%$/
+  coverage: /^\s*Total:\s*\d+\.\d+?%$/
   cache:
     key: build_cache
     paths:
