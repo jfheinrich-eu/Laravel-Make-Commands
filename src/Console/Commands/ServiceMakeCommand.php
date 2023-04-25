@@ -66,15 +66,15 @@ class ServiceMakeCommand extends GeneratorCommand
      */
     protected function buildClass($name): string
     {
-        $replace = [
-            '{{useRepositoryClass}}'     => '',
-            '{{ useRepositoryClass  }}'  => '',
-            '{{implementsInterface}}'    => '',
-            '{{ implementsInterface  }}' => '',
-            '{{dependencyInjection}}'    => '',
-            '{{ dependencyInjection  }}' => '',
-            '{{InterfaceStubs}}'         => '',
-            '{{ InterfaceStubs  }}'      => '',
+        $replace = [ 
+            '{{useRepositoryClass}}'    => '',
+            '{{ useRepositoryClass }}'  => '',
+            '{{implementsInterface}}'   => '',
+            '{{ implementsInterface }}' => '',
+            '{{dependencyInjection}}'   => '',
+            '{{ dependencyInjection }}' => '',
+            '{{InterfaceStubs}}'        => '',
+            '{{ InterfaceStubs }}'      => '',
         ];
 
         if ($this->option('repository')) {
@@ -115,11 +115,11 @@ class ServiceMakeCommand extends GeneratorCommand
             lcfirst(class_basename($repositoryClass))
         );
 
-        return array_merge($replace, [
-            '{{useRepositoryClass}}'     => "use {$repositoryClass};",
-            '{{ useRepositoryClass  }}'  => "use {$repositoryClass};",
-            '{{dependencyInjection}}'    => $dependencyInjection,
-            '{{ dependencyInjection  }}' => $dependencyInjection,
+        return array_merge($replace, [ 
+            '{{useRepositoryClass}}'    => "use {$repositoryClass};",
+            '{{ useRepositoryClass }}'  => "use {$repositoryClass};",
+            '{{dependencyInjection}}'   => $dependencyInjection,
+            '{{ dependencyInjection }}' => $dependencyInjection,
         ]);
     }
 
@@ -174,7 +174,15 @@ class ServiceMakeCommand extends GeneratorCommand
 
         $interfaceClass = $this->parseInterface(($interface));
 
-        if (! class_exists($interfaceClass) && $this->components->confirm("A {$interfaceClass} interface does not exist. Do you want to generate it?", true)) {
+        $rootNamespace = $this->rootNamespace();
+
+        $filepath = str_replace(
+            '\\',
+            DIRECTORY_SEPARATOR,
+            str_replace( $rootNamespace, '', $interfaceClass )
+        ) . '.php';
+
+        if ( ! File::exists( app_path( $filepath ) ) && $this->components->confirm( "A {$interfaceClass} interface does not exist. Do you want to generate it?", true ) ) {
             $this->call('make-commands:interface', [ 'name' => $interfaceClass ]);
         }
 
@@ -186,9 +194,9 @@ class ServiceMakeCommand extends GeneratorCommand
 
         $replace = $this->getMethodStubs($interfaceClass, $replace);
 
-        return array_merge($replace, [
-            '{{implementsInterface}}'    => "implements {$interfaceClass}",
-            '{{ implementsInterface  }}' => "implements {$interfaceClass}",
+        return array_merge($replace, [ 
+            '{{implementsInterface}}'   => "implements {$interfaceClass}",
+            '{{ implementsInterface }}' => "implements {$interfaceClass}",
         ]);
     }
 
@@ -214,19 +222,49 @@ class ServiceMakeCommand extends GeneratorCommand
             $params     = [];
 
             foreach ($parameters as $param) {
-                /** @var \ReflectionNamedType $reflectionNamedType */
-                $reflectionNamedType = $param->getType();
-                $line                = $reflectionNamedType->allowsNull() ? '?' : '';
-                $line .= $reflectionNamedType->getName();
-                $line .= ' ' . $param->getName();
+
+                $paramType = $param->getType();
+
+                if ( $paramType instanceof \ReflectionNamedType ) {
+                    $typeName = $paramType->getName();
+                    $nullable = $paramType->allowsNull() ? '?' : '';
+                }
+                else { //if ($paramType instanceof \ReflectionUnionType)
+                    $nullable = '';
+                    $typeName = (string) $paramType;
+                }
+
+                $paramName = $param->getName();
+                $default   = '';
+
+                if ( $param->isDefaultValueAvailable() ) {
+                    $default = sprintf(
+                        " = %s",
+                        strval( $param->getDefaultValue() )
+                    );
+                }
+
+                $line = sprintf(
+                    "%s%s $%s%s",
+                    $nullable,
+                    $typeName,
+                    $paramName,
+                    $default
+                );
 
                 $params[ $param->getPosition()] = $line;
             }
 
-            /** @var \ReflectionNamedType $reflectionReturnType */
             $reflectionReturnType = $method->getReturnType();
-            $returnType           = $reflectionReturnType->allowsNull() ? '?' : '';
-            $returnType .= $reflectionReturnType->getName();
+            if ( $reflectionReturnType instanceof \ReflectionNamedType ) {
+                $returnType = $reflectionReturnType->allowsNull() ? '?' : '';
+                $returnType .= $reflectionReturnType->getName();
+            }
+            else { //if ($reflectionReturnType instanceof \ReflectionUnionType)
+                $returnType = (string) $reflectionReturnType;
+            }
+
+            ksort( $params, SORT_NUMERIC );
 
             $methodStubs .= sprintf(
                 "%s function(%s): %s\n    {\n        // Implementation\n    }\n\n",
