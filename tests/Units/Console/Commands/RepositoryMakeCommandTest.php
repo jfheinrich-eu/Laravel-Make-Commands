@@ -6,14 +6,18 @@ namespace JfheinrichEu\LaravelMakeCommands\Tests\Units\Console\Commands;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
-use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 use JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand;
+use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 use ReflectionClass;
 
 final class RepositoryMakeCommandTest extends PackageTestCase
 {
     protected function setUp(): void
     {
+        if (! File::exists(app_path('Models'))) {
+            File::makeDirectory(app_path('Models'));
+        }
+
         parent::setUp();
 
         $this->beforeApplicationDestroyed(function () {
