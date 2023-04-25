@@ -20,6 +20,13 @@ stages:
   - badges
   - deploy
 
+cache:
+  key:
+    files:
+      - composer.lock
+  paths:
+    - vendor/
+    - composer.lock
 variables:
   DOCKER_IMAGE: "registry.gitlab.com/jfheinrich-eu/docker/nodejs:latest"
   DOCKER_PY_IMAGE: "python:latest"

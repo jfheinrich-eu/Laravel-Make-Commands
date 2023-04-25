@@ -6,7 +6,9 @@ build:
   script:
     - composer install --no-progress --no-scripts
   cache:
-    key: build_cache
+    key:
+      files:
+        - composer.lock
     paths:
       - vendor/
       - node_modules/

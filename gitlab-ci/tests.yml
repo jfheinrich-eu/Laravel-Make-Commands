@@ -7,7 +7,9 @@ testbench:
     - composer test:coverage
   coverage: /^\s*Total:\s*\d+\.\d+?%$/
   cache:
-    key: build_cache
+    key:
+      files:
+        - composer.lock
     paths:
       - vendor/
       - composer.lock
@@ -21,7 +23,9 @@ code-quality:
     - composer check
     - composer static
   cache:
-    key: build_cache
+    key:
+      files:
+        - composer.lock
     paths:
       - vendor/
       - composer.lock
