@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Tests;
 
-use Orchestra\Testbench\TestCase;
 use JfheinrichEu\LaravelMakeCommands\LaravelMakeCommandsPackageProvider;
+use Orchestra\Testbench\TestCase;
 
 class PackageTestCase extends TestCase
 {

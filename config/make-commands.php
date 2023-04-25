@@ -10,5 +10,6 @@ return [
         JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand::class,
         JfheinrichEu\LaravelMakeCommands\Console\Commands\InterfaceMakeCommand::class,
         JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand::class,
+        JfheinrichEu\LaravelMakeCommands\Console\Commands\ServiceMakeCommand::class,
     ],
 ];
