@@ -36,14 +36,13 @@ class ServiceMakeCommand extends GeneratorCommand
      */
     protected $dir = __DIR__;
 
-    protected function getStub() : string
+    protected function getStub(): string
     {
-        if ( File::exists( base_path( 'stubs/make-commands/service.stub' ) ) ) {
+        if (File::exists(base_path('stubs/make-commands/service.stub'))) {
             // @codeCoverageIgnoreStart
-            return base_path( 'stubs/make-commands/service.stub' );
-            // @codeCoverageIgnoreEnd
-        }
-        else {
+            return base_path('stubs/make-commands/service.stub');
+        // @codeCoverageIgnoreEnd
+        } else {
             return $this->dir . '/../../../stubs/service.stub';
         }
     }
@@ -52,7 +51,7 @@ class ServiceMakeCommand extends GeneratorCommand
      * @param string $rootNamespace
      * @return string
      */
-    protected function getDefaultNamespace( $rootNamespace ) : string
+    protected function getDefaultNamespace($rootNamespace): string
     {
         return "{$rootNamespace}\\Services";
     }
@@ -65,9 +64,9 @@ class ServiceMakeCommand extends GeneratorCommand
      * @param  string  $name
      * @return string
      */
-    protected function buildClass( $name ) : string
+    protected function buildClass($name): string
     {
-        $replace = [ 
+        $replace = [
             '{{useRepositoryClass}}'     => '',
             '{{ useRepositoryClass  }}'  => '',
             '{{implementsInterface}}'    => '',
@@ -78,18 +77,18 @@ class ServiceMakeCommand extends GeneratorCommand
             '{{ InterfaceStubs  }}'      => '',
         ];
 
-        if ( $this->option( 'repository' ) ) {
-            $replace = $this->buildRepositoryReplacements( $replace );
+        if ($this->option('repository')) {
+            $replace = $this->buildRepositoryReplacements($replace);
         }
 
-        if ( $this->option( 'interface' ) ) {
-            $replace = $this->buildInterfaceReplacements( $replace );
+        if ($this->option('interface')) {
+            $replace = $this->buildInterfaceReplacements($replace);
         }
 
         return str_replace(
-            array_keys( $replace ),
-            array_values( $replace ),
-            parent::buildClass( $name )
+            array_keys($replace),
+            array_values($replace),
+            parent::buildClass($name)
         );
     }
 
@@ -99,29 +98,29 @@ class ServiceMakeCommand extends GeneratorCommand
      * @param array<string,string> $replace
      * @return array<string,string>
      */
-    protected function buildRepositoryReplacements( array $replace ) : array
+    protected function buildRepositoryReplacements(array $replace): array
     {
         /** @var string $repository */
-        $repository = $this->option( 'repository' );
+        $repository = $this->option('repository');
 
-        $repositoryClass = $this->parseRepository( ( $repository ) );
+        $repositoryClass = $this->parseRepository(($repository));
 
-        if ( ! class_exists( $repositoryClass ) && $this->components->confirm( "A {$repositoryClass} repository does not exist. Do you want to generate it?", true ) ) {
-            $this->call( 'make-commands:repository', [ 'name' => $repositoryClass ] );
+        if (! class_exists($repositoryClass) && $this->components->confirm("A {$repositoryClass} repository does not exist. Do you want to generate it?", true)) {
+            $this->call('make-commands:repository', [ 'name' => $repositoryClass ]);
         }
 
         $dependencyInjection = sprintf(
             "public function __construct(protected %s %s)\n    {\n    }\n",
-            class_basename( $repositoryClass ),
-            lcfirst( class_basename( $repositoryClass ) )
+            class_basename($repositoryClass),
+            lcfirst(class_basename($repositoryClass))
         );
 
-        return array_merge( $replace, [ 
+        return array_merge($replace, [
             '{{useRepositoryClass}}'     => "use {$repositoryClass};",
             '{{ useRepositoryClass  }}'  => "use {$repositoryClass};",
             '{{dependencyInjection}}'    => $dependencyInjection,
             '{{ dependencyInjection  }}' => $dependencyInjection,
-        ] );
+        ]);
     }
 
     /**
@@ -131,13 +130,13 @@ class ServiceMakeCommand extends GeneratorCommand
      *
      * @throws \InvalidArgumentException
      */
-    protected function parseRepository( string $repository ) : string
+    protected function parseRepository(string $repository): string
     {
-        if ( preg_match( '([^A-Za-z0-9_/\\\\])', $repository ) ) {
-            throw new InvalidArgumentException( 'Repository name contains invalid characters.' );
+        if (preg_match('([^A-Za-z0-9_/\\\\])', $repository)) {
+            throw new InvalidArgumentException('Repository name contains invalid characters.');
         }
 
-        return $this->qualifyRepository( $repository );
+        return $this->qualifyRepository($repository);
     }
 
     /**
@@ -145,19 +144,19 @@ class ServiceMakeCommand extends GeneratorCommand
      * @param string $repository
      * @return string
      */
-    protected function qualifyRepository( string $repository ) : string
+    protected function qualifyRepository(string $repository): string
     {
-        $repository = ltrim( $repository, '\\/' );
+        $repository = ltrim($repository, '\\/');
 
-        $repository = str_replace( '/', '\\', $repository );
+        $repository = str_replace('/', '\\', $repository);
 
         $rootNamespace = $this->rootNamespace();
 
-        if ( Str::startsWith( $repository, $rootNamespace ) ) {
+        if (Str::startsWith($repository, $rootNamespace)) {
             return $repository;
         }
 
-        return is_dir( app_path( 'Repositories' ) )
+        return is_dir(app_path('Repositories'))
             ? $rootNamespace . 'Repositories\\' . $repository
             : $rootNamespace . $repository;
     }
@@ -168,29 +167,29 @@ class ServiceMakeCommand extends GeneratorCommand
      * @param array<string,string> $replace
      * @return array<string,string>
      */
-    protected function buildInterfaceReplacements( array $replace ) : array
+    protected function buildInterfaceReplacements(array $replace): array
     {
         /** @var string $interface */
-        $interface = $this->option( 'interface' );
+        $interface = $this->option('interface');
 
-        $interfaceClass = $this->parseInterface( ( $interface ) );
+        $interfaceClass = $this->parseInterface(($interface));
 
-        if ( ! class_exists( $interfaceClass ) && $this->components->confirm( "A {$interfaceClass} interface does not exist. Do you want to generate it?", true ) ) {
-            $this->call( 'make-commands:interface', [ 'name' => $interfaceClass ] );
+        if (! class_exists($interfaceClass) && $this->components->confirm("A {$interfaceClass} interface does not exist. Do you want to generate it?", true)) {
+            $this->call('make-commands:interface', [ 'name' => $interfaceClass ]);
         }
 
         $dependencyInjection = sprintf(
             "public function __construct(protected %s %s)\n    {\n    }\n",
-            class_basename( $interfaceClass ),
-            lcfirst( class_basename( $interfaceClass ) )
+            class_basename($interfaceClass),
+            lcfirst(class_basename($interfaceClass))
         );
 
-        $replace = $this->getMethodStubs( $interfaceClass, $replace );
+        $replace = $this->getMethodStubs($interfaceClass, $replace);
 
-        return array_merge( $replace, [ 
+        return array_merge($replace, [
             '{{implementsInterface}}'    => "implements {$interfaceClass}",
             '{{ implementsInterface  }}' => "implements {$interfaceClass}",
-        ] );
+        ]);
     }
 
     /**
@@ -199,22 +198,22 @@ class ServiceMakeCommand extends GeneratorCommand
      * @param array<string,string> $replace
      * @return array<string,string>
      */
-    protected function getMethodStubs( string $interfaceClass, array $replace ) : array
+    protected function getMethodStubs(string $interfaceClass, array $replace): array
     {
         /** @var class-string $classString */
         $classString         = $interfaceClass;
         $methodStubs         = '';
-        $reflectionInterface = new ReflectionClass( $classString );
+        $reflectionInterface = new ReflectionClass($classString);
 
         /** @var \ReflectionMethod[] $methodNames */
         $methodNames = $reflectionInterface->getMethods();
 
-        foreach ( $methodNames as $method ) {
-            $modifiers  = Reflection::getModifierNames( $method->getModifiers() );
+        foreach ($methodNames as $method) {
+            $modifiers  = Reflection::getModifierNames($method->getModifiers());
             $parameters = $method->getParameters();
             $params     = [];
 
-            foreach ( $parameters as $param ) {
+            foreach ($parameters as $param) {
                 /** @var \ReflectionNamedType $reflectionNamedType */
                 $reflectionNamedType = $param->getType();
                 $line                = $reflectionNamedType->allowsNull() ? '?' : '';
@@ -231,8 +230,8 @@ class ServiceMakeCommand extends GeneratorCommand
 
             $methodStubs .= sprintf(
                 "%s function(%s): %s\n    {\n        // Implementation\n    }\n\n",
-                implode( ' ', $modifiers ),
-                implode( ',', $params ),
+                implode(' ', $modifiers),
+                implode(',', $params),
                 $returnType
             );
         }
@@ -250,13 +249,13 @@ class ServiceMakeCommand extends GeneratorCommand
      *
      * @throws \InvalidArgumentException
      */
-    protected function parseInterface( string $interface ) : string
+    protected function parseInterface(string $interface): string
     {
-        if ( preg_match( '([^A-Za-z0-9_/\\\\])', $interface ) ) {
-            throw new InvalidArgumentException( 'Interface name contains invalid characters.' );
+        if (preg_match('([^A-Za-z0-9_/\\\\])', $interface)) {
+            throw new InvalidArgumentException('Interface name contains invalid characters.');
         }
 
-        return $this->qualifyInterface( $interface );
+        return $this->qualifyInterface($interface);
     }
 
     /**
@@ -264,19 +263,19 @@ class ServiceMakeCommand extends GeneratorCommand
      * @param string $interface
      * @return string
      */
-    protected function qualifyInterface( string $interface ) : string
+    protected function qualifyInterface(string $interface): string
     {
-        $interface = ltrim( $interface, '\\/' );
+        $interface = ltrim($interface, '\\/');
 
-        $interface = str_replace( '/', '\\', $interface );
+        $interface = str_replace('/', '\\', $interface);
 
         $rootNamespace = $this->rootNamespace();
 
-        if ( Str::startsWith( $interface, $rootNamespace ) ) {
+        if (Str::startsWith($interface, $rootNamespace)) {
             return $interface;
         }
 
-        return is_dir( app_path( 'Contracts' ) )
+        return is_dir(app_path('Contracts'))
             ? $rootNamespace . 'Contracts\\' . $interface
             : $rootNamespace . $interface;
     }

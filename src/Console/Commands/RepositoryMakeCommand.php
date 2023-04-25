@@ -34,10 +34,10 @@ class RepositoryMakeCommand extends GeneratorCommand
 
     protected function getStub(): string
     {
-        if ( File::exists( base_path( 'stubs/make-commands/repository.stub' ) ) ) {
+        if (File::exists(base_path('stubs/make-commands/repository.stub'))) {
             // @codeCoverageIgnoreStart
-            return base_path( 'stubs/make-commands/repository.stub' );
-            // @codeCoverageIgnoreEnd
+            return base_path('stubs/make-commands/repository.stub');
+        // @codeCoverageIgnoreEnd
         } else {
             return $this->dir . '/../../../stubs/repository.stub';
         }
