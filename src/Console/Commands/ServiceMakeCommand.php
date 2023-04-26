@@ -266,7 +266,7 @@ class ServiceMakeCommand extends GeneratorCommand
 
             $methodStubs .= sprintf(
                 "%s function(%s): %s\n    {\n        // Implementation\n    }\n\n",
-                trim( str_replace( 'abstract', '', implode( ' ', $modifiers ) ) ),
+                trim(str_replace('abstract', '', implode(' ', $modifiers))),
                 implode(',', $params),
                 $returnType
             );

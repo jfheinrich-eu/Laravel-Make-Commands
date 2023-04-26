@@ -35,8 +35,8 @@ class RepositoryMakeCommand extends GeneratorCommand
     protected function getStub(): string
     {
         $stubName = 'repository';
-        if ( $this->option( 'model' ) ) {
-            $stubName = 'repository-model'
+        if ($this->option('model')) {
+            $stubName = 'repository-model';
         }
 
         if (File::exists(base_path("stubs/make-commands/{$stubName}.stub"))) {
@@ -105,8 +105,8 @@ class RepositoryMakeCommand extends GeneratorCommand
         }
 
         return array_merge($replace, [
-            '{{ namespacedModel }}' => 'use ' . $modelClass . ';',
-            '{{namespacedModel}}'   => 'use ' . $modelClass . ';',
+            '{{ namespacedModel }}' => $modelClass,
+            '{{namespacedModel}}'   => $modelClass,
             '{{ model }}' => class_basename($modelClass),
             '{{model}}'             => class_basename($modelClass),
             '{{ modelVariable }}' => lcfirst(class_basename($modelClass)),
