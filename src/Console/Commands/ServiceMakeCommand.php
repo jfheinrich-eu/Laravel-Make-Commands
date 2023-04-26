@@ -112,7 +112,7 @@ class ServiceMakeCommand extends GeneratorCommand
         $dependencyInjection = sprintf(
             "public function __construct(protected %s %s)\n    {\n    }\n",
             class_basename($repositoryClass),
-            lcfirst(class_basename($repositoryClass))
+            '$' . lcfirst(class_basename($repositoryClass))
         );
 
         return array_merge($replace, [
@@ -189,7 +189,7 @@ class ServiceMakeCommand extends GeneratorCommand
         $dependencyInjection = sprintf(
             "public function __construct(protected %s %s)\n    {\n    }\n",
             class_basename($interfaceClass),
-            lcfirst(class_basename($interfaceClass))
+            '$' . lcfirst(class_basename($interfaceClass))
         );
 
         $replace = $this->getMethodStubs($interfaceClass, $replace);
