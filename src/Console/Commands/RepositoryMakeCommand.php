@@ -82,7 +82,14 @@ class RepositoryMakeCommand extends GeneratorCommand
      */
     protected function buildModelReplacements(): array
     {
-        $replace = [];
+        $replace = [
+            '{{ namespacedModel }}' => '',
+            '{{namespacedModel}}'   => '',
+            '{{ model }}'           => '',
+            '{{model}}'             => '',
+            '{{ modelVariable }}'   => '',
+            '{{modelVariable}}'     => '',
+        ];
 
         /** @var string $model */
         $model = $this->option('model');
@@ -94,13 +101,10 @@ class RepositoryMakeCommand extends GeneratorCommand
         }
 
         return array_merge($replace, [
-            'DummyFullModelClass' => $modelClass,
             '{{ namespacedModel }}' => $modelClass,
-            '{{namespacedModel}}' => $modelClass,
-            'DummyModelClass' => class_basename($modelClass),
+            '{{namespacedModel}}'   => $modelClass,
             '{{ model }}' => class_basename($modelClass),
-            '{{model}}' => class_basename($modelClass),
-            'DummyModelVariable' => lcfirst(class_basename($modelClass)),
+            '{{model}}'             => class_basename($modelClass),
             '{{ modelVariable }}' => lcfirst(class_basename($modelClass)),
             '{{modelVariable}}' => lcfirst(class_basename($modelClass)),
         ]);

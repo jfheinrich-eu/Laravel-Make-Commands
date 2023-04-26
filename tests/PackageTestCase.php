@@ -9,13 +9,6 @@ use Orchestra\Testbench\TestCase;
 
 class PackageTestCase extends TestCase
 {
-    /**
-     * Automatically enables package discoveries.
-     *
-     * @var bool
-     */
-    protected $enablesPackageDiscoveries = true;
-
     protected function setUp(): void
     {
         parent::setUp();

@@ -57,6 +57,6 @@ final class DtoMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return "{$rootNamespace}\\DTO";
+        return "{$rootNamespace}\\Dto";
     }
 }

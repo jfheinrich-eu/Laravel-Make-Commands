@@ -14,17 +14,14 @@ final class RepositoryMakeCommandTest extends PackageTestCase
 {
     protected function setUp(): void
     {
+        parent::setUp();
+
         if (! File::exists(app_path('Models'))) {
             File::makeDirectory(app_path('Models'));
         }
 
-        parent::setUp();
-
         $this->beforeApplicationDestroyed(function () {
             File::cleanDirectory(app_path());
-            if (! File::exists(app_path('Models'))) {
-                File::makeDirectory(app_path('Models'));
-            }
         });
     }
 

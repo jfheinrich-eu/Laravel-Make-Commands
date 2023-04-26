@@ -183,7 +183,7 @@ class ServiceMakeCommand extends GeneratorCommand
         ) . '.php';
 
         if (! File::exists(app_path($filepath)) && $this->components->confirm("A {$interfaceClass} interface does not exist. Do you want to generate it?", true)) {
-            $this->call('make-commands:interface', [ 'name' => $interfaceClass ]);
+            $this->call('make-commands:interface', [ 'name' => class_basename($interfaceClass) ]);
         }
 
         $dependencyInjection = sprintf(

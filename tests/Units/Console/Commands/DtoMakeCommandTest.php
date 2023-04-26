@@ -35,7 +35,7 @@ final class DtoMakeCommandTest extends PackageTestCase
 
         self::assertTrue(
             File::exists(
-                app_path("DTO/$class.php"),
+                app_path("Dto/$class.php"),
             ),
         );
     }
