@@ -62,10 +62,17 @@ class RepositoryMakeCommand extends GeneratorCommand
      */
     protected function buildClass($name): string
     {
-        $replace = [];
+        $replace = [
+            '{{ namespacedModel }}' => '',
+            '{{namespacedModel}}'   => '',
+            '{{ model }}'           => '',
+            '{{model}}'             => '',
+            '{{ modelVariable }}'   => '',
+            '{{modelVariable}}'     => '',
+        ];
 
         if ($this->option('model')) {
-            $replace = $this->buildModelReplacements();
+            $replace = $this->buildModelReplacements($replace);
         }
 
         return str_replace(
@@ -78,19 +85,11 @@ class RepositoryMakeCommand extends GeneratorCommand
     /**
      * Build the model replacement values.
      *
+     * @param array<string,string> $replace
      * @return array<string,string>
      */
-    protected function buildModelReplacements(): array
+    protected function buildModelReplacements(array $replace): array
     {
-        $replace = [
-            '{{ namespacedModel }}' => '',
-            '{{namespacedModel}}'   => '',
-            '{{ model }}'           => '',
-            '{{model}}'             => '',
-            '{{ modelVariable }}'   => '',
-            '{{modelVariable}}'     => '',
-        ];
-
         /** @var string $model */
         $model = $this->option('model');
 
