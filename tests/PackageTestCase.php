@@ -4,18 +4,11 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Tests;
 
-use Orchestra\Testbench\TestCase;
 use JfheinrichEu\LaravelMakeCommands\LaravelMakeCommandsPackageProvider;
+use Orchestra\Testbench\TestCase;
 
 class PackageTestCase extends TestCase
 {
-    /**
-     * Automatically enables package discoveries.
-     *
-     * @var bool
-     */
-    protected $enablesPackageDiscoveries = true;
-
     protected function setUp(): void
     {
         parent::setUp();

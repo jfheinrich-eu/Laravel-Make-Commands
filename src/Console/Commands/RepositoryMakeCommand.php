@@ -34,12 +34,17 @@ class RepositoryMakeCommand extends GeneratorCommand
 
     protected function getStub(): string
     {
-        if (File::exists(base_path('stubs/make-commands/repository.stubs'))) {
+        $stubName = 'repository';
+        if ($this->option('model')) {
+            $stubName = 'repository-model';
+        }
+
+        if (File::exists(base_path("stubs/make-commands/{$stubName}.stub"))) {
             // @codeCoverageIgnoreStart
-            return base_path('stubs/make-commands/repository.stubs');
+            return base_path("stubs/make-commands/{$stubName}.stub");
         // @codeCoverageIgnoreEnd
         } else {
-            return $this->dir . '/../../../stubs/repository.stub';
+            return $this->dir . "/../../../stubs/{$stubName}.stub";
         }
     }
 
@@ -62,10 +67,17 @@ class RepositoryMakeCommand extends GeneratorCommand
      */
     protected function buildClass($name): string
     {
-        $replace = [];
+        $replace = [
+            '{{ namespacedModel }}' => '',
+            '{{namespacedModel}}'   => '',
+            '{{ model }}'           => '',
+            '{{model}}'             => '',
+            '{{ modelVariable }}'   => '',
+            '{{modelVariable}}'     => '',
+        ];
 
         if ($this->option('model')) {
-            $replace = $this->buildModelReplacements();
+            $replace = $this->buildModelReplacements($replace);
         }
 
         return str_replace(
@@ -78,12 +90,11 @@ class RepositoryMakeCommand extends GeneratorCommand
     /**
      * Build the model replacement values.
      *
+     * @param array<string,string> $replace
      * @return array<string,string>
      */
-    protected function buildModelReplacements(): array
+    protected function buildModelReplacements(array $replace): array
     {
-        $replace = [];
-
         /** @var string $model */
         $model = $this->option('model');
 
@@ -94,13 +105,10 @@ class RepositoryMakeCommand extends GeneratorCommand
         }
 
         return array_merge($replace, [
-            'DummyFullModelClass' => $modelClass,
             '{{ namespacedModel }}' => $modelClass,
-            '{{namespacedModel}}' => $modelClass,
-            'DummyModelClass' => class_basename($modelClass),
+            '{{namespacedModel}}'   => $modelClass,
             '{{ model }}' => class_basename($modelClass),
-            '{{model}}' => class_basename($modelClass),
-            'DummyModelVariable' => lcfirst(class_basename($modelClass)),
+            '{{model}}'             => class_basename($modelClass),
             '{{ modelVariable }}' => lcfirst(class_basename($modelClass)),
             '{{modelVariable}}' => lcfirst(class_basename($modelClass)),
         ]);

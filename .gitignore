@@ -4,4 +4,4 @@
 run-pipeline.sh
 phpunit-pest.xml
 phpunit.xml.bak
-.phpunit.cache/test-results
+.phpunit.cache/*

@@ -45,14 +45,14 @@ final class RepositoryDtoTest extends PackageTestCase
         $json       = json_encode($dto);
         $collection = $dto->toCollection();
 
-        expect($dto)->toBeInstanceOf(DataTransferObject::class, 'Not a instance of DataTransferObject::class');
-        expect($array)->toEqual($expectedArray, 'toArray() failed');
-        expect($json)->toEqual($expectedJson, 'toJson failed');
-        expect($collection)->toEqual($expectedCollection, 'toCollection failed');
+        self::assertInstanceOf(DataTransferObject::class, $dto, 'Not a instance of DataTransferObject::class');
+        self::assertEquals($expectedArray, $array, 'toArray() failed');
+        self::assertEquals($expectedJson, $json, 'toJson failed');
+        self::assertEquals($expectedCollection, $collection, 'toCollection failed');
 
-        expect($dto->id)->toEqual(42, 'ID: Wrong id returned');
-        expect($dto->attributes)->toEqual($expectedAttributes, 'Attributes: Not the same collection returned');
+        self::assertEquals(42, $dto->id, 'ID: Wrong id returned');
+        self::assertEquals($expectedAttributes, $dto->attributes, 'Attributes: Not the same collection returned');
         $dto->id = 69;
-        expect($dto->id)->toEqual(69, 'Can\t override property id');
+        self::assertEquals(69, $dto->id, 'Can\t override property id');
     }
 }

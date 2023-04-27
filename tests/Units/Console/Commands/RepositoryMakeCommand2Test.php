@@ -6,8 +6,8 @@ namespace JfheinrichEu\LaravelMakeCommands\Tests\Units\Console\Commands;
 
 use Illuminate\Support\Facades\File;
 use InvalidArgumentException;
-use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 use JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand;
+use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 
 final class RepositoryMakeCommand2Test extends PackageTestCase
 {
@@ -15,11 +15,12 @@ final class RepositoryMakeCommand2Test extends PackageTestCase
     {
         parent::setUp();
 
+        if (! File::exists(app_path('Models'))) {
+            File::makeDirectory(app_path('Models'));
+        }
+
         $this->beforeApplicationDestroyed(function () {
             File::cleanDirectory(app_path());
-            if (! File::exists(app_path('Models'))) {
-                File::makeDirectory(app_path('Models'));
-            }
         });
     }
 

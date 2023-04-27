@@ -54,9 +54,7 @@
     "sort-packages": true,
     "preferred-install": "dist",
     "optimize-autoloader": true,
-    "allow-plugins": {
-      "pestphp/pest-plugin": true
-    }
+    "allow-plugins": {}
   },
   "require-dev": {
     "laravel/pint": "1.9.0",
@@ -64,8 +62,6 @@
     "nunomaduro/larastan": "2.6.0",
     "orchestra/testbench": "8.5.0",
     "orchestra/testbench-core": "8.5.0",
-    "pestphp/pest": "2.5.2",
-    "pestphp/pest-plugin-mock": "2.0.0",
     "php-mock/php-mock-mockery": "1.4.0",
     "phpstan/phpstan": "1.10.14",
     "phpstan/phpstan-mockery": "1.1.1",

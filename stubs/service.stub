@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+{{ useRepositoryClass }}
+{{ useInterface }}
+
+class {{ class }} {{ implementsInterface }}
+{
+    {{ dependencyInjection }}
+
+    {{ InterfaceStubs }}
+}
