@@ -71,6 +71,8 @@ class ServiceMakeCommand extends GeneratorCommand
             '{{ useRepositoryClass }}'  => '',
             '{{implementsInterface}}'   => '',
             '{{ implementsInterface }}' => '',
+            '{{useInterface}}'          => '',
+            '{{ useInterface }}'        => '',
             '{{dependencyInjection}}'   => '',
             '{{ dependencyInjection }}' => '',
             '{{InterfaceStubs}}'        => '',
@@ -195,8 +197,10 @@ class ServiceMakeCommand extends GeneratorCommand
         $replace = $this->getMethodStubs($interfaceClass, $replace);
 
         return array_merge($replace, [
-            '{{implementsInterface}}'   => "implements {$interfaceClass}",
-            '{{ implementsInterface }}' => "implements {$interfaceClass}",
+            '{{implementsInterface}}'   => "implements " . class_basename($interfaceClass),
+            '{{ implementsInterface }}' => "implements " . class_basename($interfaceClass),
+            '{{useInterface}}'          => "use {$interfaceClass};",
+            '{{ useInterface }}'        => "use {$interfaceClass};",
         ]);
     }
 
@@ -265,8 +269,9 @@ class ServiceMakeCommand extends GeneratorCommand
             ksort($params, SORT_NUMERIC);
 
             $methodStubs .= sprintf(
-                "%s function(%s): %s\n    {\n        // Implementation\n    }\n\n",
+                "%s function %s(%s): %s\n    {\n        // Implementation\n    }\n\n",
                 trim(str_replace('abstract', '', implode(' ', $modifiers))),
+                $method->getName(),
                 implode(',', $params),
                 $returnType
             );
