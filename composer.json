@@ -6,12 +6,12 @@
   "homepage": "https://packagist.org/packages/jfheinrich-eu/laravel-make-commands",
   "autoload": {
     "psr-4": {
-      "JfheinrichEu\\LaravelMakeCommands\\": "./src/"
+      "JfheinrichEu\\LaravelMakeCommands\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "JfheinrichEu\\LaravelMakeCommands\\Tests\\": "./tests/"
+      "JfheinrichEu\\LaravelMakeCommands\\Tests\\": "tests/"
     }
   },
   "authors": [

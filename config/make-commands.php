@@ -13,6 +13,9 @@ return [
         JfheinrichEu\LaravelMakeCommands\Console\Commands\ServiceMakeCommand::class,
     ],
     'seeders'  => [
-        // App\Support\Database\Seeders\MyTableSeeder::class,
+        'path-datafiles' => base_path().'/database/seeders/data',
+        'classes' => [
+            // Database\Seeders\JsonSeeders\UserSeeder::class,
+        ],
     ],
 ];
