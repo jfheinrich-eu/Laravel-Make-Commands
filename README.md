@@ -14,9 +14,11 @@ This package is aimed to be a suite of artisan commands and tools to help make t
   - [Example](#example)
 - [Make repository (make-commands:repository)](#make-repository-make-commandsrepository)
   - [Example](#example-1)
+- [Make a service (make-commands:service)](#make-a-service-make-commandsservice)
+  - [Example](#example-2)
 - [Data transfer object (DTO) (make-commands:dto)](#data-transfer-object-dto-make-commandsdto)
   - [Usage](#usage)
-  - [Example](#example-2)
+  - [Example](#example-3)
   - [Work with the hydration functionality](#work-with-the-hydration-functionality)
   - [Object Hydration](#object-hydration)
 - [Credits](#credits)
@@ -73,7 +75,51 @@ interface TestInterface
 
 ## Make repository (make-commands:repository)
 
-Creates a new repository for a model
+Creates a new repository.
+
+Optionally you can give the model on which the repository should based on.
+In this case, the command creates a repository with
+- a protected property for the model, which can be created by dependency injection, over the constructor.
+- it create a CRUD skeleton
+  - all() : returns all records as a Eloquent collection
+
+  - create(): creates a new record and returns then new record as Eloquent Model. The data for the record will be given by the generic `RepositoryDto` class as attribute collection.
+
+  - update(): updates a existing record and returns boolean. The data to update will be given by the generic `RepositoryDto` class as attribute collection.
+
+  - delete(): deletes a existing record and returns boolean. The deletion runs over the primary key.
+
+  - find(): returns a Eloquent model, found by primary key. Is there no record with given primary key, a ModelNotFoundException will be thrown.
+
+The generic class `RepositoryDto`:
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace JfheinrichEu\LaravelMakeCommands\Dto;
+
+use Illuminate\Support\Collection;
+
+/**
+ * @property int $id
+ * @property Collection<int,array<string,mixed>> $attributes
+ */
+final class RepositoryDto extends DataTransferObject
+{
+    /**
+     * @param null|int $id
+     * @param null|Collection<int,array<string,mixed>> $attributes
+     */
+    public function __construct(
+        protected ?int $id = null,
+        protected ?Collection $attributes = null
+    ) {
+    }
+}
+```
+
+Usage:
 
 ```bash
 $ php artisan make-commands:repository <Repository name> --model=<Modelname>
@@ -83,7 +129,10 @@ $ php artisan make-commands:repository <Repository name> --model=<Modelname>
 
 ```bash
 $ php artisan make-commands:repository UserRepository --model=User
-$ cat app/Repositories/UserRepository.php
+```
+
+`app/Repositories/UserRepository.php`
+```php
 <?php declare(strict_types=1);
 
 namespace App\Repositories
@@ -142,6 +191,60 @@ class TestRepository
 
         return $model;
     }
+}
+```
+
+## Make a service (make-commands:service)
+
+Creates a new service class, which can optionally implement a existing interface and can based on a existing repository.
+
+```bash
+php artisan make-commands:service name [--interface=Interface] [--repository=Repository]
+```
+
+### Example
+
+Use existing interface `App\Contracts\UserPostInterface`
+```php
+<?php declare(strict_types=1);
+
+namespace App\Contracts;
+
+interface UserPostInterface
+{
+	public function get( string|array|null $title, ?int $userId = 0): array|string;
+}
+```
+
+```bash
+$ php artisan make-commands:service UserPostService --interface=UserPostInterface --repository=UserRepository
+```
+
+`app/Services/UserPostService.php`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Services;
+
+use App\Contracts\UserPostInterface;
+use App\Repositories\UserRepository;
+
+class UserPostService implements UserPostInterface
+{
+    public function __construct(protected UserRepository $userRepository)
+    {
+    }
+
+
+    public function get(array|string|null $title,?int $userId = 0): array|string
+    {
+        // Implementation
+    }
+
+
 }
 ```
 
