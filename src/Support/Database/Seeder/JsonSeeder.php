@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Support\Database\Seeder;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Artisan;
 use JfheinrichEu\LaravelMakeCommands\Exceptions\InvalidSeederDataDirectory;
 
 class JsonSeeder extends Seeder
