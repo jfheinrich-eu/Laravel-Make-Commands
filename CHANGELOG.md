@@ -1,3 +1,10 @@
+## [3.0.0-rc.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.0.0-rc.2...3.0.0-rc.3) (2023-04-28)
+
+
+### Features
+
+* **LMC-2:** First release with new structure ([e3b7abc](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/e3b7abcd791f9947f654ed99c015ae696c239df4))
+
 ## [3.0.0-rc.2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.0.0-rc.1...3.0.0-rc.2) (2023-04-22)
 
 
