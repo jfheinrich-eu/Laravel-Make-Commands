@@ -12,6 +12,17 @@
 
 * **LMC-2:** Add make-commands:interface and make-commands:repository ([b0debd5](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/b0debd5d557013d1f282dcce6b969c4f67a5cb83))
 
+## [3.0.0](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/2.0.0...3.0.0) (2023-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **LMC-1:** Package moved to packagist.org
+
+### Features
+
+* **LMC-1:** Package moved to packagist.org ([9cdd092](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/9cdd0921592c6b2dbe5635c67897030832389c8e))
+
 ## [3.0.0-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/2.0.0...3.0.0-rc.1) (2023-04-14)
 
 
