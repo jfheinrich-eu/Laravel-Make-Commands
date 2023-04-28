@@ -1,3 +1,25 @@
+## [3.1.0-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.0.0...3.1.0-rc.1) (2023-04-28)
+
+
+### Features
+
+* **LMC-2:** Add make-commands:interface and make-commands:repository ([b0debd5](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/b0debd5d557013d1f282dcce6b969c4f67a5cb83))
+* **LMC-2:** First release with new structure ([e3b7abc](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/e3b7abcd791f9947f654ed99c015ae696c239df4))
+
+## [3.0.0-rc.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.0.0-rc.2...3.0.0-rc.3) (2023-04-28)
+
+
+### Features
+
+* **LMC-2:** First release with new structure ([e3b7abc](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/e3b7abcd791f9947f654ed99c015ae696c239df4))
+
+## [3.0.0-rc.2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.0.0-rc.1...3.0.0-rc.2) (2023-04-22)
+
+
+### Features
+
+* **LMC-2:** Add make-commands:interface and make-commands:repository ([b0debd5](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/b0debd5d557013d1f282dcce6b969c4f67a5cb83))
+
 ## [3.0.0](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/2.0.0...3.0.0) (2023-04-14)
 
 

@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Tests\Stubs;
 
-use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
-use JfheinrichEu\LaravelMakeCommands\Traits\UseDto;
+use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 
-final class Test implements DtoContract
+/**
+ * @property-read string $name
+ * @property-read string $studio
+ */
+final class Test extends DataTransferObject
 {
-    use UseDto;
-
     public function __construct(
-        private readonly string $name,
+        protected readonly string $name,
+        protected string $studio
     ) {
     }
 }

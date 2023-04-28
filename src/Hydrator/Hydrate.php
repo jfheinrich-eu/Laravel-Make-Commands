@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Hydrator;
 
 use EventSauce\ObjectHydrator\ObjectMapperUsingReflection;
-use JfheinrichEu\LaravelMakeCommands\Contracts\DtoContract;
 use JfheinrichEu\LaravelMakeCommands\Contracts\HydratorContract;
+use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 
 class Hydrate implements HydratorContract
 {
@@ -19,11 +19,9 @@ class Hydrate implements HydratorContract
     }
 
     /**
-     * @param class-string<DtoContract> $class
-     * @param array<string,mixed> $properties
-     * @return DtoContract
+     * @inheritDoc
      */
-    public function fill(string $class, array $properties): DtoContract
+    public function fill(string $class, array $properties): DataTransferObject
     {
         return $this->mapper->hydrateObject(
             className: $class,

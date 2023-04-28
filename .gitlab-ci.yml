@@ -7,8 +7,8 @@
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 stages:
   - build
-  # pestphp
-  - pest
+  # testbench
+  - testbench
   # PHPstan
   - code-quality
   # SAST scanner
@@ -21,10 +21,12 @@ stages:
   - deploy
 
 cache:
-  key: build_cache
+  key:
+    files:
+      - composer.lock
   paths:
-  - vendor/
-  - composer.lock
+    - vendor/
+    - composer.lock
 variables:
   DOCKER_IMAGE: "registry.gitlab.com/jfheinrich-eu/docker/nodejs:latest"
   DOCKER_PY_IMAGE: "python:latest"

@@ -1,3 +1,7 @@
 /vendor/
 /public/
+/tests-pest/
 run-pipeline.sh
+phpunit-pest.xml
+phpunit.xml.bak
+.phpunit.cache/*

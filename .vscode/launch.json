@@ -29,20 +29,21 @@
             "port": 9003
         },
         {
-            "name": "Listen for Xdebug",
+            "name": "Listen for XDebug",
             "type": "php",
             "request": "launch",
             "port": 9003,
             "log": true,
             "pathMappings": {
-            "/app": "${workspaceFolder}"
+                "/app": "${workspaceFolder}"
+            }
         },
         {
             "name": "PhpUnit dummy",
             "type": "php",
             "request": "launch",
-            "port": 9001,
-        },
+            "port": 9001
+        }
     ],
     "compounds": [
         {

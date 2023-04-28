@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use JfheinrichEu\LaravelMakeCommands\Hydrator\Hydrate;
 use JfheinrichEu\LaravelMakeCommands\Contracts\HydratorContract;
-use JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand;
 
-final class PackageServiceProvider extends ServiceProvider
+final class LaravelMakeCommandsServiceProvider extends ServiceProvider
 {
     /**
      * @var array<class-string,class-string>
@@ -23,12 +23,15 @@ final class PackageServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands(
-                commands: [
-                    DtoMakeCommand::class,
-                ],
-            );
+        /** @var string[] $commands */
+        $commands = Config::get('make-commands.commands', []);
+
+        if ($commands !== []) {
+            if ($this->app->runningInConsole()) {
+                $this->commands(
+                    commands: $commands,
+                );
+            }
         }
     }
 }
