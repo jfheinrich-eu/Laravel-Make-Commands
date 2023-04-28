@@ -12,4 +12,7 @@ return [
         JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand::class,
         JfheinrichEu\LaravelMakeCommands\Console\Commands\ServiceMakeCommand::class,
     ],
+    'seeders'  => [
+        // App\Support\Database\Seeders\MyTableSeeder::class,
+    ],
 ];
