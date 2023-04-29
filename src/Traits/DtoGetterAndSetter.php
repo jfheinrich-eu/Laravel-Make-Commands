@@ -11,11 +11,11 @@ trait DtoGetterAndSetter
 {
     /**
      * @param string $methodName
-     * @param array<int,mixed> $params
+     * @param array<int,mixed>|null $params
      * @return mixed
      * @throws BadMethodCallException
      */
-    public function __call(string $methodName, array $params = null): mixed
+    public function __call(string $methodName, ?array $params): mixed
     {
         $propertiesMethods = $this->getProperties();
 
