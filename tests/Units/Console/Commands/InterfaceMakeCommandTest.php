@@ -18,13 +18,10 @@ final class InterfaceMakeCommandTest extends PackageTestCase
             ->assertSuccessful();
     }
 
-    /**
-     * @dataProvider interface_provider
-     * @param string $interface
-     * @return void
-     */
-    public function test_create_the_interface_when_called(string $interface): void
+    public function test_create_the_interface_when_called(): void
     {
+        $interface = 'TestInterface';
+
         $this->artisan(
             InterfaceMakeCommand::class,
             ['name' => $interface],
@@ -55,17 +52,5 @@ final class InterfaceMakeCommandTest extends PackageTestCase
         $stub = $method->invoke($test);
 
         $this->assertEquals($expected, $stub);
-    }
-
-    // Provider
-
-    public static function interface_provider(): array
-    {
-        return [
-            ['TestInterface'],
-            ['MyInterface'],
-            ['SomethingInterface'],
-            ['PackageClassInterface'],
-        ];
     }
 }

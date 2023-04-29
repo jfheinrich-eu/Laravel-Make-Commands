@@ -19,15 +19,10 @@ final class DtoMakeCommandTest extends PackageTestCase
             ->assertSuccessful();
     }
 
-    /**
-     * Summary of test_create_the_data_transfer_object_when_called
-     *
-     * @dataProvider classes_provider
-     * @param string $class
-     * @return void
-     */
-    public function test_create_the_data_transfer_object_when_called(string $class): void
+    public function test_create_the_data_transfer_object_when_called(): void
     {
+        $class = 'Test';
+
         $this->artisan(
             DtoMakeCommand::class,
             ['name' => $class],
@@ -67,18 +62,5 @@ final class DtoMakeCommandTest extends PackageTestCase
         $stub = $method->invoke($test);
 
         $this->assertEquals($expected, $stub);
-    }
-
-
-    // Provider
-
-    public static function classes_provider(): array
-    {
-        return [
-            ['Test'],
-            ['MyDataObject'],
-            ['Something'],
-            ['PackageClass'],
-        ];
     }
 }

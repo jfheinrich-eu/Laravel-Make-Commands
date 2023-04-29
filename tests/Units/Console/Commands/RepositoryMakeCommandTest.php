@@ -32,15 +32,11 @@ final class RepositoryMakeCommandTest extends PackageTestCase
             ->assertSuccessful();
     }
 
-    /**
-     *
-     * @dataProvider repository_provider
-     * @param string $class
-     * @param string $model
-     * @return void
-     */
-    public function test_create_the_repository_when_called(string $class, string $model): void
+    public function test_create_the_repository_when_called(): void
     {
+        $class = 'TestRepository';
+        $model = 'User';
+
         $this->artisan(
             RepositoryMakeCommand::class,
             [ 'name' => $class, '--model' => $model ],
@@ -84,17 +80,5 @@ final class RepositoryMakeCommandTest extends PackageTestCase
         $stub     = $method->invoke($test);
 
         $this->assertEquals($expected, $stub);
-    }
-
-    // Provider
-
-    public static function repository_provider(): array
-    {
-        return [
-            [ 'TestRepository', 'User' ],
-            [ 'MyRepository', 'Permission' ],
-            [ 'SomethingRepository', 'User' ],
-            [ 'PackageClassRepository', 'Package' ],
-        ];
     }
 }

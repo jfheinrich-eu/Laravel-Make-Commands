@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Tests\Units\Facades;
 
-use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 use JfheinrichEu\LaravelMakeCommands\Facades\Hydrator;
 use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 use JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Test;
 
-final class HydratorTest extends PackageTestCase
+final class HydratorTransformationTest extends PackageTestCase
 {
-    public function test_hydrate_test_class_check_instance_of(): void
+    public function test_hydrate_test_class_check_transformations(): void
     {
         $name = 'Jimi Hendirx';
         $studio = 'Electric Lady Studios';
@@ -25,7 +24,8 @@ final class HydratorTest extends PackageTestCase
         $json = json_encode($dto);
         $collection = $dto->toCollection();
 
-        self::assertInstanceOf(Test::class, $dto, 'Not a instance of Test::class');
-        self::assertInstanceOf(DataTransferObject::class, $dto, 'Not a instance of DataTransferObject::class');
+        self::assertEquals(['name' => $name, 'studio' => $studio], $array, 'toArray() failed');
+        self::assertEquals("{\"name\":\"$name\",\"studio\":\"$studio\"}", $json, 'toJson failed');
+        self::assertEquals(collect(['name' => $name, 'studio' => $studio]), $collection, 'toCollection failed');
     }
 }

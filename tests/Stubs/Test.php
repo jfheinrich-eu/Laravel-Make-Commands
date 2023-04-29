@@ -8,7 +8,10 @@ use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 
 /**
  * @property-read string $name
- * @property-read string $studio
+ * @property string $studio
+ * @method string getName()
+ * @method string getStudio()
+ * @method void setStudio(string $studio)
  */
 final class Test extends DataTransferObject
 {
