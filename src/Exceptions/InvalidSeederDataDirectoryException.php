@@ -6,6 +6,6 @@ namespace JfheinrichEu\LaravelMakeCommands\Exceptions;
 
 use Exception;
 
-class InvalidSeederDataDirectory extends Exception
+class InvalidSeederDataDirectoryException extends Exception
 {
 }

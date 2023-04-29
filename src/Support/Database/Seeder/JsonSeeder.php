@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
-use JfheinrichEu\LaravelMakeCommands\Exceptions\InvalidSeederDataDirectory;
+use JfheinrichEu\LaravelMakeCommands\Exceptions\InvalidSeederDataDirectoryException;
 
 class JsonSeeder extends Seeder
 {
@@ -48,7 +48,7 @@ class JsonSeeder extends Seeder
     {
         try {
             $basepath = $this->getDataDir();
-        } catch(InvalidSeederDataDirectory $e) {
+        } catch (InvalidSeederDataDirectoryException $e) {
             return $this->error($e->getMessage());
         }
 
@@ -82,7 +82,7 @@ class JsonSeeder extends Seeder
      * Get the configured data dir
      *
      * @return string
-     * @throws InvalidSeederDataDirectory
+     * @throws InvalidSeederDataDirectoryException
      */
     protected function getDataDir(): string
     {
@@ -90,12 +90,12 @@ class JsonSeeder extends Seeder
         $basepath = Config::get('make-comnmands.seeders.path-datafiles', '');
 
         if(! File::isDirectory($basepath)) {
-            throw new InvalidSeederDataDirectory(
+            throw new InvalidSeederDataDirectoryException(
                 "Configured seeder data directory >{$basepath}< not found"
             );
         }
         if(! File::isReadable($basepath)) {
-            throw new InvalidSeederDataDirectory(
+            throw new InvalidSeederDataDirectoryException(
                 "Configured seeder data directory >{$basepath}< not readable"
             );
         }
