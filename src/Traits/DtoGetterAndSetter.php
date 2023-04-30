@@ -6,6 +6,7 @@ namespace JfheinrichEu\LaravelMakeCommands\Traits;
 
 use BadMethodCallException;
 use Illuminate\Support\Str;
+use ReflectionClass;
 
 trait DtoGetterAndSetter
 {
@@ -19,44 +20,66 @@ trait DtoGetterAndSetter
     {
         $propertiesMethods = $this->getProperties();
 
-        $methodPrefix = substr($methodName, 0, 3);
-        $key = substr($methodName, 3);
+        $length = 3;
+        if (Str::of($methodName)->startsWith('is')) {
+            $length = 2;
+        }
+
+        $methodPrefix = substr($methodName, 0, $length);
+        $key = substr($methodName, $length);
+
+        if (! isset($propertiesMethods[$key])) {
+            throw new BadMethodCallException("Property {$key} does not exists");
+        }
 
         if ($methodPrefix === 'set' && $params !== null && count($params) == 1) {
             $value = $params[0];
 
-            if (isset($propertiesMethods[$key])) {
-                $property = $propertiesMethods[$key];
-                $this->$property = $value;
-                return $this;
-            } else {
-                throw new BadMethodCallException("Property {$propertiesMethods[$key]} does not exists");
-            }
-        } elseif ($methodPrefix === 'get') {
-            if (isset($propertiesMethods[$key])) {
-                $property = $propertiesMethods[$key];
-                return $this->$property;
-            } else {
-                throw new BadMethodCallException("Property {$propertiesMethods[$key]} does not exists");
-            }
+            $property = $propertiesMethods[$key]['property'];
+            $this->$property = $value;
+            return $this;
+        } elseif ($methodPrefix === $propertiesMethods[$key]['getter']) {
+            $property = $propertiesMethods[$key]['property'];
+            return $this->$property;
         }
 
         throw new BadMethodCallException("Method {$methodName} does not exists");
     }
 
     /**
-     * @return array<string,string>
+     * @return array<string,array{property:string, getter:string}>
      */
     protected function getProperties(): array
     {
-        /** @var array<string,string> $propertyMethod */
+        /** @var array<string,array{property:string, getter:string}> $propertyMethod */
         $propertyMethod = [];
-        /** @var array<string,mixed> $properties */
-        $properties = get_object_vars($this);
 
-        foreach ($properties as $property => $value) {
-            $method = ucfirst(Str::camel($property));
-            $propertyMethod[$method] = $property;
+        $reflect = new ReflectionClass($this);
+        $props = $reflect->getProperties();
+
+        foreach ($props as $property) {
+            $paramType = $property->getType();
+
+            if ($paramType instanceof \ReflectionNamedType) {
+                $typeName = $paramType->getName();
+            } else { //if ($paramType instanceof \ReflectionUnionType)
+                $typeName = (string) $paramType;
+            }
+
+            $propertyName = $property->getName();
+            $method = ucfirst(Str::camel($propertyName));
+
+            if ($typeName === 'bool') {
+                $propertyMethod[$method] = [
+                    'property' => $propertyName,
+                    'getter' => 'is',
+                ];
+            } else {
+                $propertyMethod[$method] = [
+                    'property' => $propertyName,
+                    'getter' => 'get',
+                ];
+            }
         }
 
         return $propertyMethod;
