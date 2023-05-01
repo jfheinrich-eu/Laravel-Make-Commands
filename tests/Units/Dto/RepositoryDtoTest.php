@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Tests\Units\Dto;
 
-use Illuminate\Support\Collection;
 use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 use JfheinrichEu\LaravelMakeCommands\Dto\RepositoryDto;
 use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
