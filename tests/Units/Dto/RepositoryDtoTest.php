@@ -13,15 +13,15 @@ final class RepositoryDtoTest extends PackageTestCase
 {
     public function test_create_repository_dto(): void
     {
-        $expectedAttributes = (new Collection())->put(
-            'hendrix',
-            [
-                    'id'                => 42,
-                    'name'              => 'Hendrix',
-                    'death_anniversary' => '1970-09-18',
-                    'age'               => 27,
-                ]
-        );
+        /** @var array<string,mixed> $attributesInput */
+        $attributesInput = [
+            'id' => 42,
+            'name' => 'Hendrix',
+            'death_anniversary' => '1970-09-18',
+            'age' => 27,
+        ];
+
+        $expectedAttributes = collect($attributesInput);
 
         $expectedArray = [
             'id'         => 42,
@@ -33,15 +33,7 @@ final class RepositoryDtoTest extends PackageTestCase
 
         $dto = new RepositoryDto(
             42,
-            (new Collection())->put(
-                'hendrix',
-                [
-                    'id'                => 42,
-                    'name'              => 'Hendrix',
-                    'death_anniversary' => '1970-09-18',
-                    'age'               => 27,
-                ]
-            ),
+            collect($attributesInput)
         );
 
         $array      = $dto->toArray();

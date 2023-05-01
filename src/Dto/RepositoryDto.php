@@ -8,13 +8,13 @@ use Illuminate\Support\Collection;
 
 /**
  * @property int $id
- * @property Collection<int,array<string,mixed>> $attributes
+ * @property Collection<string,mixed> $attributes
  */
 final class RepositoryDto extends DataTransferObject
 {
     /**
      * @param null|int $id
-     * @param null|Collection<int,array<string,mixed>> $attributes
+     * @param null|Collection<string,mixed> $attributes
      */
     public function __construct(
         protected ?int $id = null,
