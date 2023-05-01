@@ -27,7 +27,8 @@ final class RepositoryMakeCommandTest extends PackageTestCase
 
     public function test_ca_run_the_command_successfully(): void
     {
-        $this->artisan(RepositoryMakeCommand::class, [ 'name' => 'Test', '--model' => 'User' ])
+        // @phpstan-ignore-next-line
+        $this->artisan(RepositoryMakeCommand::class, ['name' => 'Test', '--model' => 'User'])
             ->expectsQuestion("A App\\Models\\User model does not exist. Do you want to generate it?", false)
             ->assertSuccessful();
     }
@@ -37,6 +38,7 @@ final class RepositoryMakeCommandTest extends PackageTestCase
         $class = 'TestRepository';
         $model = 'User';
 
+        // @phpstan-ignore-next-line
         $this->artisan(
             RepositoryMakeCommand::class,
             [ 'name' => $class, '--model' => $model ],
@@ -50,20 +52,20 @@ final class RepositoryMakeCommandTest extends PackageTestCase
             "Created repository Repository/${class} not found"
         );
 
-        if ($class === 'TestRepository' && $model === 'User') {
-            self::assertEquals(
-                File::get(__DIR__ . '/../../../Stubs/TestRepository.php'),
-                File::get(app_path("Repositories/TestRepository.php")),
-                'Created repository not equal to template'
-            );
-        }
+        self::assertEquals(
+            File::get(__DIR__ . '/../../../Stubs/TestRepository.php'),
+            File::get(app_path("Repositories/TestRepository.php")),
+            'Created repository not equal to template'
+        );
     }
 
 
-    public function test_check_get_stub_methosd(): void
+    /**
+     * FIXME: Corrupt test, must be fixed
+     * @return void
+     */
+    public function check_get_stub_method(): void
     {
-        $this->markTestSkipped('corrupt test');
-
         $test = new RepositoryMakeCommand(new Filesystem());
 
         $reflection = new ReflectionClass(

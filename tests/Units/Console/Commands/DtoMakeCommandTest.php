@@ -15,14 +15,15 @@ final class DtoMakeCommandTest extends PackageTestCase
 {
     public function test_can_run_the_command_successfully(): void
     {
-        $this->artisan(DtoMakeCommand::class, ['name' => 'Test'])
-            ->assertSuccessful();
+        // @phpstan-ignore-next-line
+        $this->artisan(DtoMakeCommand::class, ['name' => 'Test'])->assertSuccessful();
     }
 
     public function test_create_the_data_transfer_object_when_called(): void
     {
         $class = 'Test';
 
+        // @phpstan-ignore-next-line
         $this->artisan(
             DtoMakeCommand::class,
             ['name' => $class],

@@ -6,6 +6,7 @@ namespace JfheinrichEu\LaravelMakeCommands\Tests\Units\Console\Commands;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
+use Illuminate\Testing\PendingCommand;
 use JfheinrichEu\LaravelMakeCommands\Console\Commands\InterfaceMakeCommand;
 use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 use ReflectionClass;
@@ -14,14 +15,18 @@ final class InterfaceMakeCommandTest extends PackageTestCase
 {
     public function test_run_the_command_successfully(): void
     {
-        $this->artisan(InterfaceMakeCommand::class, ['name' => 'Test'])
-            ->assertSuccessful();
+        $result = $this->artisan(InterfaceMakeCommand::class, ['name' => 'Test']);
+
+        if ($result instanceof PendingCommand) {
+            $result->assertSuccessful();
+        }
     }
 
     public function test_create_the_interface_when_called(): void
     {
         $interface = 'TestInterface';
 
+        // @phpstan-ignore-next-line
         $this->artisan(
             InterfaceMakeCommand::class,
             ['name' => $interface],

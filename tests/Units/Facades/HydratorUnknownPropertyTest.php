@@ -17,14 +17,15 @@ final class HydratorUnknownPropertyTest extends PackageTestCase
         $name = 'Jimi Hendirx';
         $studio = 'Electric Lady Studios';
 
+        /** @var Test $dto */
         $dto = Hydrator::fill(
             Test::class,
             ['name' => $name, 'studio' => $studio],
         );
 
         try {
-            $t = $dto->unknown;
-            $t = $dto->getUnknown();
+            $t = $dto->unknown; // @phpstan-ignore-line
+            $t = $dto->getUnknown(); // @phpstan-ignore-line
             self::assertEquals(
                 "Exception",
                 "No Exception",
@@ -45,8 +46,8 @@ final class HydratorUnknownPropertyTest extends PackageTestCase
         }
 
         try {
-            $dto->unknown = 42;
-            $dto->setUnknown(42);
+            $dto->unknown = 42; // @phpstan-ignore-line
+            $dto->setUnknown(42); // @phpstan-ignore-line
             self::assertEquals(
                 "Exception",
                 "No Exception",

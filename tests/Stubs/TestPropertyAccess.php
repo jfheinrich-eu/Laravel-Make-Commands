@@ -13,7 +13,7 @@ use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
  * @method string getName()
  * @method string getStudio()
  * @method bool isEnabled()
- * @method void setStudio(string $studio)
+ * @method TestPropertyAccess setStudio(string $studio)
  */
 final class TestPropertyAccess extends DataTransferObject
 {

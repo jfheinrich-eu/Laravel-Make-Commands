@@ -16,6 +16,7 @@ final class HydratorCreateAsExpectedTest extends PackageTestCase
         $name = 'Jimi Hendirx';
         $studio = 'Electric Lady Studios';
 
+        /** @var Test $test */
         $test = Hydrator::fill(
             Test::class,
             ['name' => $name, 'studio' => $studio],

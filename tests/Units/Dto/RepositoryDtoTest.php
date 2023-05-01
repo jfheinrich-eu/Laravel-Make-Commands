@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Tests\Units\Dto;
 
+use Illuminate\Support\Collection;
 use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 use JfheinrichEu\LaravelMakeCommands\Dto\RepositoryDto;
 use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
@@ -12,14 +13,15 @@ final class RepositoryDtoTest extends PackageTestCase
 {
     public function test_create_repository_dto(): void
     {
-        $expectedAttributes = collect([
-                'hendrix' => [
+        $expectedAttributes = (new Collection())->put(
+            'hendrix',
+            [
                     'id'                => 42,
                     'name'              => 'Hendrix',
                     'death_anniversary' => '1970-09-18',
                     'age'               => 27,
                 ]
-            ]);
+        );
 
         $expectedArray = [
             'id'         => 42,
@@ -31,14 +33,15 @@ final class RepositoryDtoTest extends PackageTestCase
 
         $dto = new RepositoryDto(
             42,
-            collect([
-                'hendrix' => [
+            (new Collection())->put(
+                'hendrix',
+                [
                     'id'                => 42,
                     'name'              => 'Hendrix',
                     'death_anniversary' => '1970-09-18',
                     'age'               => 27,
                 ]
-            ]),
+            ),
         );
 
         $array      = $dto->toArray();

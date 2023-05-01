@@ -16,6 +16,7 @@ final class HydratorPropertyAccessTest extends PackageTestCase
         $studio = 'Electric Lady Studios';
         $enabled = true;
 
+        /** @var TestPropertyAccess $dto */
         $dto = Hydrator::fill(
             TestPropertyAccess::class,
             ['name' => $name, 'studio' => $studio, 'enabled' => $enabled],

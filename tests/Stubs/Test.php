@@ -11,7 +11,7 @@ use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
  * @property string $studio
  * @method string getName()
  * @method string getStudio()
- * @method void setStudio(string $studio)
+ * @method Test setStudio(string $studio)
  */
 final class Test extends DataTransferObject
 {

@@ -1,5 +1,18 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/phpstan/phpstan-phpunit/extension.neon
+    - ./vendor/phpstan/phpstan-phpunit/rules.neon
+    - ./vendor/phpstan/phpstan-mockery/extension.neon
+
 parameters:
     level: 9
 
     paths:
         - src
+        - tests/Units
+
+    parallel:
+        jobSize: 1
+        maximumNumberOfProcesses: 1
+        minimumNumberOfJobsPerProcess: 1
+        processTimeout: 300.0
