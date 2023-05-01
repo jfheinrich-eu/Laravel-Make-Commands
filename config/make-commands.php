@@ -14,8 +14,8 @@ return [
     ],
     'seeders'  => [
         'path-datafiles' => base_path().'/database/seeders/data',
-        'classes' => [
-            // Database\Seeders\JsonSeeders\UserSeeder::class,
+        'models' => [
+            // App\Models\User::class,
         ],
     ],
 ];
