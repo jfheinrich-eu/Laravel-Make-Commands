@@ -86,8 +86,14 @@ trait JsonSeeder
         $seederFqn = 'Database\Seeder\\' . $seederName;
         $filename = $seederPath . DIRECTORY_SEPARATOR . $seederName . '.php';
 
-        $classTemplate = <<<EOF
-namespace JfheinrichEu\\LaravelMakeCommands\\Support\\Database\\Seeder;
+        if (! File::exists($filename)) {
+
+            $classTemplate = <<<EOF
+<?php
+
+declare(strict_types=1);
+
+namespace Database\\Seeder;
 
 use $model;
 use JfheinrichEu\\LaravelMakeCommands\\Support\\Database\\Seeder\\JsonSeeder;
@@ -100,10 +106,13 @@ class $seederName extends JsonSeeder {
 }
 EOF;
 
-        File::put(
-            $filename,
-            $classTemplate
-        );
+            File::put(
+                $filename,
+                $classTemplate
+            );
+        }
+
+        include $filename;
 
         return app()->make($seederFqn);
     }
