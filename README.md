@@ -13,14 +13,16 @@ This package is aimed to be a suite of artisan commands and tools to help make t
 - [Make interface (make-commands:interface)](#make-interface-make-commandsinterface)
   - [Example](#example)
 - [Make repository (make-commands:repository)](#make-repository-make-commandsrepository)
+  - [Usage:](#usage)
   - [Example](#example-1)
 - [Make a service (make-commands:service)](#make-a-service-make-commandsservice)
   - [Example](#example-2)
 - [Data transfer object (DTO) (make-commands:dto)](#data-transfer-object-dto-make-commandsdto)
-  - [Usage](#usage)
+  - [Usage](#usage-1)
   - [Example](#example-3)
   - [Work with the hydration functionality](#work-with-the-hydration-functionality)
   - [Object Hydration](#object-hydration)
+- [JSON database seeder](#json-database-seeder)
 - [Credits](#credits)
 
 ## Installation
@@ -29,7 +31,7 @@ This package is aimed to be a suite of artisan commands and tools to help make t
 $ composer require jfheinrich-eu/laravel-make-commands
 ```
 
-To publish the assets, run following command:
+To publish the assets and config file, run following command:
 
 ```bash
 $ php artisan make-commands:install
@@ -119,7 +121,16 @@ final class RepositoryDto extends DataTransferObject
 }
 ```
 
-Usage:
+The attributes property of RepositoryDto gets the required columns from the model as illuminate\Support\Collection.
+
+This collection can be constructed like this:
+
+```php
+$dto->setAttributes(collect(['id' => 42, 'email' => 'dummy@localhost.tld']);
+```
+
+
+### Usage:
 
 ```bash
 $ php artisan make-commands:repository <Repository name> --model=<Modelname>
@@ -275,7 +286,11 @@ to declare each property as readonly.
 
 ```bash
 $ php artisan make-commands:dto MyDto
-$ cat app/Dto/MyDto.php
+```
+
+`app/Dto/MyDto.php`
+
+```php
 <?php
 
 declare(strict_types=1);
@@ -339,6 +354,54 @@ class StoreController
 Under the hood this package uses an [EventSauce](https://eventsauce.io) package, created by [Frank de Jonge](https://twitter.com/frankdejonge). It is possibly the
 best package I have found to hydrate objects nicely in PHP. You can find the [documentation here](https://github.com/EventSaucePHP/ObjectHydrator)
 if you would like to see what else you are able to do with the package to suit your needs.
+
+## JSON database seeder
+
+The database seeder in this package
+
+- DatabaseJsonSeeder
+- JsonSeeder
+
+are designed to seed a table from a json data file.
+
+All what you have to do is to
+integrate `DatabaseJsonSeeder` in `Database\Seeder\DatabaseSeeder`
+
+```php
+<?php
+
+namespace Database\Seeders;
+
+use use Illuminate\Database\Seeder;
+use JfheinrichEu\LaravelMakeCommands\Support\Database\Seeder\DatabaseJsonSeeder;
+
+class DatabaseSeeder extends DatabaseJsonSeeder
+{
+    protected array $nonJsonSeeders = [
+        // Non JSON Seeder classes
+    ];
+
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // run the JSON seeders
+        parent::run();
+
+        // optional, run the non JSON seeder
+        $this->call($nonJsonSeeders);
+
+    }
+}
+```
+
+After that, you can run the JSON seeders with
+```bash
+php artisan db:seed
+```
 
 ## Credits
 

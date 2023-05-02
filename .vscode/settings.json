@@ -1,3 +1,17 @@
 {
-    "jira-plugin.workingProject": "LMC"
+    "jira-plugin.workingProject": "LMC",
+    "phpstan.binCommand": [
+        "vcs-phpstan"
+    ],
+    "phpstan.memoryLimit": "2G",
+    "phpstan.rootDir": "/Volumes/JOERG_EXT_DATA/Documents/src/packagist/laravel-make-commands",
+    "phpstan.paths": {
+        "/Volumes/JOERG_EXT_DATA/Documents/src/packagist/laravel-make-commands": "/app",
+        "/Volumes/JOERG_EXT_DATA/Documents/src/packagist/laravel-make-commands/src": "/app/src",
+        "/Volumes/JOERG_EXT_DATA/Documents/src/packagist/laravel-make-commands/tests/Units": "/app/tests/Units"
+    },
+    "phpstan.enableLanguageServer": true,
+    "phpstan.timeout": 60000,
+    "phpstan.projectTimeout": 360000,
+    "phpstan.enabled": false
 }

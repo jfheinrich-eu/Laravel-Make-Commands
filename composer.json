@@ -6,12 +6,12 @@
   "homepage": "https://packagist.org/packages/jfheinrich-eu/laravel-make-commands",
   "autoload": {
     "psr-4": {
-      "JfheinrichEu\\LaravelMakeCommands\\": "./src/"
+      "JfheinrichEu\\LaravelMakeCommands\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "JfheinrichEu\\LaravelMakeCommands\\Tests\\": "./tests/"
+      "JfheinrichEu\\LaravelMakeCommands\\Tests\\": "tests/"
     }
   },
   "authors": [
@@ -28,7 +28,7 @@
     "test:coverage": "env XDEBUG_MODE=coverage ./vendor/bin/testbench package:test --coverage  --no-ansi",
     "fix": "./vendor/bin/pint",
     "check": "./vendor/bin/pint --test -v",
-    "static": "./vendor/bin/phpstan analyse",
+    "static": "./vendor/bin/phpstan analyse --memory-limit=2G",
     "all": [
       "@test",
       "@fix",

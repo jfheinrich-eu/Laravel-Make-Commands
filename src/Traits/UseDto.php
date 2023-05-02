@@ -6,6 +6,7 @@ namespace JfheinrichEu\LaravelMakeCommands\Traits;
 
 trait UseDto
 {
-    use DtoMagic;
+    use DtoPropertyAccess;
+    use DtoGetterAndSetter;
     use DtoTransformation;
 }

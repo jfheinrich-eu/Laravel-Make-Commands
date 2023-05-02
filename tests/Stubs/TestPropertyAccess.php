@@ -9,15 +9,18 @@ use JfheinrichEu\LaravelMakeCommands\Dto\DataTransferObject;
 /**
  * @property-read string $name
  * @property string $studio
+ * @property bool $enabled
  * @method string getName()
  * @method string getStudio()
- * @method Test setStudio(string $studio)
+ * @method bool isEnabled()
+ * @method TestPropertyAccess setStudio(string $studio)
  */
-final class Test extends DataTransferObject
+final class TestPropertyAccess extends DataTransferObject
 {
     public function __construct(
         protected readonly string $name,
-        protected string $studio
+        protected string $studio,
+        protected bool $enabled
     ) {
     }
 }
