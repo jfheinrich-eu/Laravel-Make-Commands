@@ -7,6 +7,9 @@ namespace JfheinrichEu\LaravelMakeCommands\Traits;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Seeder;
 use Illuminate\Console\View\Components\TwoColumnDetail;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use JfheinrichEu\LaravelMakeCommands\Exceptions\InvalidPathSeederConfigurationException;
 use ParseError;
 
 trait JsonSeeder
@@ -64,22 +67,43 @@ trait JsonSeeder
      * Summary of createSeederObject
      * @param class-string $model
      * @throws ParseError
+     * @throws InvalidPathSeederConfigurationException
      * @return mixed
      */
     protected function createSeederObject(string $model): mixed
     {
+        /** @var  string $seederPath */
+        $seederPath = Config::get('make-commands.seeders.path-seeder', '');
+
+        if ($seederPath === '') {
+            throw new InvalidPathSeederConfigurationException('No configuration to the seeder class directory found');
+        }
+
+        File::ensureDirectoryExists($seederPath, 775);
+
         $modelShort = class_basename($model);
         $seederName = $modelShort . 'Seeder';
-        $seederFqn = 'JfheinrichEu\LaravelMakeCommands\Support\Database\Seeder\\' . $seederName;
+        $seederFqn = 'Database\Seeder\\' . $seederName;
+        $filename = $seederPath . DIRECTORY_SEPARATOR . $seederName . '.php';
 
-        eval("namespace JfheinrichEu\\LaravelMakeCommands\\Support\\Database\\Seeder;
-	          use $model;
-              class $seederName extends JsonSeeder {
-                public function __construct($modelShort \$model)
-                {
-                    parent::__construct(\$model);
-                }
-            }");
+        $classTemplate = <<<EOF
+namespace JfheinrichEu\\LaravelMakeCommands\\Support\\Database\\Seeder;
+
+use $model;
+use JfheinrichEu\\LaravelMakeCommands\\Support\\Database\\Seeder\\JsonSeeder;
+
+class $seederName extends JsonSeeder {
+    public function __construct($modelShort \$model)
+    {
+        parent::__construct(\$model);
+    }
+}
+EOF;
+
+        File::put(
+            $filename,
+            $classTemplate
+        );
 
         return app()->make($seederFqn);
     }

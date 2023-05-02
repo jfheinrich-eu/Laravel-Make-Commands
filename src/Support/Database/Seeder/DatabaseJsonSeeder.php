@@ -7,7 +7,9 @@ namespace JfheinrichEu\LaravelMakeCommands\Support\Database\Seeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use JfheinrichEu\LaravelMakeCommands\Exceptions\InvalidPathSeederConfigurationException;
 use JfheinrichEu\LaravelMakeCommands\Traits\JsonSeeder;
+use ParseError;
 
 class DatabaseJsonSeeder extends Seeder
 {
@@ -24,12 +26,16 @@ class DatabaseJsonSeeder extends Seeder
 
         if (is_array($models)) {
             foreach ($models as $model) {
-                /** @var  Seeder $seederObject */
-                $seederObject = $this->createSeederObject($model);
+                try {
+                    /** @var  Seeder $seederObject */
+                    $seederObject = $this->createSeederObject($model);
 
-                $seederObject->setCommand($this->command)->setContainer($this->container);
+                    $seederObject->setCommand($this->command)->setContainer($this->container);
 
-                $seeders[] = $seederObject;
+                    $seeders[] = $seederObject;
+                } catch (ParseError | InvalidPathSeederConfigurationException $e) {
+                    $this->command->getOutput()->error("Could not create a seeder class for model {$model}");
+                }
             }
 
             $this->callSeederObject($seeders);

@@ -13,7 +13,8 @@ return [
         JfheinrichEu\LaravelMakeCommands\Console\Commands\ServiceMakeCommand::class,
     ],
     'seeders'  => [
-        'path-datafiles' => base_path().'/database/seeders/data',
+        'path-seeder' => database_path('seeders'),
+        'path-datafiles' => database_path('seeders/data'),
         'models' => [
             // App\Models\User::class,
         ],
