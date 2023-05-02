@@ -1,3 +1,10 @@
+## [3.1.0-rc.2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.1.0-rc.1...3.1.0-rc.2) (2023-05-02)
+
+
+### Features
+
+* **LMC-2:** Database Seeder added ([78db38f](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/78db38f6f7f16db8ce1e7e40237f8467bcf1beef))
+
 ## [3.1.0-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.0.0...3.1.0-rc.1) (2023-04-28)
 
 
