@@ -66,7 +66,7 @@ trait JsonSeeder
      * @throws ParseError
      * @return mixed
      */
-    protected function createSeederObject(string $model) : mixed
+    protected function createSeederObject(string $model): mixed
     {
         $modelShort = class_basename($model);
         $seederName = $modelShort . 'Seeder';

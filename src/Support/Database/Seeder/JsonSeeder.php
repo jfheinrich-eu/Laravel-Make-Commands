@@ -23,7 +23,7 @@ class JsonSeeder extends Seeder
     ) {
     }
 
-    public function run() : void
+    public function run(): void
     {
         $data = $this->getSeederData();
 
@@ -44,7 +44,7 @@ class JsonSeeder extends Seeder
      *
      * @return array<array<mixed>>|bool
      */
-    protected function getSeederData() : array|bool
+    protected function getSeederData(): array|bool
     {
         try {
             $basepath = $this->getDataDir();
@@ -84,7 +84,7 @@ class JsonSeeder extends Seeder
      * @return string
      * @throws InvalidSeederDataDirectoryException
      */
-    protected function getDataDir() : string
+    protected function getDataDir(): string
     {
         /** @var string $basepath */
         $basepath = Config::get('make-commands.seeders.path-datafiles', '');
@@ -108,7 +108,7 @@ class JsonSeeder extends Seeder
      *
      * @return void
      */
-    protected function truncate() : void
+    protected function truncate(): void
     {
         Schema::disableForeignKeyConstraints();
 
@@ -124,9 +124,8 @@ class JsonSeeder extends Seeder
      * @param string $message
      * @return boolean
      */
-    protected function error(string $message) : bool
+    protected function error(string $message): bool
     {
-        /** @phpstan-ignore-next-line */
         $this->command->getOutput()->error($message);
         return false;
     }

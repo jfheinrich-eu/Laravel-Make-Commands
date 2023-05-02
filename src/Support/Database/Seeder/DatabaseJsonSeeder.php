@@ -14,7 +14,7 @@ class DatabaseJsonSeeder extends Seeder
     use JsonSeeder;
     use WithoutModelEvents;
 
-    public function run() : void
+    public function run(): void
     {
         /** @var array<int,Seeder> $seeders */
         $seeders = [];
