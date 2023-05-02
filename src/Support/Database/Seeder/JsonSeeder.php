@@ -18,20 +18,20 @@ class JsonSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    public function __construct(protected Model $model)
-    {
-
+    public function __construct(
+        protected Model $model
+    ) {
     }
 
-    public function run(): void
+    public function run() : void
     {
         $data = $this->getSeederData();
 
-        if(is_array($data)) {
+        if (is_array($data)) {
             Model::unguard();
             $this->truncate();
 
-            foreach($data as $chunk) {
+            foreach ($data as $chunk) {
                 $this->model->newQuery()->insert($chunk);
             }
 
@@ -44,7 +44,7 @@ class JsonSeeder extends Seeder
      *
      * @return array<array<mixed>>|bool
      */
-    protected function getSeederData(): array|bool
+    protected function getSeederData() : array|bool
     {
         try {
             $basepath = $this->getDataDir();
@@ -54,10 +54,10 @@ class JsonSeeder extends Seeder
 
         try {
             $filename = $basepath . "/{$this->model->getTable()}.json";
-            if(!File::exists($filename)) {
+            if (! File::exists($filename)) {
                 return $this->error("File >{$filename}< does not exists");
             }
-            if(!File::isReadable($filename)) {
+            if (! File::isReadable($filename)) {
                 return $this->error("File >{$filename}< is not readable");
             }
 
@@ -73,7 +73,7 @@ class JsonSeeder extends Seeder
                 $fulldata,
                 500
             );
-        } catch(\JsonException $e) {
+        } catch (\JsonException $e) {
             return $this->error($e->getMessage());
         }
     }
@@ -84,17 +84,17 @@ class JsonSeeder extends Seeder
      * @return string
      * @throws InvalidSeederDataDirectoryException
      */
-    protected function getDataDir(): string
+    protected function getDataDir() : string
     {
         /** @var string $basepath */
-        $basepath = Config::get('make-comnmands.seeders.path-datafiles', '');
+        $basepath = Config::get('make-commands.seeders.path-datafiles', '');
 
-        if(! File::isDirectory($basepath)) {
+        if (! File::isDirectory($basepath)) {
             throw new InvalidSeederDataDirectoryException(
                 "Configured seeder data directory >{$basepath}< not found"
             );
         }
-        if(! File::isReadable($basepath)) {
+        if (! File::isReadable($basepath)) {
             throw new InvalidSeederDataDirectoryException(
                 "Configured seeder data directory >{$basepath}< not readable"
             );
@@ -108,7 +108,7 @@ class JsonSeeder extends Seeder
      *
      * @return void
      */
-    protected function truncate(): void
+    protected function truncate() : void
     {
         Schema::disableForeignKeyConstraints();
 
@@ -124,10 +124,10 @@ class JsonSeeder extends Seeder
      * @param string $message
      * @return boolean
      */
-    protected function error(string $message): bool
+    protected function error(string $message) : bool
     {
         /** @phpstan-ignore-next-line */
-        Artisan::getFacadeRoot()->error($message);
+        $this->command->getOutput()->error($message);
         return false;
     }
 }

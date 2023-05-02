@@ -66,16 +66,19 @@ trait JsonSeeder
      * @throws ParseError
      * @return mixed
      */
-    protected function createSeederObject(string $model): mixed
+    protected function createSeederObject(string $model) : mixed
     {
-        $seederName = class_basename($model) . 'Seeder';
+        $modelShort = class_basename($model);
+        $seederName = $modelShort . 'Seeder';
         $seederFqn = 'JfheinrichEu\LaravelMakeCommands\Support\Database\Seeder\\' . $seederName;
 
         eval("namespace JfheinrichEu\\LaravelMakeCommands\\Support\\Database\\Seeder;
-              class $seederName extends JfheinrichEu\\LaravelMakeCommands\\Support\\Database\\Seeder\\JsonSeeder {
-                public function __construct(
-                    protected $model \$model
-                ) {}
+	          use $model;
+              class $seederName extends JsonSeeder {
+                public function __construct($modelShort \$model)
+                {
+                    parent::__construct(\$model);
+                }
             }");
 
         return app()->make($seederFqn);

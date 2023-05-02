@@ -14,7 +14,7 @@ class DatabaseJsonSeeder extends Seeder
     use JsonSeeder;
     use WithoutModelEvents;
 
-    public function run(): void
+    public function run() : void
     {
         /** @var array<int,Seeder> $seeders */
         $seeders = [];
@@ -26,6 +26,8 @@ class DatabaseJsonSeeder extends Seeder
             foreach ($models as $model) {
                 /** @var  Seeder $seederObject */
                 $seederObject = $this->createSeederObject($model);
+
+                $seederObject->setCommand($this->command)->setContainer($this->container);
 
                 $seeders[] = $seederObject;
             }
