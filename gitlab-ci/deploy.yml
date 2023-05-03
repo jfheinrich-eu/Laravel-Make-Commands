@@ -1,6 +1,8 @@
 publish:
   image: curlimages/curl:latest
   stage: deploy
+  tags:
+    - deploy
   variables:
     URL: "$CI_SERVER_PROTOCOL://$CI_SERVER_HOST:$CI_SERVER_PORT/api/v4/projects/$CI_PROJECT_ID/packages/composer?job_token=$CI_JOB_TOKEN"
     ENVURL: "$CI_SERVER_PROTOCOL://$CI_SERVER_HOST:$CI_SERVER_PORT/api/v4/group/   projects/$CI_PROJECT_ID/packages/composer?job_token=$CI_JOB_TOKEN"
