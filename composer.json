@@ -57,10 +57,10 @@
     "allow-plugins": {}
   },
   "require-dev": {
-    "laravel/pint": "1.9.0",
+    "laravel/pint": "1.10.0",
     "nunomaduro/collision": "7.5.",
     "nunomaduro/larastan": "2.6.0",
-    "orchestra/testbench": "8.5.0",
+    "orchestra/testbench": "8.5.1",
     "orchestra/testbench-core": "8.5.0",
     "php-mock/php-mock-mockery": "1.4.0",
     "phpstan/phpstan": "1.10.14",
