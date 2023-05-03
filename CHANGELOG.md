@@ -1,3 +1,10 @@
+## [3.1.0-rc.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.1.0-rc.2...3.1.0-rc.3) (2023-05-03)
+
+
+### Bug Fixes
+
+* **LMC-9:** Deploy and badges stages tagged and rules modified ([0cd1f1c](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/0cd1f1c5ef4caf7caf365108fc5041f76c67c948))
+
 ## [3.1.0-rc.2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.1.0-rc.1...3.1.0-rc.2) (2023-05-02)
 
 
