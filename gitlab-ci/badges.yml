@@ -1,6 +1,8 @@
 badges:
   image: python:3.9
   stage: badges
+  tags:
+    - deploy
   variables:
     PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
     PRIVATE_TOKEN: $PRIVATE_ACCESS_TOKEN
