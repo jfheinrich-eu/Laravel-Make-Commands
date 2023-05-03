@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use JfheinrichEu\LaravelMakeCommands\Exceptions\InvalidSeederDataDirectoryException;
 
+/**
+ * @codeCoverageIgnore
+ */
 class JsonSeeder extends Seeder
 {
     use WithoutModelEvents;

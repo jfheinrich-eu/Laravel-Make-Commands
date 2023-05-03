@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\File;
 use JfheinrichEu\LaravelMakeCommands\Exceptions\InvalidPathSeederConfigurationException;
 use ParseError;
 
+/**
+ * @codeCoverageIgnore
+ */
 trait JsonSeeder
 {
     /**
