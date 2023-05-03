@@ -22,7 +22,7 @@ publish:
       fi
   environment:
     name: production
-    url: https://gitlab.example.com/api/v4/group/$CI_GROUPID/-/packages/composer/
+    url: https://gitlab.com/api/v4/group/57346053/-/packages/composer/
   rules:
     - if: $CI_COMMIT_TAG && ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "develop")
       when: manual
