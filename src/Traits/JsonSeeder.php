@@ -84,7 +84,8 @@ trait JsonSeeder
         $modelShort = class_basename($model);
         $seederName = $modelShort . 'Seeder';
         $seederFqn = 'Database\Seeder\\' . $seederName;
-        $filename = $seederPath . DIRECTORY_SEPARATOR . $seederName . '.php';
+        $inc_filename = $seederPath . DIRECTORY_SEPARATOR . $seederName;
+        $filename = $inc_filename . '.php';
 
         if (! File::exists($filename)) {
 
@@ -112,7 +113,7 @@ EOF;
             );
         }
 
-        include $filename;
+        include $filename . '.php';
 
         return app()->make($seederFqn);
     }
