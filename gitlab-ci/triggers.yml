@@ -1,13 +1,6 @@
-build_badges:
-  stage: triggers
-  trigger:
-    include: gitlab-ci/badges.yml
-  rules:
-    - if: $CI_COMMIT_TAG
-
 deployment:
   stage: triggers
   trigger:
     include: gitlab-ci/deploy.yml
   rules:
-    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_TAG$CI_PIPELINE_SOURCE == "merge_request_event"

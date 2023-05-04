@@ -17,7 +17,7 @@ stages:
   - release-fetch-version
   - release-build
   - release
-  - triggers
+  #- triggers
   - badges
   - deploy
 
@@ -39,7 +39,7 @@ include:
 - local: gitlab-ci/tests.yml
 - local: gitlab-ci/semver.yml
 - local: gitlab-ci/sast-report.yml
-- local: gitlab-ci/triggers.yml
-#- local: gitlab-ci/badges.yml
-#- local: gitlab-ci/deploy.yml
+#- local: gitlab-ci/triggers.yml
+- local: gitlab-ci/badges.yml
+- local: gitlab-ci/deploy.yml
 - template: Security/Secret-Detection.gitlab-ci.yml
