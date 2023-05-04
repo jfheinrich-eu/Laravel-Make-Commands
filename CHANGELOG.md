@@ -1,3 +1,11 @@
+## [3.1.0-rc.4](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.1.0-rc.3...3.1.0-rc.4) (2023-05-04)
+
+
+### Features
+
+* **LMC-14:** Implement command make-commands:seeder-data ([72f0150](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/72f01504c94b01b9533ceb7e4b5ae5aecdb54d61))
+* **LMC-9:** Pipeline trigger added ([6e78803](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/6e7880347d4b18cb40eeafb7daf57f14f9f96a0c))
+
 ## [3.1.0-rc.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.1.0-rc.2...3.1.0-rc.3) (2023-05-03)
 
 
