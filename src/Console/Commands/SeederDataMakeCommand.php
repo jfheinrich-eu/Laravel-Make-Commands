@@ -32,7 +32,7 @@ class SeederDataMakeCommand extends Command
     /**
      * @return int
      */
-    public function handle() : int
+    public function handle(): int
     {
         $retCode = SymfonyCommand::SUCCESS;
 
