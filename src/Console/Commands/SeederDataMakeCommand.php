@@ -53,28 +53,38 @@ class SeederDataMakeCommand extends Command
             $models = [$models];
         }
 
-        $silent = ! $this->getOutput()->isQuiet();
+        $silent = $this->getOutput()->isQuiet();
 
         foreach ($models as $model) {
+
+            $modelObject = $this->createModelInstance($model);
+            if ($modelObject === null) {
+                $retCode = SymfonyCommand::FAILURE;
+                continue;
+            }
+
+            $jsonfile = $seederDataPath . DIRECTORY_SEPARATOR . $modelObject->getTable() . '.json';
+
+            $infoLine = $model . ' (' . $modelObject->getTable() . '.json)';
 
             if ($silent === false) {
                 // @phpstan-ignore-next-line
                 with(new TwoColumnDetail($this->getOutput()))->render(
-                    $model,
+                    $infoLine,
                     '<fg=yellow;options=bold>RUNNING</>'
                 );
             }
 
             $startTime = microtime(true);
 
-            $retCode = $this->createJsonFile($model, $seederDataPath);
+            $retCode = $this->createJsonFile($modelObject, $jsonfile);
 
             if ($silent === false) {
                 $runTime = number_format((microtime(true) - $startTime) * 1000, 2);
 
                 // @phpstan-ignore-next-line
                 with(new TwoColumnDetail($this->getOutput()))->render(
-                    $model,
+                    $infoLine,
                     "<fg=gray>$runTime ms</> <fg=green;options=bold>DONE</>"
                 );
 
@@ -90,17 +100,22 @@ class SeederDataMakeCommand extends Command
         return $retCode;
     }
 
-    protected function createJsonFile(string $model, string $seederDataPath): int
+    protected function createModelInstance(string $model): ?Model
     {
-        $retCode = SymfonyCommand::SUCCESS;
-
         try {
             /** @var Model $modelObject */
             $modelObject = app()->make($model);
+
+            return $modelObject;
         } catch (BindingResolutionException $e) {
             $this->error($e->getMessage());
-            return SymfonyCommand::FAILURE;
+            return null;
         }
+    }
+
+    protected function createJsonFile(Model $modelObject, string $jsonfile): int
+    {
+        $retCode = SymfonyCommand::SUCCESS;
 
         /** @var Collection<int,Model> $allData */
         $allData = $modelObject->get();
@@ -112,8 +127,6 @@ class SeederDataMakeCommand extends Command
                 ->setHidden([])
                 ->getAttributes();
         })->toJson(JSON_PRETTY_PRINT);
-
-        $jsonfile = $seederDataPath . DIRECTORY_SEPARATOR . $modelObject->getTable() . '.json';
 
         if (! File::put($jsonfile, $json)) {
             $this->error('Can not write JSON file ' . $jsonfile);

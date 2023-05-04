@@ -490,6 +490,11 @@ php artisan make-commands:seeder-data [Model…]
 
 ```bash
 $ php artisan make-commands:seeder-data \App\Models\User \App\Models\UserPost
+  App\Models\User(users.json) .............................................................................................................. RUNNING
+  App\Models\User(users.json) ........................................................................................................ 74.14 ms DONE
+
+  App\Models\Right(rights.json) ............................................................................................................ RUNNING
+  App\Models\Right(rights.json) ....................................................................................................... 2.43 ms DONE
 ```
 
 This creates the files `users.json` and `user_posts.json` into the configured seeder data directory.
