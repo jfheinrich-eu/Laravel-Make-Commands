@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Console\View\Components\TwoColumnDetail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
@@ -40,6 +41,7 @@ class SeederDataMakeCommand extends Command
         /** @var string $seederDataPath */
         $seederDataPath = Config::get('make-commands.seeders.path-datafiles', '');
 
+        /** @var array<int,string>|string $models */
         $models = $this->argument('model');
 
         if (! File::isDirectory($seederDataPath) || ! File::isWritable($seederDataPath)) {
@@ -51,33 +53,72 @@ class SeederDataMakeCommand extends Command
             $models = [$models];
         }
 
+        $silent = ! $this->getOutput()->isQuiet();
+
         foreach ($models as $model) {
-            try {
-                /** @var Model $modelObject */
-                $modelObject = app()->make($model);
-            } catch (BindingResolutionException $e) {
-                $this->error($e->getMessage());
-                continue;
+
+            if ($silent === false) {
+                // @phpstan-ignore-next-line
+                with(new TwoColumnDetail($this->getOutput()))->render(
+                    $model,
+                    '<fg=yellow;options=bold>RUNNING</>'
+                );
             }
 
-            /** @var Collection<int,Model> $allData */
-            $allData = $modelObject->get();
+            $startTime = microtime(true);
 
-            $json = $allData->map(function ($item) {
-                /** @var  Model $item */
-                return $item
-                    ->setAppends([])
-                    ->setHidden([])
-                    ->getAttributes();
-            })->toJson(JSON_PRETTY_PRINT);
+            $retCode = $this->createJsonFile($model, $seederDataPath);
 
-            $jsonfile = $seederDataPath . DIRECTORY_SEPARATOR . $modelObject->getTable() . '.json';
+            if ($silent === false) {
+                $runTime = number_format((microtime(true) - $startTime) * 1000, 2);
 
-            if (! File::put($jsonfile, $json)) {
-                $this->error('Can not write JSON file ' . $jsonfile);
+                // @phpstan-ignore-next-line
+                with(new TwoColumnDetail($this->getOutput()))->render(
+                    $model,
+                    "<fg=gray>$runTime ms</> <fg=green;options=bold>DONE</>"
+                );
 
-                $retCode = SymfonyCommand::FAILURE;
+                $this->getOutput()->writeln('');
             }
+
+        }
+
+        if ($retCode !== SymfonyCommand::SUCCESS) {
+            $this->error('Some JSON data files could not be written.');
+        }
+
+        return $retCode;
+    }
+
+    protected function createJsonFile(string $model, string $seederDataPath): int
+    {
+        $retCode = SymfonyCommand::SUCCESS;
+
+        try {
+            /** @var Model $modelObject */
+            $modelObject = app()->make($model);
+        } catch (BindingResolutionException $e) {
+            $this->error($e->getMessage());
+            return SymfonyCommand::FAILURE;
+        }
+
+        /** @var Collection<int,Model> $allData */
+        $allData = $modelObject->get();
+
+        $json = $allData->map(function ($item) {
+            /** @var  Model $item */
+            return $item
+                ->setAppends([])
+                ->setHidden([])
+                ->getAttributes();
+        })->toJson(JSON_PRETTY_PRINT);
+
+        $jsonfile = $seederDataPath . DIRECTORY_SEPARATOR . $modelObject->getTable() . '.json';
+
+        if (! File::put($jsonfile, $json)) {
+            $this->error('Can not write JSON file ' . $jsonfile);
+
+            $retCode = SymfonyCommand::FAILURE;
         }
 
         return $retCode;
