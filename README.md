@@ -494,8 +494,6 @@ $ php artisan make-commands:seeder-data \App\Models\User \App\Models\UserPost
 
 This creates the files `users.json` and `user_posts.json` into the configured seeder data directory.
 
-When the attribute `fillable` is defined in the model , then only these columns will be exported.
-
 ## Credits
 
 - [Joerg Heinrich](https://gitlab.com/j.f.heinrich)

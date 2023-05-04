@@ -116,7 +116,7 @@ EOF;
             );
         }
 
-        include $filename . '.php';
+        include $inc_filename . '.php';
 
         return app()->make($seederFqn);
     }

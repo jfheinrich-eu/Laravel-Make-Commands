@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
@@ -41,8 +42,8 @@ class SeederDataMakeCommand extends Command
 
         $models = $this->argument('model');
 
-        if (! File::isDirectory($seederDataPath) || File::isWritable($seederDataPath)) {
-            $this->error('Seeder data directory does not exists or is not writable, chekc your configuration');
+        if (! File::isDirectory($seederDataPath) || ! File::isWritable($seederDataPath)) {
+            $this->error('Seeder data directory, configured as >' . $seederDataPath . '<, does not exists or is not writable, check your configuration');
             return SymfonyCommand::FAILURE;
         }
 
@@ -59,10 +60,12 @@ class SeederDataMakeCommand extends Command
                 continue;
             }
 
-            $fillable = $modelObject->getFillable();
+            /** @var Collection<int,Model> $allData */
+            $allData = $modelObject->get();
 
-            $allData = $fillable === [] ? $modelObject->get() : $modelObject->get($fillable);
-            $json = $allData->toJson(JSON_PRETTY_PRINT);
+            $json = $allData->map(function ($item) {
+                return $item->setAppends([]);
+            })->toJson(JSON_PRETTY_PRINT);
 
             $jsonfile = $seederDataPath . DIRECTORY_SEPARATOR . $modelObject->getTable() . '.json';
 
