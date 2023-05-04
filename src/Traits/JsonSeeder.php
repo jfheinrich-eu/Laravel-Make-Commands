@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\File;
 use JfheinrichEu\LaravelMakeCommands\Exceptions\InvalidPathSeederConfigurationException;
 use ParseError;
 
+/**
+ * @codeCoverageIgnore
+ */
 trait JsonSeeder
 {
     /**
@@ -113,7 +116,7 @@ EOF;
             );
         }
 
-        include $filename . '.php';
+        include $inc_filename . '.php';
 
         return app()->make($seederFqn);
     }

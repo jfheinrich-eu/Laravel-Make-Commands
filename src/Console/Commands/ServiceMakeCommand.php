@@ -11,6 +11,9 @@ use InvalidArgumentException;
 use Reflection;
 use ReflectionClass;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ServiceMakeCommand extends GeneratorCommand
 {
     /**

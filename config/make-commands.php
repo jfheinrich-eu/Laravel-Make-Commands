@@ -11,6 +11,7 @@ return [
         JfheinrichEu\LaravelMakeCommands\Console\Commands\InterfaceMakeCommand::class,
         JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand::class,
         JfheinrichEu\LaravelMakeCommands\Console\Commands\ServiceMakeCommand::class,
+        JfheinrichEu\LaravelMakeCommands\Console\Commands\SeederDataMakeCommand::class,
     ],
     'seeders'  => [
         'path-seeder' => database_path('seeders'),

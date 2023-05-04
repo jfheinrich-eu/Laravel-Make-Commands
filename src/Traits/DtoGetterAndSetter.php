@@ -8,6 +8,9 @@ use BadMethodCallException;
 use Illuminate\Support\Str;
 use ReflectionClass;
 
+/**
+ * @codeCoverageIgnore
+ */
 trait DtoGetterAndSetter
 {
     /**

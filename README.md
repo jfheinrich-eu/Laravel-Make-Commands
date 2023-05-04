@@ -24,7 +24,8 @@ This package is aimed to be a suite of artisan commands and tools to help make t
   - [Object Hydration](#object-hydration)
 - [JSON database seeder](#json-database-seeder)
   - [Usage](#usage-2)
-  - [To do](#to-do)
+- [Create JSON datafiles from database (make-commands:seeder-data)](#create-json-datafiles-from-database-make-commandsseeder-data)
+  - [Example](#example-4)
 - [Credits](#credits)
 
 ## Installation
@@ -475,9 +476,28 @@ After that, you can run the seeders with
 php artisan db:seed
 ```
 
-### To do
+## Create JSON datafiles from database (make-commands:seeder-data)
 
-Implement the missing command, to create the data files directly from the database.
+You can create the seeder JSON datafile directly from the database.
+
+Use therefor the command
+
+```bash
+php artisan make-commands:seeder-data [Model…]
+```
+
+### Example
+
+```bash
+$ php artisan make-commands:seeder-data \App\Models\User \App\Models\UserPost
+  App\Models\User(users.json) .............................................................................................................. RUNNING
+  App\Models\User(users.json) ........................................................................................................ 74.14 ms DONE
+
+  App\Models\Right(rights.json) ............................................................................................................ RUNNING
+  App\Models\Right(rights.json) ....................................................................................................... 2.43 ms DONE
+```
+
+This creates the files `users.json` and `user_posts.json` into the configured seeder data directory.
 
 ## Credits
 

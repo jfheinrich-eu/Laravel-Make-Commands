@@ -11,6 +11,9 @@ use JfheinrichEu\LaravelMakeCommands\Exceptions\InvalidPathSeederConfigurationEx
 use JfheinrichEu\LaravelMakeCommands\Traits\JsonSeeder;
 use ParseError;
 
+/**
+ * @codeCoverageIgnore
+ */
 class DatabaseJsonSeeder extends Seeder
 {
     use JsonSeeder;
