@@ -64,7 +64,11 @@ class SeederDataMakeCommand extends Command
             $allData = $modelObject->get();
 
             $json = $allData->map(function ($item) {
-                return $item->setAppends([]);
+                /** @var  Model $item */
+                return $item
+                    ->setAppends([])
+                    ->setHidden([])
+                    ->getAttributes();
             })->toJson(JSON_PRETTY_PRINT);
 
             $jsonfile = $seederDataPath . DIRECTORY_SEPARATOR . $modelObject->getTable() . '.json';
