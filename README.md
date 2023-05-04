@@ -13,14 +13,19 @@ This package is aimed to be a suite of artisan commands and tools to help make t
 - [Make interface (make-commands:interface)](#make-interface-make-commandsinterface)
   - [Example](#example)
 - [Make repository (make-commands:repository)](#make-repository-make-commandsrepository)
+  - [Usage:](#usage)
   - [Example](#example-1)
 - [Make a service (make-commands:service)](#make-a-service-make-commandsservice)
   - [Example](#example-2)
 - [Data transfer object (DTO) (make-commands:dto)](#data-transfer-object-dto-make-commandsdto)
-  - [Usage](#usage)
+  - [Usage](#usage-1)
   - [Example](#example-3)
   - [Work with the hydration functionality](#work-with-the-hydration-functionality)
   - [Object Hydration](#object-hydration)
+- [JSON database seeder](#json-database-seeder)
+  - [Usage](#usage-2)
+- [Create JSON datafiles from database (make-commands:seeder-data)](#create-json-datafiles-from-database-make-commandsseeder-data)
+  - [Example](#example-4)
 - [Credits](#credits)
 
 ## Installation
@@ -29,7 +34,7 @@ This package is aimed to be a suite of artisan commands and tools to help make t
 $ composer require jfheinrich-eu/laravel-make-commands
 ```
 
-To publish the assets, run following command:
+To publish the assets and config file, run following command:
 
 ```bash
 $ php artisan make-commands:install
@@ -119,7 +124,16 @@ final class RepositoryDto extends DataTransferObject
 }
 ```
 
-Usage:
+The attributes property of RepositoryDto gets the required columns from the model as illuminate\Support\Collection.
+
+This collection can be constructed like this:
+
+```php
+$dto->setAttributes(collect(['id' => 42, 'email' => 'dummy@localhost.tld']);
+```
+
+
+### Usage:
 
 ```bash
 $ php artisan make-commands:repository <Repository name> --model=<Modelname>
@@ -275,7 +289,11 @@ to declare each property as readonly.
 
 ```bash
 $ php artisan make-commands:dto MyDto
-$ cat app/Dto/MyDto.php
+```
+
+`app/Dto/MyDto.php`
+
+```php
 <?php
 
 declare(strict_types=1);
@@ -339,6 +357,147 @@ class StoreController
 Under the hood this package uses an [EventSauce](https://eventsauce.io) package, created by [Frank de Jonge](https://twitter.com/frankdejonge). It is possibly the
 best package I have found to hydrate objects nicely in PHP. You can find the [documentation here](https://github.com/EventSaucePHP/ObjectHydrator)
 if you would like to see what else you are able to do with the package to suit your needs.
+
+## JSON database seeder
+
+The database seeder in this package
+
+- DatabaseJsonSeeder
+- JsonSeeder
+
+are designed to seed a table from a json data file.
+
+### Usage
+
+All what you have to do is to
+integrate `DatabaseJsonSeeder` in `Database\Seeder\DatabaseSeeder`
+
+```php
+<?php declare(strict_types=1);
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use JfheinrichEu\LaravelMakeCommands\Support\Database\Seeder\DatabaseJsonSeeder;
+
+class DatabaseSeeder extends DatabaseJsonSeeder
+{
+    use WithoutModelEvents;
+
+    protected array $nonJsonSeeders = [
+        // Database\Seeders\MyNonJsonSeeder::class,
+    ];
+
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run(): void
+    {
+        parent::setCommand($this->command)->setContainer($this->container);
+        parent::run();
+
+        // run the non JSON seeders
+        $this->call($this->nonJsonSeeders);
+    }
+}
+```
+
+After that, enter the models to be considered by the JsonSeeder into `config/make-commands.php`
+and configure the paths to the seeder classes and the seeder data files,
+below the key `seeders`.
+The order of the models must be specified according to the dependencies.
+
+The JsonSeeder classes will be created automatically if they do not exist yet.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+return [
+    /*
+     * List of all commands to be registered.
+     */
+    'commands' => [
+        JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand::class,
+        JfheinrichEu\LaravelMakeCommands\Console\Commands\InterfaceMakeCommand::class,
+        JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand::class,
+        JfheinrichEu\LaravelMakeCommands\Console\Commands\ServiceMakeCommand::class,
+    ],
+    'seeders' => [
+        // Path to the seeder classes, must match the namespace Database\Seeders.
+	    'path-seeder' => database_path('seeders'),
+        // The directory where the data files goes in.
+        'path-datafiles' => database_path('seeders/data'),
+        // The models which will be used by the JsonSeeder.
+        'models' => [
+            App\Models\User::class,
+            App\Models\Right::class,
+        ],
+    ],
+];
+```
+
+Now you need to create the data files in JSON format.
+The file name must match the table name of the model.
+
+Here is an example for the User Model.
+
+`database/seeders/data/users.json`
+```json
+[
+    {
+        "id": 1,
+        "name": "Bastard operator from hell",
+        "email": "bofh@jfheinrich.eu",
+        "email_verified_at": "2023-01-01 12:00:00",
+        "password": "$2y$10$9wMEaiSx1KpwmHnbpH33pecbGd/FrRaY5SJXoqhdZ4mZnRVZmv0Ke",
+        "two_factor_secret": null,
+        "two_factor_recovery_codes": null,
+        "remember_token": null
+    },
+    {
+        "id": 2,
+        "name": "backend",
+        "email": "backend@jfheinrich.eu",
+        "email_verified_at": "2023-01-01 13:00:00",
+        "password": "$2y$10$VvIem6s7FgZIvdSiGqwG4.i0nEYYC.quHyb6SQkeALxa8lZXQnf6K",
+        "two_factor_secret": null,
+        "two_factor_recovery_codes": null,
+        "remember_token": null
+    }
+]
+```
+
+After that, you can run the seeders with
+```bash
+php artisan db:seed
+```
+
+## Create JSON datafiles from database (make-commands:seeder-data)
+
+You can create the seeder JSON datafile directly from the database.
+
+Use therefor the command
+
+```bash
+php artisan make-commands:seeder-data [Model…]
+```
+
+### Example
+
+```bash
+$ php artisan make-commands:seeder-data \App\Models\User \App\Models\UserPost
+  App\Models\User(users.json) .............................................................................................................. RUNNING
+  App\Models\User(users.json) ........................................................................................................ 74.14 ms DONE
+
+  App\Models\Right(rights.json) ............................................................................................................ RUNNING
+  App\Models\Right(rights.json) ....................................................................................................... 2.43 ms DONE
+```
+
+This creates the files `users.json` and `user_posts.json` into the configured seeder data directory.
 
 ## Credits
 

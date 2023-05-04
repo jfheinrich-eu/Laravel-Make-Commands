@@ -1,6 +1,8 @@
 publish:
   image: curlimages/curl:latest
   stage: deploy
+  tags:
+    - deploy
   variables:
     URL: "$CI_SERVER_PROTOCOL://$CI_SERVER_HOST:$CI_SERVER_PORT/api/v4/projects/$CI_PROJECT_ID/packages/composer?job_token=$CI_JOB_TOKEN"
     ENVURL: "$CI_SERVER_PROTOCOL://$CI_SERVER_HOST:$CI_SERVER_PORT/api/v4/group/   projects/$CI_PROJECT_ID/packages/composer?job_token=$CI_JOB_TOKEN"
@@ -20,11 +22,13 @@ publish:
       fi
   environment:
     name: production
-    url: https://gitlab.example.com/api/v4/group/$CI_GROUPID/-/packages/composer/
+    url: https://gitlab.com/api/v4/group/57346053/-/packages/composer/
   rules:
-    - if: $CI_PIPELINE_SOURCE == "push"
-      when: never
-    - if: $CI_COMMIT_TAG =~ /^\d+.\d+.\d+-?.*$/
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "develop")
       when: manual
-    - if: $CI_COMMIT_BRANCH
-      when: manual
+    #- if: $CI_PIPELINE_SOURCE == "push"
+    #  when: never
+    #- if: $CI_COMMIT_TAG =~ /^\d+.\d+.\d+-?.*$/
+    #  when: manual
+    #- if: $CI_COMMIT_BRANCH
+    #  when: manual

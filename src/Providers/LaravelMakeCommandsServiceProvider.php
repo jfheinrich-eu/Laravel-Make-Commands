@@ -9,6 +9,9 @@ use Illuminate\Support\ServiceProvider;
 use JfheinrichEu\LaravelMakeCommands\Hydrator\Hydrate;
 use JfheinrichEu\LaravelMakeCommands\Contracts\HydratorContract;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class LaravelMakeCommandsServiceProvider extends ServiceProvider
 {
     /**

@@ -26,7 +26,8 @@ final class RepositoryMakeCommand2Test extends PackageTestCase
 
     public function test_run_the_command_with_make_modelsuccessfully(): void
     {
-        $this->artisan(RepositoryMakeCommand::class, [ 'name' => 'Test', '--model' => 'User' ])
+        // @phpstan-ignore-next-line
+        $this->artisan(RepositoryMakeCommand::class, ['name' => 'Test', '--model' => 'User'])
             ->expectsQuestion("A App\\Models\\User model does not exist. Do you want to generate it?", true)
             ->assertSuccessful();
     }
@@ -35,7 +36,8 @@ final class RepositoryMakeCommand2Test extends PackageTestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->artisan(RepositoryMakeCommand::class, [ 'name' => 'Test', '--model' => 'U$$%ser' ])
+        // @phpstan-ignore-next-line
+        $this->artisan(RepositoryMakeCommand::class, ['name' => 'Test', '--model' => 'U$$%ser'])
             ->assertFailed();
     }
 

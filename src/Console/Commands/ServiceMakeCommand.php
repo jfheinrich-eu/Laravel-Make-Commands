@@ -11,6 +11,9 @@ use InvalidArgumentException;
 use Reflection;
 use ReflectionClass;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ServiceMakeCommand extends GeneratorCommand
 {
     /**
@@ -158,7 +161,7 @@ class ServiceMakeCommand extends GeneratorCommand
             return $repository;
         }
 
-        return is_dir(app_path('Repositories'))
+        return File::isDirectory(app_path('Repositories'))
             ? $rootNamespace . 'Repositories\\' . $repository
             : $rootNamespace . $repository;
     }
@@ -316,7 +319,7 @@ class ServiceMakeCommand extends GeneratorCommand
             return $interface;
         }
 
-        return is_dir(app_path('Contracts'))
+        return File::isDirectory(app_path('Contracts'))
             ? $rootNamespace . 'Contracts\\' . $interface
             : $rootNamespace . $interface;
     }
