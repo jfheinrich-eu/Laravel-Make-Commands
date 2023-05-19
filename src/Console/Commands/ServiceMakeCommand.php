@@ -244,9 +244,11 @@ class ServiceMakeCommand extends GeneratorCommand
                 $default   = '';
 
                 if ($param->isDefaultValueAvailable()) {
+                    /** @var bool|float|int|resource|string|null $defaultValue */
+                    $defaultValue = $param->getDefaultValue();
                     $default = sprintf(
                         " = %s",
-                        strval($param->getDefaultValue())
+                        strval($defaultValue)
                     );
                 }
 
