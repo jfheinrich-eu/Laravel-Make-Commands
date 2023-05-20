@@ -1,3 +1,10 @@
+## [3.2.2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.1...3.2.2) (2023-05-20)
+
+
+### Bug Fixes
+
+* **LMC-17:** Coverage Reports added to the gitlab pipeline ([774006c](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/774006ccd109ff2914381c452d3bb43c8b6141e5))
+
 ## [3.2.2-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.1...3.2.2-rc.1) (2023-05-20)
 
 
