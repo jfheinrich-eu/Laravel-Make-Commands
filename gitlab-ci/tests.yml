@@ -8,9 +8,10 @@ testbench:
   coverage: /^\s*Total:\s*\d+\.\d+?\s*\%\s*$/
   artifacts:
     reports:
+      junit: junit.xml
       coverage_report:
         coverage_format: cobertura
-        path: coverage.cubertura.xml
+        path: coverage.cobertura.xml
   cache:
     key:
       files:
