@@ -5,7 +5,13 @@ testbench:
     - tests
   script:
     - composer test:coverage
-  coverage: /^\s*Total:\s*\d+\.\d+?\%$/
+  coverage: /^\s*Total:\s*\d+\.\d+?\s*\%\s*$/
+  artifacts:
+    reports:
+      junit: junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.cobertura.xml
   cache:
     key:
       files:
