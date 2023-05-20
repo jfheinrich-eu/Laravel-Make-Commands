@@ -5,7 +5,12 @@ testbench:
     - tests
   script:
     - composer test:coverage
-  coverage: /^\s*Total:\s*\d+\.\d+?\%$/
+  coverage: /^\s*Total:\s*\d+\.\d+?\s*\%\s*$/
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.cubertura.xml
   cache:
     key:
       files:
