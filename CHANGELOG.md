@@ -1,3 +1,10 @@
+## [3.2.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.0...3.2.1) (2023-05-20)
+
+
+### Bug Fixes
+
+* **LMC-17:** Dependency rules changed ([cb9a8e2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/cb9a8e2fb36e1d22402d6fda05ef140cfa83a78d))
+
 ## [3.2.1-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.0...3.2.1-rc.1) (2023-05-20)
 
 
