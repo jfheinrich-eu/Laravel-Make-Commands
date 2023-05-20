@@ -1,16 +1,16 @@
-## [3.2.0](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.1.0...3.2.0) (2023-05-04)
-
-
-### Features
-
-* **LMC-14:** Implement command make-commands:seeder-data ([72f0150](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/72f01504c94b01b9533ceb7e4b5ae5aecdb54d61))
-* **LMC-2:** Database Seeder added ([78db38f](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/78db38f6f7f16db8ce1e7e40237f8467bcf1beef))
-* **LMC-9:** Pipeline trigger added ([6e78803](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/6e7880347d4b18cb40eeafb7daf57f14f9f96a0c))
+## [3.2.1-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.0...3.2.1-rc.1) (2023-05-20)
 
 
 ### Bug Fixes
 
-* **LMC-9:** Deploy and badges stages tagged and rules modified ([0cd1f1c](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/0cd1f1c5ef4caf7caf365108fc5041f76c67c948))
+* **LMC-17:** Dependency rules changed ([cb9a8e2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/cb9a8e2fb36e1d22402d6fda05ef140cfa83a78d))
+
+## [3.2.0-rc.2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.0-rc.1...3.2.0-rc.2) (2023-05-19)
+
+
+### Bug Fixes
+
+* **LMC-17:** Dependency rules changed ([cb9a8e2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/cb9a8e2fb36e1d22402d6fda05ef140cfa83a78d))
 
 ## [3.2.0-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.1.0...3.2.0-rc.1) (2023-05-04)
 
