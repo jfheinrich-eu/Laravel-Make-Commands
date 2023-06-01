@@ -1,3 +1,10 @@
+## [3.2.2-rc.4](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2-rc.3...3.2.2-rc.4) (2023-06-01)
+
+
+### Bug Fixes
+
+* **LMC-17:** Script to get the correct release stamp altered ([50917df](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/50917df62163bc9b10ef9615b7b399f0faef707b))
+
 ## [3.2.2-rc.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2-rc.2...3.2.2-rc.3) (2023-06-01)
 
 
