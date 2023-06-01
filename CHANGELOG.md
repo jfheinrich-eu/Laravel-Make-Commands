@@ -1,3 +1,10 @@
+## [3.2.2-rc.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2-rc.2...3.2.2-rc.3) (2023-06-01)
+
+
+### Bug Fixes
+
+* **LMC-17:** deployer ([791ff7f](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/791ff7fc61732ba0f4e6f4d483e904288a514172))
+
 ## [3.2.2-rc.2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2-rc.1...3.2.2-rc.2) (2023-06-01)
 
 
