@@ -5,7 +5,8 @@
     "github>whitesource/merge-confidence:beta",
     ":prHourlyLimitNone",
     ":rebaseStalePrs",
-    ":label(renovate)"
+    ":label(renovate)",
+    ":preserveSemverRanges"
   ],
   "enabledManagers": [
     "composer"
