@@ -1,3 +1,10 @@
+## [3.2.2-rc.5](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2-rc.4...3.2.2-rc.5) (2023-06-16)
+
+
+### Bug Fixes
+
+* **preserveSemverRanges:** Update renovate.json: :preserveSemverRanges ([1f51061](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/1f51061a1606b7cae8bc411c1f6dec9dbec994d5))
+
 ## [3.2.2-rc.4](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2-rc.3...3.2.2-rc.4) (2023-06-01)
 
 
