@@ -1,3 +1,11 @@
+## [3.2.2-rc.6](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2-rc.5...3.2.2-rc.6) (2023-07-14)
+
+
+### Bug Fixes
+
+* **testbench:** Prevent warning by missing environment variable XDEBUG_MODE ([12771f6](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/12771f62dca1dddab19205f7a036293ae36cc3f8))
+* **testbench:** Prevent xebug warning ([23ecd9f](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/23ecd9f542f9c05165b789df35a9d9bff2a6732d))
+
 ## [3.2.2-rc.5](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2-rc.4...3.2.2-rc.5) (2023-06-16)
 
 
