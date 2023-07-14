@@ -25,7 +25,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
-    "test": "./vendor/bin/testbench package:test",
+    "test": "env XDEBUG_MODE=coverage ./vendor/bin/testbench package:test",
     "test:coverage": "env XDEBUG_MODE=coverage ./vendor/bin/testbench package:test --coverage  --no-ansi",
     "fix": "./vendor/bin/pint",
     "check": "./vendor/bin/pint --test -v",
