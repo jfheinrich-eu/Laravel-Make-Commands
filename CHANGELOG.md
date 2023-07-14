@@ -1,3 +1,15 @@
+## [3.2.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2...3.2.3) (2023-07-14)
+
+
+### Bug Fixes
+
+* **LMC-17:** Deploy pipeline ([02a13af](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/02a13affe8b9e5f9fe621d1428cbc1e2c2974075))
+* **LMC-17:** deployer ([791ff7f](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/791ff7fc61732ba0f4e6f4d483e904288a514172))
+* **LMC-17:** Script to get the correct release stamp altered ([50917df](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/50917df62163bc9b10ef9615b7b399f0faef707b))
+* **preserveSemverRanges:** Update renovate.json: :preserveSemverRanges ([1f51061](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/1f51061a1606b7cae8bc411c1f6dec9dbec994d5))
+* **testbench:** Prevent warning by missing environment variable XDEBUG_MODE ([12771f6](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/12771f62dca1dddab19205f7a036293ae36cc3f8))
+* **testbench:** Prevent xebug warning ([23ecd9f](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/23ecd9f542f9c05165b789df35a9d9bff2a6732d))
+
 ## [3.2.3-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2...3.2.3-rc.1) (2023-07-14)
 
 
