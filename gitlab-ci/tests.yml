@@ -1,3 +1,14 @@
+cache:
+  key:
+    files:
+      - composer.lock
+  paths:
+    - vendor/
+    - node_modules/
+    - package.json
+    - package-lock.json
+    - composer.lock
+
 testbench:
   image: ${DOCKER_IMAGE}
   stage: testbench

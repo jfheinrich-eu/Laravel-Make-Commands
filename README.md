@@ -450,7 +450,7 @@ Here is an example for the User Model.
 [
     {
         "id": 1,
-        "name": "Bastard operator from hell",
+        "name": "Bastard Operator from hell",
         "email": "bofh@jfheinrich.eu",
         "email_verified_at": "2023-01-01 12:00:00",
         "password": "$2y$10$9wMEaiSx1KpwmHnbpH33pecbGd/FrRaY5SJXoqhdZ4mZnRVZmv0Ke",
