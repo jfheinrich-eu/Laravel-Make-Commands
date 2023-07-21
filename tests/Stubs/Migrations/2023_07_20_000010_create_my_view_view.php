@@ -46,7 +46,7 @@ SQL;
 
     private fucntion dropView(): string
     {
-        return "DROP VIEW IF EXISTS `{$this->viewName}`";
+        return "DROP VIEW IF EXISTS \`{$this->viewName}\`";
     }
 
 };

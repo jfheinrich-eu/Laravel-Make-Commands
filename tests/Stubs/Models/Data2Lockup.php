@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Data2Lockup extends Model
 {
+    protected $table = 'data_2_lockups';
     /**
      * @var string
      */

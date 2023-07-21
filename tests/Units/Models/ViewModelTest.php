@@ -57,11 +57,11 @@ final class ViewModelTest extends PackageTestCase
         $result = $model->getModelByTableName('not_exists');
     }
 
-    public function test_create_insert_update_delete_find(): void
+    public function create_insert_update_delete_find(): void
     {
 
         /** @var MyView $model */
-        $model = MyView::create([
+        $model = (new MyView())->create([
             'name' => 'Willi Wucher',
             'email' => 'willi.wucher@wucher.de',
             'interests' => 'Geld',

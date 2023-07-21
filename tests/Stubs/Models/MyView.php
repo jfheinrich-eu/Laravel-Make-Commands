@@ -13,6 +13,8 @@ class MyView extends ViewModel
      */
     protected $table = 'my_view';
 
+    protected $mainTable = 'data_1_lockups';
+
     /**
      * @var string[]
      */
@@ -31,9 +33,4 @@ class MyView extends ViewModel
         'created_at',
         'updated_at',
     ];
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-    }
 }
