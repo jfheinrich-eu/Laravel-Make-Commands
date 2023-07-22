@@ -6,6 +6,15 @@ namespace JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Models;
 
 use JfheinrichEu\LaravelMakeCommands\Models\ViewModel;
 
+/**
+ * @property int id
+ * @property string $name
+ * @property string email
+ * @property int $dl2_id
+ * @property string $interests
+ * @property Carbon $created_at
+ * @property Carbon updated_at
+ */
 class MyView extends ViewModel
 {
     /**

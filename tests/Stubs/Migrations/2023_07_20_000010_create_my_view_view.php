@@ -3,13 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-use JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Models\Data1Lockup;
 use Illuminate\Support\Facades\DB;
 
 return new class () extends Migration {
-
     private string $viewName = 'my_view';
     /**
      * Run the migrations.
@@ -44,7 +40,7 @@ return new class () extends Migration {
 SQL;
     }
 
-    private fucntion dropView(): string
+    private function dropView(): string
     {
         return "DROP VIEW IF EXISTS \`{$this->viewName}\`";
     }
