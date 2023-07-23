@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Models;
 
+use Dflydev\DotAccessData\Exception\DataException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
@@ -141,6 +142,64 @@ class ViewModel extends Model
     }
 
     /**
+     * Update the model in the database.
+     *
+     * @param  array<string,mixed>  $attributes
+     * @param  array<string,mixed>  $options
+     * @return bool
+     */
+    public function update(array $attributes = [], array $options = [])
+    {
+        if (!$this->exists) {
+            return false;
+        }
+
+        try {
+            $mainTableModel = $this->getModelByTableName($this->getMainTable());
+
+            $foreignKey = $mainTableModel->getForeignKey();
+
+            $id = $this->getKey();
+
+            foreach ($this->getAllTableAttributes() as $table => $cols) {
+                $tableAttributes = Arr::only($attributes, $cols);
+
+                if ([] !== $tableAttributes) {
+                    $tableModel = $this->getModelByTableName($table);
+
+                    if ($table !== $this->getMainTable()) {
+                        $tableAttributes[$foreignKey] = $id;
+                        $result = $tableModel::query()
+                            ->where($foreignKey, '=', $id)
+                            ->firstOrFail()
+                            ->fill($tableAttributes)
+                            ->save($options);
+                    } else {
+                        $result = $tableModel::query()
+                            ->where($tableModel->getKeyName(), '=', $id)
+                            ->firstOrFail()
+                            ->fill($tableAttributes)
+                            ->save($options);
+                    }
+
+                    if (!$result) {
+                        throw new DataException();
+                    }
+                }
+            }
+
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            return false;
+        }
+
+        return true;
+
+        //return $this->fill($attributes)->save($options);
+    }
+    /**
      * Implementation of the delete command for database views.
      *
      * @codeCoverageIgnore
@@ -277,7 +336,7 @@ class ViewModel extends Model
     protected function isView(): Attribute
     {
         return new Attribute(
-            get: fn() => true
+            get: fn () => true
         );
     }
 }
