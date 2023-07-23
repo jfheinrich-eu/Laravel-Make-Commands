@@ -12,7 +12,7 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('data_1_lockups', function (Blueprint $table): void {
+        Schema::create('data1_lockups', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -26,6 +26,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_1_lockups');
+        Schema::dropIfExists('data1_lockups');
     }
 };

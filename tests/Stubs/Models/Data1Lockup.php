@@ -16,8 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Data1Lockup extends Model
 {
-    protected $table = 'data_1_lockups';
-
     protected $fillable = [
         'name',
         'email',

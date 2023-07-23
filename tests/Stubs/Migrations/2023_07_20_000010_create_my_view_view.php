@@ -33,10 +33,10 @@ return new class () extends Migration {
                     d1l.email,
                     d2l.d2l_id,
                     d2l.interests,
-                    d2l.data_1_lockups_id,
+                    d2l.data1_lockup_id,
                     d1l.created_at,
                     d1l.updated_at
-                  FROM data_1_lockups d1l JOIN data_2_lockups d2l ON d1l.id = d2l.data_1_lockups_id
+                  FROM data1_lockups d1l JOIN data2_lockups d2l ON d1l.id = d2l.data1_lockup_id
 SQL;
     }
 

@@ -7,13 +7,16 @@ namespace JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Models;
 use JfheinrichEu\LaravelMakeCommands\Models\ViewModel;
 
 /**
- * @property int id
+ * @property int $id
  * @property string $name
- * @property string email
+ * @property string $email
  * @property int $dl2_id
  * @property string $interests
+ * @property int $data_1_lockups_id
  * @property Carbon $created_at
- * @property Carbon updated_at
+ * @property Carbon $updated_at
+ *
+ * @use UseView<MyView>
  */
 class MyView extends ViewModel
 {
@@ -22,14 +25,14 @@ class MyView extends ViewModel
      */
     protected $table = 'my_view';
 
-    protected $mainTable = 'data_1_lockups';
+    protected string $mainTable = 'data1_lockups';
 
     /**
      * @var string[]
      */
-    protected $baseTables = [
-        'data_1_lockups',
-        'data_2_lockups',
+    protected array $baseTables = [
+        'data1_lockups',
+        'data2_lockups',
     ];
 
     protected $attributes = [
@@ -38,7 +41,7 @@ class MyView extends ViewModel
         'name',
         'email',
         'interests',
-        'data_1_lockups_id',
+        'data1_lockup_id',
         'created_at',
         'updated_at',
     ];

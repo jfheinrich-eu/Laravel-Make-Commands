@@ -15,13 +15,6 @@ class PackageTestCase extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->artisan(
-            'migrate',
-            [
-                '--database' => 'testbench',
-            ]
-        )->run();
     }
 
     /**
@@ -39,6 +32,7 @@ class PackageTestCase extends TestCase
     {
         $app['config']->set('make_commands.useview.namespaces', [
             'JfheinrichEu\\LaravelMakeCommands\\Tests\Stubs\\Models\\',
+            'App\\Models\\'
         ]);
 
         // Setup default database to use sqlite :memory:

@@ -27,6 +27,13 @@ final class ViewModelTest extends PackageTestCase
             File::cleanDirectory(database_path('migrations'));
             File::cleanDirectory(app_path());
         });
+
+        $this->artisan(
+            'migrate',
+            [
+                '--database' => 'testbench',
+            ]
+        )->run();
     }
 
     public function test_check_is_view(): void
@@ -54,13 +61,12 @@ final class ViewModelTest extends PackageTestCase
         $result = $model->getModelByTableName('not_exists');
     }
 
-    public function create_insert_update_delete_find(): void
+    public function test_create_insert_update_delete_find(): void
     {
-
         /**
          * @var MyView $model
          */
-        $model = (new MyView())->create([
+        $model = MyView::create([
             'name' => 'Willi Wucher',
             'email' => 'willi.wucher@wucher.de',
             'interests' => 'Geld',

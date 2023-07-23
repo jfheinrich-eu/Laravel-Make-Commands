@@ -13,7 +13,7 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('data_2_lockups', function (Blueprint $table): void {
+        Schema::create('data2_lockups', function (Blueprint $table): void {
             $table->id('d2l_id');
             $table->string('interests');
             $table->foreignIdFor(Data1Lockup::class)
@@ -28,6 +28,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_2_lockups');
+        Schema::dropIfExists('data2_lockups');
     }
 };
