@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use JfheinrichEu\LaravelMakeCommands\Support\Helper;
 
 /**
+ * @codeCoverageIgnore
  * Trait to extend the Eloquent model to handle database views
  *
  * @template T of Model

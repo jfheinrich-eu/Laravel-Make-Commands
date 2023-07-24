@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Data2Lockup extends Model
 {
+    use HasFactory;
+
     /**
      * @var string
      */

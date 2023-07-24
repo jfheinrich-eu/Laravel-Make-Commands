@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Tests\Units\Models;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 use JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Models\MyView;
+use JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Models\InvalidView;
 
 final class ViewModelTest extends PackageTestCase
 {
@@ -87,6 +89,45 @@ final class ViewModelTest extends PackageTestCase
 
         $this->view_test_delete();
     }
+
+    public function test_update_on_non_existing_model(): void
+    {
+        $model = new MyView();
+
+        $result = $model->update(['name' => 'Hugo Egon Balder']);
+
+        self::assertFalse($result);
+    }
+
+    public function test_update_invalid_model(): void
+    {
+        DB::insert("INSERT INTO data1_lockups(`name`,email) VALUES('Harald Toddel','ht@toddel.de')");
+        DB::insert("INSERT INTO data2_lockups(data1_lockup_id, interests) VALUES(1,'Wuschel')");
+
+        /** @var InvalidView $model */
+        $model = (new InvalidView())::whereId(1)->firstOrFail();
+
+        $result = $model->update(['name' => 'Unsichtbar']);
+
+        self::assertFalse($result, 'Update failed');
+    }
+
+    public function test_get_base_tables(): void
+    {
+        $expected = [
+            'data1_lockups',
+            'data2_lockups',
+        ];
+
+        $model = new MyView();
+
+        $baseTables = $model->getBaseTables();
+
+        self::assertEquals($expected, $baseTables);
+    }
+
+
+    // *************************** Sub tests ****************************************
 
     public function view_test_update(): void
     {

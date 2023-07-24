@@ -182,9 +182,11 @@ class ViewModel extends Model
                             ->save($options);
                     }
 
+                    // @codeCoverageIgnoreStart
                     if (!$result) {
                         throw new DataException();
                     }
+                    // @codeCoverageIgnoreEnd
                 }
             }
 

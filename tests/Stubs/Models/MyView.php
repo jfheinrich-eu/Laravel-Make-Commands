@@ -40,24 +40,11 @@ class MyView extends ViewModel
      */
     protected $table = 'my_view';
 
-    protected string $mainTable = 'data1_lockups';
-
     /**
      * @var string[]
      */
     protected array $baseTables = [
         'data1_lockups',
         'data2_lockups',
-    ];
-
-    protected $attributes = [
-        'id',
-        'd2l_id',
-        'name',
-        'email',
-        'interests',
-        'data1_lockup_id',
-        'created_at',
-        'updated_at',
     ];
 }
