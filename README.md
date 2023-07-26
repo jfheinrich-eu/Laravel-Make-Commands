@@ -513,44 +513,52 @@ are.
 
 Eloquent models must exist for the underlying tables of the `View`.
 
-In the `Model` the `Trait` must be added and these two properties must be created
+The `Model` must extend `ViewModel` and must define at least the three attributes:
 
-- protected string $mainTable = 'Table that serves as the main table'.
-- protected array $baseTables = ['All underlying tables']
+- protected $table = 'Name of the view'
+- protected $mainTable = 'Table that serves as the main table'.
+- protected $baseTables = ['All underlying tables']
 
-The `trait` adds the following properties and methods to the `model`.
+The `ViewModel` adds the following properties and methods to the `Model`.
 
-- property string[][] tableAttributes
-- static method create(array<string,mixed> $attributes): Model|Collection<int, T>
+- static method create(array<string,mixed> $attributes): ViewModel|Collection<int, ViewModel>
 - public function insert(array<string,mixed>|array<int,array<string,mixed>> $values): bool
+- public function update(array<string,mixed> $attributes, array<string,mixed>  $options): bool
 - public function delete(): bool|null
 - public function truncateView(): void
+- public function getModelByTableName(string $table): Model
+- public function getMainTable(): string
+- public function getBaseTables(): string[]
+- public function getMainTableAttributes(): string[]
+- public function getAllTableAttributes(): array<string,string[]>
 - Attribute bool is_view
 
 ### Example
 
 ```php
-class MyView extends Model
-{
-    /** @phpstan-use UseView<MyView> */
-    use UseView;
+<?php
 
+declare(strict_types=1);
+
+namespace App\Models;
+
+use JfheinrichEu\LaravelMakeCommands\Models\ViewModel;
+
+class MyView extends ViewModel
+{
     /**
      * @var string
      */
     protected $table = 'my_view';
 
     /** @var string */
-    protected $primaryKey = 'id';
-
-    /** @var string */
-    protected string $mainTable = 'data_table_1';
+    protected string $mainTable = 'data_table1';
 
     /** @var string[] */
     protected array $baseTables = [
-        'data_table_1',
-        'data_table_2',
-        'data_table_3',
+        'data_table1',
+        'data_table2',
+        'data_table3',
     ];
 
 ...
