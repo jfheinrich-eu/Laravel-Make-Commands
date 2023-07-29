@@ -283,7 +283,7 @@ class ViewModel extends Model
     public function getModelByTableName(string $table): Model
     {
         /** @var string[] */
-        $namespaces = Config::get('make_commands.useview.namespaces', ['App\\\Models\\']);
+        $namespaces = Config::get('make_commands.useview.namespaces', ['App\\Models\\']);
 
         $className = Str::studly(str::singular($table));
 
