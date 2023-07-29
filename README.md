@@ -4,6 +4,7 @@
 ![Owner](https://gitlab.com/jfheinrich-eu/laravel-make-commands/-/jobs/artifacts/main/raw/public/badges/owner.svg?job=badges)
 ![Package](https://gitlab.com/jfheinrich-eu/laravel-make-commands/-/jobs/artifacts/main/raw/public/badges/name.svg?job=badges)
 ![Release](https://gitlab.com/jfheinrich-eu/laravel-make-commands/-/jobs/artifacts/main/raw/public/badges/release.svg?job=badges)
+![Code Coverage](https://gitlab.com/jfheinrich-eu/laravel-make-commands/badges/main/coverage.svg?job=testbench)
 ![Last Activity](https://gitlab.com/jfheinrich-eu/laravel-make-commands/-/jobs/artifacts/main/raw/public/badges/last_activity_at.svg?job=badges)
 <!-- BADGES_END -->
 
@@ -26,6 +27,9 @@ This package is aimed to be a suite of artisan commands and tools to help make t
   - [Usage](#usage-2)
 - [Create JSON datafiles from database (make-commands:seeder-data)](#create-json-datafiles-from-database-make-commandsseeder-data)
   - [Example](#example-4)
+- [Extend Eloquent model to use views](#extend-eloquent-model-to-use-views)
+  - [Example](#example-5)
+- [IDE - Helper Support for View model](#ide---helper-support-for-view-model)
 - [Credits](#credits)
 
 ## Installation
@@ -498,6 +502,78 @@ $ php artisan make-commands:seeder-data \App\Models\User \App\Models\UserPost
 ```
 
 This creates the files `users.json` and `user_posts.json` into the configured seeder data directory.
+
+## Extend Eloquent model to use views
+
+The `UseView` Trait allows to create eloquent models based on `Views`, which are
+- selectable
+- updatable
+- insertable
+
+are.
+
+Eloquent models must exist for the underlying tables of the `View`.
+
+The `Model` must extend `ViewModel` and must define at least the three attributes:
+
+- protected $table = 'Name of the view'
+- protected $mainTable = 'Table that serves as the main table'.
+- protected $baseTables = ['All underlying tables']
+
+The `ViewModel` adds the following properties and methods to the `Model`.
+
+- static method create(array<string,mixed> $attributes): ViewModel|Collection<int, ViewModel>
+- public function insert(array<string,mixed>|array<int,array<string,mixed>> $values): bool
+- public function update(array<string,mixed> $attributes, array<string,mixed>  $options): bool
+- public function delete(): bool|null
+- public function truncateView(): void
+- public function getModelByTableName(string $table): Model
+- public function getMainTable(): string
+- public function getBaseTables(): string[]
+- public function getMainTableAttributes(): string[]
+- public function getAllTableAttributes(): array<string,string[]>
+- Attribute bool is_view
+
+### Example
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Models;
+
+use JfheinrichEu\LaravelMakeCommands\Models\ViewModel;
+
+class MyView extends ViewModel
+{
+    /**
+     * @var string
+     */
+    protected $table = 'my_view';
+
+    /** @var string */
+    protected string $mainTable = 'data_table1';
+
+    /** @var string[] */
+    protected array $baseTables = [
+        'data_table1',
+        'data_table2',
+        'data_table3',
+    ];
+
+...
+}
+```
+
+## IDE - Helper Support for View model
+
+Because Eloquent and Doctrine did not run back the columns of a view, two problems arise:
+- Artisan model:show does **not** return the columns of the view
+- IDE - Helper: does not recognize the columns either and thus does not generate annotations for the columns.
+
+For the second point there is the `artisan` command `make-commands:view-model-hook` in this package which creates a hook class in the directory app/Support/IdeHelper. This must then only be entered in the IDE-Helper config file under hooks.
+
 
 ## Credits
 

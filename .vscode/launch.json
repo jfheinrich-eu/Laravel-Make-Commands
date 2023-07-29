@@ -2,6 +2,7 @@
     // Verwendet IntelliSense zum Ermitteln möglicher Attribute.
     // Zeigen Sie auf vorhandene Attribute, um die zugehörigen Beschreibungen anzuzeigen.
     // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
+    // XDEBUG Configuration source: https://gist.github.com/MatthieuScarset/0c3860def9ff1f0b84e32f618c740655
     "version": "0.2.0",
     "configurations": [
         {
@@ -29,13 +30,13 @@
             "port": 9003
         },
         {
-            "name": "Listen for XDebug",
+            "name": "Listen for XDebug (9003)",
             "type": "php",
             "request": "launch",
             "port": 9003,
             "log": true,
             "pathMappings": {
-                "/app": "${workspaceFolder}"
+                "/app/": "${workspaceFolder}/"
             }
         },
         {
@@ -48,7 +49,7 @@
     "compounds": [
         {
             "name": "PhpUnit",
-            "configurations": ["Listen for XDebug", "PhpUnit dummy"]
+            "configurations": ["Listen for XDebug (9003)", "PhpUnit dummy"]
         }
     ]
 }

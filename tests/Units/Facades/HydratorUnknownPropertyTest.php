@@ -24,8 +24,8 @@ final class HydratorUnknownPropertyTest extends PackageTestCase
         );
 
         try {
-            $t = $dto->unknown; // @phpstan-ignore-line
-            $t = $dto->getUnknown(); // @phpstan-ignore-line
+            $t = $dto->unknown;
+            $t = $dto->getUnknown();
             self::assertEquals(
                 "Exception",
                 "No Exception",
