@@ -11,7 +11,7 @@ publish:
     - VERSION_FILE=$(cat VERSION)
     - version=$( ( [[ -n "$CI_COMMIT_TAG" ]] && echo "tag=$CI_COMMIT_TAG" ) || ( [[ "${VERSION_FILE%%-*}" != "build" ]] && echo "tag=$VERSION_FILE" ) || echo "branch=$CI_COMMIT_REF_NAME" )
     - insecure=$([ "$CI_SERVER_PROTOCOL" = "http" ] && echo "--insecure" || echo "")
-    - response=$(curl -s -w "\n%{http_code}" --header "Job-Token: $CI_JOB_TOKEN" $insecure --data $version $URL)
+    - 'response=$(curl -s -w "\n%{http_code}" --header "Job-Token: $CI_JOB_TOKEN" $insecure --data $version $URL)'
     - code=$(echo "$response" | tail -n 1)
     - body=$(echo "$response" | head -n 1)
     # Output state information
