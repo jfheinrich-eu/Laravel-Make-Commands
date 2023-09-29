@@ -1,3 +1,11 @@
+## [3.3.0-rc.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.2...3.3.0-rc.3) (2023-09-29)
+
+
+### Bug Fixes
+
+* **deploy:** Authorization ([f6943d1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/f6943d182e8063915b7e4ed5ec9d63ef2118e4bc))
+* **deploy:** syntax error pipeline ([e0507ae](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/e0507aefdbcae314d98cdbecfd9d4fb2a413e714))
+
 ## [3.3.0-rc.2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.1...3.3.0-rc.2) (2023-09-28)
 
 
