@@ -90,7 +90,7 @@ trait JsonSeeder
         $inc_filename = $seederPath . DIRECTORY_SEPARATOR . $seederName;
         $filename = $inc_filename . '.php';
 
-        if (! File::exists($filename)) {
+        if (!File::exists($filename)) {
 
             $classTemplate = <<<EOF
 <?php

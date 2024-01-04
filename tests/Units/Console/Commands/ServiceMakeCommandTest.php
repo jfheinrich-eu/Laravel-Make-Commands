@@ -14,10 +14,10 @@ final class ServiceMakeCommandTest extends PackageTestCase
     {
         parent::setUp();
 
-        if (! File::exists(app_path('Contracts'))) {
+        if (!File::exists(app_path('Contracts'))) {
             File::makeDirectory(app_path('Contracts'));
         }
-        if (! File::exists(app_path('Repositories'))) {
+        if (!File::exists(app_path('Repositories'))) {
             File::makeDirectory(app_path('Repositories'));
         }
 
