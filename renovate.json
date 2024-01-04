@@ -14,6 +14,7 @@
   "baseBranches": [
     "develop"
   ],
+  "ignoreTests": true,
   "rangeStrategy": "update-lockfile",
   "rebaseWhen": "conflicted",
   "configMigration": true
