@@ -57,10 +57,10 @@ class JsonSeeder extends Seeder
 
         try {
             $filename = $basepath . "/{$this->model->getTable()}.json";
-            if (! File::exists($filename)) {
+            if (!File::exists($filename)) {
                 return $this->error("File >{$filename}< does not exists");
             }
-            if (! File::isReadable($filename)) {
+            if (!File::isReadable($filename)) {
                 return $this->error("File >{$filename}< is not readable");
             }
 
@@ -92,12 +92,12 @@ class JsonSeeder extends Seeder
         /** @var string $basepath */
         $basepath = Config::get('make-commands.seeders.path-datafiles', '');
 
-        if (! File::isDirectory($basepath)) {
+        if (!File::isDirectory($basepath)) {
             throw new InvalidSeederDataDirectoryException(
                 "Configured seeder data directory >{$basepath}< not found"
             );
         }
-        if (! File::isReadable($basepath)) {
+        if (!File::isReadable($basepath)) {
             throw new InvalidSeederDataDirectoryException(
                 "Configured seeder data directory >{$basepath}< not readable"
             );

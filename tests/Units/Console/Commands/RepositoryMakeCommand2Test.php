@@ -15,7 +15,7 @@ final class RepositoryMakeCommand2Test extends PackageTestCase
     {
         parent::setUp();
 
-        if (! File::exists(app_path('Models'))) {
+        if (!File::exists(app_path('Models'))) {
             File::makeDirectory(app_path('Models'));
         }
 

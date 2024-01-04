@@ -34,7 +34,7 @@ final class InterfaceMakeCommand extends GeneratorCommand
         if (File::exists(base_path('stubs/make-commands/interface.stubs'))) {
             // @codeCoverageIgnoreStart
             return base_path('stubs/make-commands/interface.stubs');
-            // @codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
         } else {
             return $this->dir . '/../../../stubs/interface.stub';
         }

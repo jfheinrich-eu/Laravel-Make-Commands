@@ -39,7 +39,7 @@ final class IdeViewModelHookMakeCommand extends GeneratorCommand
         if (File::exists(base_path("stubs/make-commands/ide-helper/{$file}"))) {
             // @codeCoverageIgnoreStart
             return base_path("stubs/make-commands/ide-helper/{$file}");
-            // @codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
         } else {
             return $this->dir . "/../../../stubs/ide-helper/{$file}";
         }

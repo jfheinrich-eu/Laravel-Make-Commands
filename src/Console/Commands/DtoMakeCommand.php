@@ -45,7 +45,7 @@ final class DtoMakeCommand extends GeneratorCommand
         if (File::exists(base_path("stubs/make-commands/{$file}"))) {
             // @codeCoverageIgnoreStart
             return base_path("stubs/make-commands/{$file}");
-            // @codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
         } else {
             return $this->dir . "/../../../stubs/{$file}";
         }
