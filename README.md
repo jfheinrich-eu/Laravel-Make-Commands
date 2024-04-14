@@ -1,3 +1,5 @@
+<img src="assets/laravel-make-commands-logo.png" width="400" />
+
 # Laravel Make Commands <!-- omit in toc -->
 
 <!-- BADGES_START -->
@@ -29,7 +31,7 @@ This package is aimed to be a suite of artisan commands and tools to help make t
   - [Example](#example-4)
 - [Extend Eloquent model to use views](#extend-eloquent-model-to-use-views)
   - [Example](#example-5)
-- [IDE - Helper Support for View model](#ide---helper-support-for-view-model)
+- [IDE - Helper Support for View model](#ide-helper-support-for-view-model)
 - [Credits](#credits)
 
 ## Installation

@@ -1,6 +1,7 @@
 /vendor/
 /public/
 /tests-pest/
+/.hooks/
 run-pipeline.sh
 phpunit-pest.xml
 phpunit.xml.bak
