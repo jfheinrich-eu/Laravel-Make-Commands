@@ -34,12 +34,12 @@ variables:
   SAST_EXCLUDED_PATHS: "spec, test, tests, tmp, vendor, node_modules"
 
 include:
-- template: Jobs/SAST.gitlab-ci.yml
-- local: gitlab-ci/build.yml
-- local: gitlab-ci/tests.yml
-- local: gitlab-ci/semver.yml
-- local: gitlab-ci/sast-report.yml
-#- local: gitlab-ci/triggers.yml
-- local: gitlab-ci/badges.yml
-- local: gitlab-ci/deploy.yml
-- template: Security/Secret-Detection.gitlab-ci.yml
+  - template: Jobs/SAST.gitlab-ci.yml
+  - local: gitlab-ci/build.yml
+  - local: gitlab-ci/tests.yml
+  - local: gitlab-ci/semver.yml
+  - local: gitlab-ci/sast-report.yml
+  #- local: gitlab-ci/triggers.yml
+  - local: gitlab-ci/badges.yml
+  - local: gitlab-ci/deploy-gitlab.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
