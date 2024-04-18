@@ -27,6 +27,16 @@ trait UseView
     protected array $tableAttributes = [];
 
     /**
+     * @var string
+     */
+    protected $mainTable = '';
+
+    /**
+     * @var string[]
+     */
+    protected $baseTables = [];
+
+    /**
      * Initialize the trait
      *
      * @return void
