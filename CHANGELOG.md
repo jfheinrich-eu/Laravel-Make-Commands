@@ -1,3 +1,17 @@
+## [3.3.0-rc.4](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.3...3.3.0-rc.4) (4/14/2024)
+
+
+### Features
+
+* **php8.2:** upgrade to PHP v8.2 ([ca461de](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/ca461de420a99fbb676e1385c22585b69b82aa21))
+* **php:** upgrade PHP to 8.2 ([55a6a2d](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/55a6a2d38fdbbff57d61e9949d1c9ff4e377c7d8))
+
+
+### Bug Fixes
+
+* **git): Revert "feat(php8.2:** upgrade to PHP v8.2" ([3abcbbe](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/3abcbbe949d657c01db902880632c857fb030d2d))
+* **git): Revert "feat(php8.2:** upgrade to PHP v8.2" ([b7434a7](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/b7434a71616a1427df6297f916547883d3b3ea96))
+
 ## [3.3.0-rc.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.2...3.3.0-rc.3) (2023-09-29)
 
 
