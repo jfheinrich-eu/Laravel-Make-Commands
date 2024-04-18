@@ -35,6 +35,11 @@
       "@fix",
       "@check",
       "@static"
+    ],
+    "before:commit": [
+      "@test",
+      "@check",
+      "@static"
     ]
   },
   "extra": {
