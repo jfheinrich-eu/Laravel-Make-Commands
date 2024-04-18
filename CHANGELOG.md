@@ -1,3 +1,10 @@
+## [3.3.0-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.3-rc.1...3.3.0-rc.1) (2023-07-29)
+
+
+### Features
+
+* **LMC-18:** Database View support for Eloquent models added ([cd47b55](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/cd47b5568e28789219c4a4c63cfbdf1ddd63e7a8))
+
 ## [3.2.3](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.2...3.2.3) (2023-07-14)
 
 
