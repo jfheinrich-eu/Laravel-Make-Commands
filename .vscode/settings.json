@@ -4,11 +4,11 @@
         "vcs-phpstan"
     ],
     "phpstan.memoryLimit": "2G",
-    "phpstan.rootDir": "/Volumes/JOERG_EXT_DATA/Documents/src/packagist/laravel-make-commands",
+    "phpstan.rootDir": "/Users/jfheinrich/src/projects/laravel-make-commands",
     "phpstan.paths": {
-        "/Volumes/JOERG_EXT_DATA/Documents/src/packagist/laravel-make-commands": "/app",
-        "/Volumes/JOERG_EXT_DATA/Documents/src/packagist/laravel-make-commands/src": "/app/src",
-        "/Volumes/JOERG_EXT_DATA/Documents/src/packagist/laravel-make-commands/tests/Units": "/app/tests/Units"
+        "/Users/jfheinrich/src/projects/laravel-make-commands": "/app",
+        "/Users/jfheinrich/src/projects/laravel-make-commands/src": "/app/src",
+        "/Users/jfheinrich/src/projects/laravel-make-commands/tests/Units": "/app/tests/Units"
     },
     "phpstan.enableLanguageServer": true,
     "phpstan.timeout": 60000,
