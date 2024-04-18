@@ -1,3 +1,11 @@
+## [3.3.0-rc.2](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.1...3.3.0-rc.2) (2023-09-28)
+
+
+### Bug Fixes
+
+* **deploy:** typo error ([971193c](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/971193cbe5e616f9a793b2acc5f07cc06921ac35))
+* **deploy:** typo error ([270c199](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/270c19925cd9d78ad4aa958fa7c93575ebd423a9))
+
 ## [3.3.0-rc.1](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.2.3-rc.1...3.3.0-rc.1) (2023-07-29)
 
 
