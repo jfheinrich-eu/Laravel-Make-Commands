@@ -12,14 +12,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Data2Lockup extends Model
 {
-    protected $table = 'data_2_lockups';
     /**
      * @var string
      */
     protected $primaryKey = 'd2l_id';
 
+    /**
+     * @var bool
+     */
+    public $timestamps = false;
+
     protected $fillable = [
         'interests',
-        'data_1_lockups_id',
+        'data1_lockup_id',
     ];
 }
