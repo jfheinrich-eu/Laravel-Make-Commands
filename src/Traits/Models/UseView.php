@@ -55,6 +55,8 @@ trait UseView
     /**
      * Create a new database entry (static version)
      *
+     * @codeCoverageIgnore
+     *
      * @param array<string,mixed> $attributes
      * @return Collection<int,T>|T
      * @throws \Throwable
@@ -66,6 +68,8 @@ trait UseView
 
     /**
      * Create a new database entry
+     *
+     * @codeCoverageIgnore
      *
      * @param array<string,mixed> $attributes
      * @return Collection<int,T>|T
@@ -110,6 +114,8 @@ trait UseView
     /**
      * Implementation of the insert command for database views.
      *
+     * @codeCoverageIgnore
+     *
      * @param array<string,mixed>|array<int,array<string,mixed>> $values
      * @return bool
      */
@@ -133,6 +139,8 @@ trait UseView
 
     /**
      * Implementation of the delete command for database views.
+     *
+     * @codeCoverageIgnore
      *
      * @return bool|null
      * @throws \LogicException
@@ -180,6 +188,8 @@ trait UseView
     /**
      * Implementation of the truncate command for database views.
      *
+     * @codeCoverageIgnore
+     *
      * @return void
      */
     public function truncateView(): void
@@ -206,7 +216,7 @@ trait UseView
      * @return T
      * @throws ModelNotFoundException
      */
-    protected function getModelByTableName(string $table): Model
+    public function getModelByTableName(string $table): Model
     {
         /** @var string[] */
         $namespaces = Config::get('make_commands.useview.namespaces', ['App\\\Models\\']);
@@ -229,7 +239,7 @@ trait UseView
     /**
      * Determine that this model based on a database view and not on a table.
      *
-     * @return Attribute<bool>
+     * @return Attribute<bool,mixed>
      */
     protected function isView(): Attribute
     {
