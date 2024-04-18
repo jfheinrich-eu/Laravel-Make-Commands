@@ -8,10 +8,11 @@ return [
      */
     'commands' => [
         JfheinrichEu\LaravelMakeCommands\Console\Commands\DtoMakeCommand::class,
+        JfheinrichEu\LaravelMakeCommands\Console\Commands\IdeViewModelHookMakeCommand::class,
         JfheinrichEu\LaravelMakeCommands\Console\Commands\InterfaceMakeCommand::class,
         JfheinrichEu\LaravelMakeCommands\Console\Commands\RepositoryMakeCommand::class,
-        JfheinrichEu\LaravelMakeCommands\Console\Commands\ServiceMakeCommand::class,
         JfheinrichEu\LaravelMakeCommands\Console\Commands\SeederDataMakeCommand::class,
+        JfheinrichEu\LaravelMakeCommands\Console\Commands\ServiceMakeCommand::class,
     ],
     'seeders'  => [
         'path-seeder' => database_path('seeders'),
