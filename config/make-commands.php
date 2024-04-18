@@ -20,4 +20,9 @@ return [
             // App\Models\User::class,
         ],
     ],
+    'useview'  => [
+        'namespaces' => [
+            'App\\Models\\',
+        ],
+    ],
 ];

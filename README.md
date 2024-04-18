@@ -26,6 +26,8 @@ This package is aimed to be a suite of artisan commands and tools to help make t
   - [Usage](#usage-2)
 - [Create JSON datafiles from database (make-commands:seeder-data)](#create-json-datafiles-from-database-make-commandsseeder-data)
   - [Example](#example-4)
+- [Extend Eloquent model to use views](#extend-eloquent-model-to-use-views)
+  - [Example](#example-5)
 - [Credits](#credits)
 
 ## Installation
@@ -498,6 +500,61 @@ $ php artisan make-commands:seeder-data \App\Models\User \App\Models\UserPost
 ```
 
 This creates the files `users.json` and `user_posts.json` into the configured seeder data directory.
+
+## Extend Eloquent model to use views
+
+The `UseView` Trait allows to create eloquent models based on `Views`, which are
+- selectable
+- updatable
+- insertable
+
+are.
+
+Eloquent models must exist for the underlying tables of the `View`.
+
+In the `Model` the `Trait` must be added and these two properties must be created
+
+- protected string $mainTable = 'Table that serves as the main table'.
+- protected array $baseTables = ['All underlying tables']
+
+The `trait` adds the following properties and methods to the `model`.
+
+- property string[][] tableAttributes
+- static method create(array<string,mixed> $attributes): Model|Collection<int, T>
+- public function insert(array<string,mixed>|array<int,array<string,mixed>> $values): bool
+- public function delete(): bool|null
+- public function truncateView(): void
+- Attribute bool is_view
+
+### Example
+
+```php
+class MyView extends Model
+{
+    /** @phpstan-use UseView<MyView> */
+    use UseView;
+
+    /**
+     * @var string
+     */
+    protected $table = 'my_view';
+
+    /** @var string */
+    protected $primaryKey = 'id';
+
+    /** @var string */
+    protected string $mainTable = 'data_table_1';
+
+    /** @var string[] */
+    protected array $baseTables = [
+        'data_table_1',
+        'data_table_2',
+        'data_table_3',
+    ];
+
+...
+}
+```
 
 ## Credits
 
