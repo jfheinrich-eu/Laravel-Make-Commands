@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Config;
 
 /**
  * Trait to extend the Eloquent model to handle database views
@@ -223,7 +223,7 @@ trait UseView
 
         $className = Str::studly(str::singular($table));
 
-        foreach($namespaces as $namespace) {
+        foreach ($namespaces as $namespace) {
             $fqn = $namespace . $className;
             if (class_exists($fqn)) {
                 /** @var T $model */
@@ -244,7 +244,7 @@ trait UseView
     protected function isView(): Attribute
     {
         return new Attribute(
-            get: fn () => true
+            get: fn() => true
         );
     }
 }

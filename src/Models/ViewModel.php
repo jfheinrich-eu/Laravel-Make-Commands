@@ -12,6 +12,11 @@ class ViewModel extends Model
     /** @phpstan-use UseView<ViewModel> */
     use UseView;
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
+
     /**
      * @var string
      */
