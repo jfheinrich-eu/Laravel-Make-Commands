@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Traits\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -14,6 +13,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use JfheinrichEu\LaravelMakeCommands\Support\Helper;
 
 /**
  * Trait to extend the Eloquent model to handle database views
@@ -29,12 +29,12 @@ trait UseView
     /**
      * @var string
      */
-    protected $mainTable = '';
+    protected string $mainTable = '';
 
     /**
      * @var string[]
      */
-    protected $baseTables = [];
+    protected array $baseTables = [];
 
     /**
      * Initialize the trait
@@ -68,10 +68,10 @@ trait UseView
      * @codeCoverageIgnore
      *
      * @param array<string,mixed> $attributes
-     * @return Collection<int,T>|T
+     * @return self
      * @throws \Throwable
      */
-    public static function create(array $attributes): Model|Collection
+    public static function create(array $attributes): self
     {
         return (new self())->realCreate($attributes);
     }
@@ -82,10 +82,10 @@ trait UseView
      * @codeCoverageIgnore
      *
      * @param array<string,mixed> $attributes
-     * @return Collection<int,T>|T
+     * @return self
      * @throws \Throwable
      */
-    public function realCreate(array $attributes): Model|Collection
+    public function realCreate(array $attributes): self
     {
         try {
             DB::beginTransaction();
@@ -235,7 +235,7 @@ trait UseView
 
         foreach ($namespaces as $namespace) {
             $fqn = $namespace . $className;
-            if (class_exists($fqn)) {
+            if (Helper::classExists($fqn)) {
                 /** @var T $model */
                 $model = new $fqn();
 

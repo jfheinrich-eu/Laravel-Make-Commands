@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace JfheinrichEu\LaravelMakeCommands\Tests\Units\Models;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 use JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Models\MyView;
 
@@ -28,12 +28,14 @@ final class ViewModelTest extends PackageTestCase
             File::cleanDirectory(app_path());
         });
 
-        $this->artisan(
+        /** @var \Illuminate\Testing\PendingCommand $cmd */
+        $cmd = $this->artisan(
             'migrate',
             [
                 '--database' => 'testbench',
             ]
-        )->run();
+        );
+        $cmd->run();
     }
 
     public function test_check_is_view(): void
@@ -61,7 +63,7 @@ final class ViewModelTest extends PackageTestCase
         $result = $model->getModelByTableName('not_exists');
     }
 
-    public function test_create_insert_update_delete_find(): void
+    public function test_create_update_delete_find(): void
     {
         /**
          * @var MyView $model
@@ -72,9 +74,54 @@ final class ViewModelTest extends PackageTestCase
             'interests' => 'Geld',
         ]);
 
-        self::assertInstanceOf(MyView::class, $model, 'Returned class is not a instance of MyView');
-        self::assertEquals('Willi Wucher', $model->name, 'Returned name is different from expected');
-        self::assertEquals('willi.wucher@wucher.de', $model->email, 'Returned email is different from expected');
-        self::assertEquals('Geld', $model->interests, 'Returned interests is different from expected');
+        self::assertInstanceOf(MyView::class, $model, 'create: Returned class is not a instance of MyView');
+        self::assertEquals('Willi Wucher', $model->name, 'create: Returned name is different from expected');
+        self::assertEquals('willi.wucher@wucher.de', $model->email, 'create: Returned email is different from expected');
+        self::assertEquals('Geld', $model->interests, 'create: Returned interests is different from expected');
+
+        $this->view_test_find_after_create();
+
+        $this->view_test_update();
+
+        $this->view_test_find_after_update();
+
+        $this->view_test_delete();
+    }
+
+    public function view_test_update(): void
+    {
+        $result = MyView::whereId(1)->firstOrFail()->update([
+            'name' => 'Willi M. Wucher',
+            'interests' => 'Money',
+        ]);
+
+        self::assertTrue((bool) $result, 'Update failed');
+    }
+
+    public function view_test_find_after_create(): void
+    {
+        /** @var MyView $model */
+        $model = MyView::whereId(1)->firstOrFail();
+
+        self::assertEquals('Willi Wucher', $model->name, 'find(create): Returned name is different from expected');
+        self::assertEquals('willi.wucher@wucher.de', $model->email, 'find(create): Returned email is different from expected');
+        self::assertEquals('Geld', $model->interests, 'find(create): Returned interests is different from expected');
+    }
+
+    public function view_test_find_after_update(): void
+    {
+        /** @var MyView $model */
+        $model = MyView::whereId(1)->firstOrFail();
+
+        self::assertEquals('Willi M. Wucher', $model->name, 'find(insert): Returned name is different from expected');
+        self::assertEquals('willi.wucher@wucher.de', $model->email, 'find(insert): Returned email is different from expected');
+        self::assertEquals('Money', $model->interests, 'find(insert): Returned interests is different from expected');
+    }
+
+    public function view_test_delete(): void
+    {
+        $result = MyView::whereId(1)->firstOrFail()->delete();
+
+        self::assertTrue((bool) $result, 'Delete failed');
     }
 }
