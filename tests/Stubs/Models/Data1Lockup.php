@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Data1Lockup extends Model
 {
+    protected $table = 'data_1_lockups';
+
     protected $fillable = [
         'name',
         'email',

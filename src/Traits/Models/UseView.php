@@ -75,7 +75,7 @@ trait UseView
      * @return Collection<int,T>|T
      * @throws \Throwable
      */
-    protected function realCreate(array $attributes): Model|Collection
+    public function realCreate(array $attributes): Model|Collection
     {
         try {
             DB::beginTransaction();

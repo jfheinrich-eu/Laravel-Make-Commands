@@ -12,11 +12,6 @@ class ViewModel extends Model
     /** @phpstan-use UseView<ViewModel> */
     use UseView;
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-    }
-
     /**
      * @var string
      */
@@ -27,4 +22,8 @@ class ViewModel extends Model
      */
     protected $baseTables = [];
 
+    public function initialize(): void
+    {
+        $this->initializeUseView();
+    }
 }
