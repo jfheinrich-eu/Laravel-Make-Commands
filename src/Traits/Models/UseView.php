@@ -244,7 +244,7 @@ trait UseView
     protected function isView(): Attribute
     {
         return new Attribute(
-            get: fn() => true
+            get: fn () => true
         );
     }
 }

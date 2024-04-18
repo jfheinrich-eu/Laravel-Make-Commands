@@ -6,15 +6,12 @@ namespace JfheinrichEu\LaravelMakeCommands\Tests\Units\Models;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\File;
-use Mockery;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use JfheinrichEu\LaravelMakeCommands\Tests\PackageTestCase;
 use JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Models\MyView;
 
 final class ViewModelTest extends PackageTestCase
 {
-
     public function setUp(): void
     {
         parent::setUp();
@@ -60,7 +57,9 @@ final class ViewModelTest extends PackageTestCase
     public function create_insert_update_delete_find(): void
     {
 
-        /** @var MyView $model */
+        /**
+         * @var MyView $model
+         */
         $model = (new MyView())->create([
             'name' => 'Willi Wucher',
             'email' => 'willi.wucher@wucher.de',

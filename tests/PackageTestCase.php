@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace JfheinrichEu\LaravelMakeCommands\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\File;
 use JfheinrichEu\LaravelMakeCommands\LaravelMakeCommandsPackageProvider;
 use Orchestra\Testbench\TestCase;
 

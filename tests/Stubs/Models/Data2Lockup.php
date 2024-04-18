@@ -6,6 +6,10 @@ namespace JfheinrichEu\LaravelMakeCommands\Tests\Stubs\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $dl2_id
+ * @property string $interests
+ */
 class Data2Lockup extends Model
 {
     protected $table = 'data_2_lockups';
