@@ -1,3 +1,4 @@
+# XDEBUG configuration source: https://gist.github.com/MatthieuScarset/0c3860def9ff1f0b84e32f618c740655
 name: laravel-make-commands
 recipe: lemp
 config:
@@ -13,7 +14,9 @@ services:
       - echo "Europe/Berlin" > /etc/timezone
     overrides:
         environment:
-            XDEBUG_MODE:
+            XDEBUG_MODE: 'debug,coverage'
+    config:
+      php: .vscode/php.ini
 
 tooling:
   xdebug-on:
