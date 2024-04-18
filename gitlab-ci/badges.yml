@@ -1,5 +1,5 @@
 badges:
-  image: python:3.9
+  image: python:3.12
   stage: badges
   tags:
     - deploy
