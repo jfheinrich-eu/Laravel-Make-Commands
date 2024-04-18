@@ -29,6 +29,7 @@ This package is aimed to be a suite of artisan commands and tools to help make t
   - [Example](#example-4)
 - [Extend Eloquent model to use views](#extend-eloquent-model-to-use-views)
   - [Example](#example-5)
+- [IDE - Helper Support for View model](#ide---helper-support-for-view-model)
 - [Credits](#credits)
 
 ## Installation
@@ -564,6 +565,15 @@ class MyView extends ViewModel
 ...
 }
 ```
+
+## IDE - Helper Support for View model
+
+Because Eloquent and Doctrine did not run back the columns of a view, two problems arise:
+- Artisan model:show does **not** return the columns of the view
+- IDE - Helper: does not recognize the columns either and thus does not generate annotations for the columns.
+
+For the second point there is the `artisan` command `make-commands:view-model-hook` in this package which creates a hook class in the directory app/Support/IdeHelper. This must then only be entered in the IDE-Helper config file under hooks.
+
 
 ## Credits
 
