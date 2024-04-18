@@ -13,5 +13,7 @@
     "phpstan.enableLanguageServer": true,
     "phpstan.timeout": 60000,
     "phpstan.projectTimeout": 360000,
-    "phpstan.enabled": false
+    "phpstan.enabled": false,
+    "phpunit-test-workbench.phpunit.binaryPath": "/Users/jfheinrich/bin/vcs-phpunit",
+    "phpunit.phpunit": "/Users/jfheinrich/bin/vcs-phpunitdebug"
 }
