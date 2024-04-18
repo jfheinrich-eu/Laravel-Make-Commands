@@ -77,6 +77,6 @@
     "eventsauce/object-hydrator": "1.4.0",
     "laravel/framework": "^10",
     "monolog/monolog": "3.4.0",
-    "spatie/laravel-package-tools": "1.16.0"
+    "spatie/laravel-package-tools": "1.16.1"
   }
 }
