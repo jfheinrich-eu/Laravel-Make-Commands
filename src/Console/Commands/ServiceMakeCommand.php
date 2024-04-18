@@ -44,7 +44,7 @@ class ServiceMakeCommand extends GeneratorCommand
         if (File::exists(base_path('stubs/make-commands/service.stub'))) {
             // @codeCoverageIgnoreStart
             return base_path('stubs/make-commands/service.stub');
-            // @codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
         } else {
             return $this->dir . '/../../../stubs/service.stub';
         }
@@ -110,7 +110,7 @@ class ServiceMakeCommand extends GeneratorCommand
 
         $repositoryClass = $this->parseRepository(($repository));
 
-        if (! class_exists($repositoryClass) && $this->components->confirm("A {$repositoryClass} repository does not exist. Do you want to generate it?", true)) {
+        if (!class_exists($repositoryClass) && $this->components->confirm("A {$repositoryClass} repository does not exist. Do you want to generate it?", true)) {
             $this->call('make-commands:repository', [ 'name' => $repositoryClass ]);
         }
 
@@ -187,7 +187,7 @@ class ServiceMakeCommand extends GeneratorCommand
             str_replace($rootNamespace, '', $interfaceClass)
         ) . '.php';
 
-        if (! File::exists(app_path($filepath)) && $this->components->confirm("A {$interfaceClass} interface does not exist. Do you want to generate it?", true)) {
+        if (!File::exists(app_path($filepath)) && $this->components->confirm("A {$interfaceClass} interface does not exist. Do you want to generate it?", true)) {
             $this->call('make-commands:interface', [ 'name' => class_basename($interfaceClass) ]);
         }
 

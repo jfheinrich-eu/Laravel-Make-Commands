@@ -44,12 +44,12 @@ class SeederDataMakeCommand extends Command
         /** @var array<int,string>|string $models */
         $models = $this->argument('model');
 
-        if (! File::isDirectory($seederDataPath) || ! File::isWritable($seederDataPath)) {
+        if (!File::isDirectory($seederDataPath) || !File::isWritable($seederDataPath)) {
             $this->error('Seeder data directory, configured as >' . $seederDataPath . '<, does not exists or is not writable, check your configuration');
             return SymfonyCommand::FAILURE;
         }
 
-        if (! is_array($models)) {
+        if (!is_array($models)) {
             $models = [$models];
         }
 
@@ -128,7 +128,7 @@ class SeederDataMakeCommand extends Command
                 ->getAttributes();
         })->toJson(JSON_PRETTY_PRINT);
 
-        if (! File::put($jsonfile, $json)) {
+        if (!File::put($jsonfile, $json)) {
             $this->error('Can not write JSON file ' . $jsonfile);
 
             $retCode = SymfonyCommand::FAILURE;

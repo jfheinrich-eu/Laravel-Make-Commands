@@ -31,7 +31,7 @@ trait DtoGetterAndSetter
         $methodPrefix = substr($methodName, 0, $length);
         $key = substr($methodName, $length);
 
-        if (! isset($propertiesMethods[$key])) {
+        if (!isset($propertiesMethods[$key])) {
             throw new BadMethodCallException("Property {$key} does not exists");
         }
 
