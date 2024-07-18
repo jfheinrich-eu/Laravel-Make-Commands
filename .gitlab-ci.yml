@@ -81,8 +81,8 @@ include:
       - when: always
   - component: $CI_SERVER_FQDN/dependabot-gitlab/dependabot-standalone/template@3.18.1
     inputs:
-      github_access_token: $GITHUB_TOKEN
-      gitlab_access_token: $PRIVATE_ACCESS_TOKEN
+      github_access_token: $SETTINGS_GITHUB_ACCESS_TOKEN
+      gitlab_access_token: $SETTINGS_GITLAB_ACCESS_TOKEN
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: always
