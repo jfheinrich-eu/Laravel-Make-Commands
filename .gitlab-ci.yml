@@ -37,45 +37,48 @@ default:
   tags:
     - docker
 
-dummy_job:
-  stage: .pre
-  script:
-    - echo "Dummy job, only for syntax issues"
-
 include:
   - template: Jobs/SAST.gitlab-ci.yml
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
+      - when: always
   - local: gitlab-ci/build.yml
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
+      - when: always
   - local: gitlab-ci/tests.yml
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
+      - when: always
   - local: gitlab-ci/semver.yml
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
+      - when: always
   - local: gitlab-ci/sast-report.yml
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
+      - when: always
   #- local: gitlab-ci/triggers.yml
   - local: gitlab-ci/badges.yml
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
+      - when: always
   - local: gitlab-ci/deploy-gitlab.yml
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
+      - when: always
   - template: Security/Secret-Detection.gitlab-ci.yml
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
+      - when: always
   - local: gitlab-ci/dependabot.yml
     rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
