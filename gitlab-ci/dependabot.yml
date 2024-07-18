@@ -2,7 +2,7 @@
   image:
     name: andrcuns/dependabot-gitlab:latest
     entrypoint: [""]
-  stages: test
+  stage: test
   variables:
     GIT_STRATEGY: none
     PACKAGE_MANAGER: $CI_JOB_NAME
