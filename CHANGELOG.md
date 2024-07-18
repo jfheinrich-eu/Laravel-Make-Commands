@@ -1,3 +1,10 @@
+## [3.3.0-rc.6](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.5...3.3.0-rc.6) (7/18/2024)
+
+
+### Bug Fixes
+
+* resolve syntax error in dependabot.yml ([af3e632](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/af3e632dbd688303dd1fddd1020b36f945dbbb84))
+
 ## [3.3.0-rc.5](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.4...3.3.0-rc.5) (4/18/2024)
 
 
