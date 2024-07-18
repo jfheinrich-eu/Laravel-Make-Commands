@@ -33,6 +33,10 @@ variables:
   DOCKER_PY_IMAGE: "python:latest"
   SAST_EXCLUDED_PATHS: "spec, test, tests, tmp, vendor, node_modules"
 
+default:
+  tags:
+    - docker
+
 dummy_job:
   stage: .pre
   script:
