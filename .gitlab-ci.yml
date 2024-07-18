@@ -33,6 +33,11 @@ variables:
   DOCKER_PY_IMAGE: "python:latest"
   SAST_EXCLUDED_PATHS: "spec, test, tests, tmp, vendor, node_modules"
 
+dummy_job:
+  stage: .pre
+  script:
+    - echo "Dummy job, only for syntax issues"
+
 include:
   - template: Jobs/SAST.gitlab-ci.yml
     rules:
@@ -51,6 +56,9 @@ include:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
   - local: gitlab-ci/sast-report.yml
+    rules:
+      - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
+        when: never
   #- local: gitlab-ci/triggers.yml
   - local: gitlab-ci/badges.yml
     rules:
@@ -65,5 +73,6 @@ include:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
   - local: gitlab-ci/dependabot.yml
-      rules:
+    rules:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
+        when: always
