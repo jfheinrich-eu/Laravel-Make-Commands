@@ -44,7 +44,7 @@ class ServiceMakeCommand extends GeneratorCommand
         if (File::exists(base_path('stubs/make-commands/service.stub'))) {
             // @codeCoverageIgnoreStart
             return base_path('stubs/make-commands/service.stub');
-        // @codeCoverageIgnoreEnd
+            // @codeCoverageIgnoreEnd
         } else {
             return $this->dir . '/../../../stubs/service.stub';
         }
