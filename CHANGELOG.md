@@ -1,3 +1,10 @@
+## [3.3.0-rc.7](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.6...3.3.0-rc.7) (7/19/2024)
+
+
+### Bug Fixes
+
+* resolve pint issues ([7d36d28](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/7d36d28058cad0245b9e649022e87d4fee40b80a))
+
 ## [3.3.0-rc.6](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.5...3.3.0-rc.6) (7/18/2024)
 
 
