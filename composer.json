@@ -62,7 +62,7 @@
     "allow-plugins": {}
   },
   "require-dev": {
-    "laravel/pint": "1.13.7",
+    "laravel/pint": "1.16.2",
     "nunomaduro/collision": "7.10.0",
     "nunomaduro/larastan": "2.7.0",
     "orchestra/testbench": "8.19.0",
