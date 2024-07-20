@@ -1,3 +1,10 @@
+## [3.3.0-rc.8](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.7...3.3.0-rc.8) (7/20/2024)
+
+
+### Bug Fixes
+
+* resolve syntax error in phpstan.neon ([6942724](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/694272463fbe910689f6bbd8f931c178187ab13e))
+
 ## [3.3.0-rc.7](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.6...3.3.0-rc.7) (7/19/2024)
 
 
