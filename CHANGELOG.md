@@ -1,3 +1,10 @@
+## [3.3.0-rc.9](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.8...3.3.0-rc.9) (7/20/2024)
+
+
+### Bug Fixes
+
+* resolve type error ([9b6903f](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/9b6903f7d3640c344f14f36aee6b2e2c0eb612f4))
+
 ## [3.3.0-rc.8](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.7...3.3.0-rc.8) (7/20/2024)
 
 
