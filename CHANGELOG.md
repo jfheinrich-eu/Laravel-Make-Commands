@@ -1,3 +1,10 @@
+## [3.3.0-rc.10](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.9...3.3.0-rc.10) (7/21/2024)
+
+
+### Bug Fixes
+
+* replace server variable with literal string ([975bdeb](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/975bdeb239dfd6a5d1183bc3891a663a647c8679))
+
 ## [3.3.0-rc.9](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.8...3.3.0-rc.9) (7/20/2024)
 
 
