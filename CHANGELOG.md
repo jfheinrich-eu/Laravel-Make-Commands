@@ -1,3 +1,10 @@
+## [3.3.0-rc.11](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.10...3.3.0-rc.11) (7/21/2024)
+
+
+### Bug Fixes
+
+* add dependency type ([9fb149d](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/9fb149d8e88ac57b150cc09738bdbe3a8218301b))
+
 ## [3.3.0-rc.10](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.9...3.3.0-rc.10) (7/21/2024)
 
 
