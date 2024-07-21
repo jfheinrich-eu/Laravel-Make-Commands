@@ -2,6 +2,11 @@
 version: 2
 updates:
   - package-ecosystem: composer
+    vulnerability-alerts:
+      enabled: true
+      confidential: true
+      assignees:
+        - j.f.heinrich
     directory: /
     schedule:
       interval: daily
