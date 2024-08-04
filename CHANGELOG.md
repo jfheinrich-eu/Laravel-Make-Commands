@@ -1,3 +1,10 @@
+## [3.3.0-rc.12](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.11...3.3.0-rc.12) (8/4/2024)
+
+
+### Bug Fixes
+
+* resolve merge conflicts ([88e7b6f](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/88e7b6f559325cae54a6970e4e6825387d184721))
+
 ## [3.3.0-rc.11](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.10...3.3.0-rc.11) (7/21/2024)
 
 
