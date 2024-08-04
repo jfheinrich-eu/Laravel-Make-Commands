@@ -10,6 +10,9 @@
     }
   },
   "autoload-dev": {
+    "exclude-from-classmap": [
+      "tests/Stubs"
+    ],
     "psr-4": {
       "JfheinrichEu\\LaravelMakeCommands\\Tests\\": "tests/"
     }
@@ -62,9 +65,9 @@
     "allow-plugins": {}
   },
   "require-dev": {
-    "laravel/pint": "1.16.2",
+    "larastan/larastan": "^2.9",
+    "laravel/pint": "1.17.0",
     "nunomaduro/collision": "7.10.0",
-    "nunomaduro/larastan": "2.9.8",
     "orchestra/testbench": "8.19.0",
     "orchestra/testbench-core": "8.19.0",
     "php-mock/php-mock-mockery": "1.4.1",
