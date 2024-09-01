@@ -79,7 +79,7 @@ include:
       - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_NAME == "dependabot"'
         when: never
       - when: always
-  - component: gitlab.com/dependabot-gitlab/dependabot-standalone/template@3.18.1
+  - component: gitlab.com/dependabot-gitlab/dependabot-standalone/template@3.22.0
     inputs:
       github_access_token: $SETTINGS_GITHUB_ACCESS_TOKEN
       gitlab_access_token: $SETTINGS_GITLAB_ACCESS_TOKEN
