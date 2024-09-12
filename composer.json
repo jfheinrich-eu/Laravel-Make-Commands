@@ -78,7 +78,7 @@
   },
   "require": {
     "eventsauce/object-hydrator": "1.4.0",
-    "laravel/framework": "10.48.16",
+    "laravel/framework": "10.48.22",
     "monolog/monolog": "3.7.0",
     "spatie/laravel-package-tools": "1.16.4"
   }
