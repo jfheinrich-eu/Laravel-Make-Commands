@@ -1,3 +1,11 @@
+## [3.3.0-rc.13](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.12...3.3.0-rc.13) (9/24/2024)
+
+
+### Bug Fixes
+
+* **deps:** update dependency laravel/framework to v10.48.22 ([a25276b](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/a25276b35337de3d4f1305c1224f848af3832eab))
+* **deps:** update dependency laravel/framework to v10.48.22 ([09e6f97](https://gitlab.com/jfheinrich-eu/laravel-make-commands/commit/09e6f97a02a534a809dd45614c296e44dee5fc08))
+
 ## [3.3.0-rc.12](https://gitlab.com/jfheinrich-eu/laravel-make-commands/compare/3.3.0-rc.11...3.3.0-rc.12) (8/4/2024)
 
 
